@@ -1,0 +1,332 @@
+{
+  "schema_version": 1,
+  "run_id": "cub_openai_vitb32_to_laion_vitb32_mlp_h512",
+  "feature_run_id": "cub_openai_vitb32_to_laion_vitb32_linear",
+  "eligible_attributes": 294,
+  "test_birds": 5794,
+  "threshold_protocol": "Per-attribute F1 thresholds selected on target-native validation scores and frozen for native, aligned, and unaligned test inputs.",
+  "per_bird_count_policy": "Counts use visible eligible labels only and exclude true negatives.",
+  "within_species_policy": "Equal-weight macro average over attribute-species groups containing at least one visible positive and negative; ties score 0.5.",
+  "aggregate": {
+    "native_target": {
+      "per_bird_recovery": {
+        "mean_present_attributes": {
+          "mean": 31.472730410769763,
+          "seed_std": 0.0
+        },
+        "mean_correctly_recovered": {
+          "mean": 21.781981360027615,
+          "seed_std": 0.06302200614917262
+        },
+        "mean_missed": {
+          "mean": 9.690749050742147,
+          "seed_std": 0.06302200614917314
+        },
+        "mean_hallucinated": {
+          "mean": 23.957128063513984,
+          "seed_std": 0.18198234869878624
+        }
+      },
+      "within_species": {
+        "macro_pair_accuracy": {
+          "mean": 0.622993252879988,
+          "seed_std": 0.0006970498240726452
+        },
+        "attribute_species_groups": 29497,
+        "represented_attributes": 294
+      }
+    },
+    "aligned_source": {
+      "per_bird_recovery": {
+        "mean_present_attributes": {
+          "mean": 31.472730410769763,
+          "seed_std": 0.0
+        },
+        "mean_correctly_recovered": {
+          "mean": 17.810873317224715,
+          "seed_std": 0.1800910320986556
+        },
+        "mean_missed": {
+          "mean": 13.661857093545047,
+          "seed_std": 0.18009103209865512
+        },
+        "mean_hallucinated": {
+          "mean": 19.710010355540213,
+          "seed_std": 0.6089443363798831
+        }
+      },
+      "within_species": {
+        "macro_pair_accuracy": {
+          "mean": 0.5948606733267989,
+          "seed_std": 0.0011858415682116067
+        },
+        "attribute_species_groups": 29497,
+        "represented_attributes": 294
+      }
+    },
+    "unaligned_source": {
+      "per_bird_recovery": {
+        "mean_present_attributes": {
+          "mean": 31.472730410769763,
+          "seed_std": 0.0
+        },
+        "mean_correctly_recovered": {
+          "mean": 13.868346565412498,
+          "seed_std": 0.484716050022719
+        },
+        "mean_missed": {
+          "mean": 17.60438384535727,
+          "seed_std": 0.4847160500227184
+        },
+        "mean_hallucinated": {
+          "mean": 43.8603727994477,
+          "seed_std": 1.802910809545503
+        }
+      },
+      "within_species": {
+        "macro_pair_accuracy": {
+          "mean": 0.5021321859950596,
+          "seed_std": 0.00041682829717288824
+        },
+        "attribute_species_groups": 29497,
+        "represented_attributes": 294
+      }
+    }
+  },
+  "species_only": {
+    "uses_ground_truth_species": true,
+    "per_bird_recovery": {
+      "mean_present_attributes": 31.472730410769763,
+      "mean_correctly_recovered": 21.954435623058338,
+      "mean_missed": 9.518294787711426,
+      "mean_hallucinated": 24.640317569899896
+    },
+    "within_species": {
+      "macro_pair_accuracy": 0.5,
+      "attribute_species_groups": 29497,
+      "represented_attributes": 294
+    }
+  },
+  "seeds": [
+    {
+      "seed": 42,
+      "conditions": {
+        "native_target": {
+          "per_bird_recovery": {
+            "mean_present_attributes": 31.472730410769763,
+            "mean_correctly_recovered": 21.67172937521574,
+            "mean_missed": 9.801001035554021,
+            "mean_hallucinated": 23.88643424231964
+          },
+          "within_species": {
+            "macro_pair_accuracy": 0.6236562304778336,
+            "attribute_species_groups": 29497,
+            "represented_attributes": 294
+          }
+        },
+        "aligned_source": {
+          "per_bird_recovery": {
+            "mean_present_attributes": 31.472730410769763,
+            "mean_correctly_recovered": 17.491197790818088,
+            "mean_missed": 13.981532619951674,
+            "mean_hallucinated": 18.758025543665863
+          },
+          "within_species": {
+            "macro_pair_accuracy": 0.5968265744038344,
+            "attribute_species_groups": 29497,
+            "represented_attributes": 294
+          }
+        },
+        "unaligned_source": {
+          "per_bird_recovery": {
+            "mean_present_attributes": 31.472730410769763,
+            "mean_correctly_recovered": 13.30652399033483,
+            "mean_missed": 18.166206420434932,
+            "mean_hallucinated": 41.80031066620642
+          },
+          "within_species": {
+            "macro_pair_accuracy": 0.5024565881259093,
+            "attribute_species_groups": 29497,
+            "represented_attributes": 294
+          }
+        }
+      }
+    },
+    {
+      "seed": 43,
+      "conditions": {
+        "native_target": {
+          "per_bird_recovery": {
+            "mean_present_attributes": 31.472730410769763,
+            "mean_correctly_recovered": 21.788229202623402,
+            "mean_missed": 9.684501208146358,
+            "mean_hallucinated": 24.032965136347947
+          },
+          "within_species": {
+            "macro_pair_accuracy": 0.6232681078101632,
+            "attribute_species_groups": 29497,
+            "represented_attributes": 294
+          }
+        },
+        "aligned_source": {
+          "per_bird_recovery": {
+            "mean_present_attributes": 31.472730410769763,
+            "mean_correctly_recovered": 17.818087676907144,
+            "mean_missed": 13.654642733862616,
+            "mean_hallucinated": 19.688816016568865
+          },
+          "within_species": {
+            "macro_pair_accuracy": 0.5944394470224287,
+            "attribute_species_groups": 29497,
+            "represented_attributes": 294
+          }
+        },
+        "unaligned_source": {
+          "per_bird_recovery": {
+            "mean_present_attributes": 31.472730410769763,
+            "mean_correctly_recovered": 14.089748015188126,
+            "mean_missed": 17.382982395581635,
+            "mean_hallucinated": 45.146703486365205
+          },
+          "within_species": {
+            "macro_pair_accuracy": 0.5020005209950941,
+            "attribute_species_groups": 29497,
+            "represented_attributes": 294
+          }
+        }
+      }
+    },
+    {
+      "seed": 44,
+      "conditions": {
+        "native_target": {
+          "per_bird_recovery": {
+            "mean_present_attributes": 31.472730410769763,
+            "mean_correctly_recovered": 21.802381774249223,
+            "mean_missed": 9.670348636520538,
+            "mean_hallucinated": 23.723852260959614
+          },
+          "within_species": {
+            "macro_pair_accuracy": 0.623217306970784,
+            "attribute_species_groups": 29497,
+            "represented_attributes": 294
+          }
+        },
+        "aligned_source": {
+          "per_bird_recovery": {
+            "mean_present_attributes": 31.472730410769763,
+            "mean_correctly_recovered": 17.90645495340007,
+            "mean_missed": 13.566275457369693,
+            "mean_hallucinated": 19.410079392474973
+          },
+          "within_species": {
+            "macro_pair_accuracy": 0.5954653430163465,
+            "attribute_species_groups": 29497,
+            "represented_attributes": 294
+          }
+        },
+        "unaligned_source": {
+          "per_bird_recovery": {
+            "mean_present_attributes": 31.472730410769763,
+            "mean_correctly_recovered": 13.508974801518812,
+            "mean_missed": 17.96375560925095,
+            "mean_hallucinated": 41.538488091128755
+          },
+          "within_species": {
+            "macro_pair_accuracy": 0.5021964801611635,
+            "attribute_species_groups": 29497,
+            "represented_attributes": 294
+          }
+        }
+      }
+    },
+    {
+      "seed": 45,
+      "conditions": {
+        "native_target": {
+          "per_bird_recovery": {
+            "mean_present_attributes": 31.472730410769763,
+            "mean_correctly_recovered": 21.780462547462893,
+            "mean_missed": 9.692267863306869,
+            "mean_hallucinated": 24.26406627545737
+          },
+          "within_species": {
+            "macro_pair_accuracy": 0.6231833858525438,
+            "attribute_species_groups": 29497,
+            "represented_attributes": 294
+          }
+        },
+        "aligned_source": {
+          "per_bird_recovery": {
+            "mean_present_attributes": 31.472730410769763,
+            "mean_correctly_recovered": 17.802554366586122,
+            "mean_missed": 13.670176044183638,
+            "mean_hallucinated": 20.19330341732827
+          },
+          "within_species": {
+            "macro_pair_accuracy": 0.5941818774894265,
+            "attribute_species_groups": 29497,
+            "represented_attributes": 294
+          }
+        },
+        "unaligned_source": {
+          "per_bird_recovery": {
+            "mean_present_attributes": 31.472730410769763,
+            "mean_correctly_recovered": 13.751294442526751,
+            "mean_missed": 17.72143596824301,
+            "mean_hallucinated": 45.11546427338626
+          },
+          "within_species": {
+            "macro_pair_accuracy": 0.5025990653617842,
+            "attribute_species_groups": 29497,
+            "represented_attributes": 294
+          }
+        }
+      }
+    },
+    {
+      "seed": 46,
+      "conditions": {
+        "native_target": {
+          "per_bird_recovery": {
+            "mean_present_attributes": 31.472730410769763,
+            "mean_correctly_recovered": 21.867103900586812,
+            "mean_missed": 9.605626510182947,
+            "mean_hallucinated": 23.87832240248533
+          },
+          "within_species": {
+            "macro_pair_accuracy": 0.621641233288615,
+            "attribute_species_groups": 29497,
+            "represented_attributes": 294
+          }
+        },
+        "aligned_source": {
+          "per_bird_recovery": {
+            "mean_present_attributes": 31.472730410769763,
+            "mean_correctly_recovered": 18.036071798412152,
+            "mean_missed": 13.436658612357611,
+            "mean_hallucinated": 20.4998274076631
+          },
+          "within_species": {
+            "macro_pair_accuracy": 0.593390124701959,
+            "attribute_species_groups": 29497,
+            "represented_attributes": 294
+          }
+        },
+        "unaligned_source": {
+          "per_bird_recovery": {
+            "mean_present_attributes": 31.472730410769763,
+            "mean_correctly_recovered": 14.68519157749396,
+            "mean_missed": 16.787538833275804,
+            "mean_hallucinated": 45.70089748015188
+          },
+          "within_species": {
+            "macro_pair_accuracy": 0.5014082753313474,
+            "attribute_species_groups": 29497,
+            "represented_attributes": 294
+          }
+        }
+      }
+    }
+  ]
+}

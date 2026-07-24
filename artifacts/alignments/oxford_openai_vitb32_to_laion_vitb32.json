@@ -1,0 +1,46 @@
+{
+  "schema_version": 1,
+  "fit_dataset": "oxford",
+  "fit_examples": 3680,
+  "dimension": 512,
+  "source_model": {
+    "kind": "open_clip",
+    "name": "ViT-B-32",
+    "pretrained": "openai"
+  },
+  "target_model": {
+    "kind": "open_clip",
+    "name": "ViT-B-32",
+    "pretrained": "laion400m_e31"
+  },
+  "orthogonality_frobenius_error": 4.7447112592635676e-05,
+  "source_embedding_diagnostics": {
+    "rows": 3680,
+    "columns": 512,
+    "numerical_rank": 512,
+    "stable_rank": 7.77488463001294,
+    "condition_number_nonzero": 32617.602431150026,
+    "largest_singular_value": 11.579165262204848,
+    "smallest_retained_singular_value": 0.00035499743694057255
+  },
+  "target_embedding_diagnostics": {
+    "rows": 3680,
+    "columns": 512,
+    "numerical_rank": 512,
+    "stable_rank": 7.630172571714304,
+    "condition_number_nonzero": 4411.176765191682,
+    "largest_singular_value": 14.61871171219623,
+    "smallest_retained_singular_value": 0.003314016302305445
+  },
+  "cross_covariance_diagnostics": {
+    "rows": 512,
+    "columns": 512,
+    "numerical_rank": 512,
+    "stable_rank": 1.7986685927475043,
+    "condition_number_nonzero": 363902744.5224815,
+    "largest_singular_value": 164.54884629317317,
+    "smallest_retained_singular_value": 4.5217808540877196e-07
+  },
+  "source_cache": "/indian-slp/Users/ug/Tokenization/paper/canon/embeddings/oxford/A=ViT-B-32-openai__B=ViT-B-32-laion400m_e31/ViT-B-32_openai_ViT-B-32_laion400m_e31_tr_img.pt",
+  "source_cache_sha256": "715fb031705843e8686893cecc47b6ad7b50fd339180f89b06d67d34cf450704"
+}

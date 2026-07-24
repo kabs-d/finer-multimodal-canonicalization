@@ -1,0 +1,117 @@
+{
+  "seed_42": {
+    "ImageImage": {
+      "Baseline": 0.018261106684803963,
+      "Procrustes": 0.8931588530540466
+    },
+    "TextText": {
+      "Baseline": 0.027027027681469917,
+      "Procrustes": 0.9189189672470093
+    },
+    "ImageText": {
+      "A_to_A": 0.934314489364624,
+      "B_to_B": 0.6884709596633911,
+      "Aligned_imgA_to_textB": 0.7582447528839111,
+      "Aligned_imgA_to_aligned_textA": 0.934314489364624,
+      "ImgB_to_aligned_textA": 0.615153968334198
+    },
+    "Cosine": {
+      "Image_before": -0.020829396322369576,
+      "Image_after": 0.45219430327415466,
+      "Text_before": 0.005414719693362713,
+      "Text_after": 0.2740883231163025
+    }
+  },
+  "seed_43": {
+    "ImageImage": {
+      "Baseline": 0.018261106684803963,
+      "Procrustes": 0.8931588530540466
+    },
+    "TextText": {
+      "Baseline": 0.027027027681469917,
+      "Procrustes": 0.9189189672470093
+    },
+    "ImageText": {
+      "A_to_A": 0.934314489364624,
+      "B_to_B": 0.6884709596633911,
+      "Aligned_imgA_to_textB": 0.7582447528839111,
+      "Aligned_imgA_to_aligned_textA": 0.934314489364624,
+      "ImgB_to_aligned_textA": 0.615153968334198
+    },
+    "Cosine": {
+      "Image_before": -0.020829396322369576,
+      "Image_after": 0.45219430327415466,
+      "Text_before": 0.005414719693362713,
+      "Text_after": 0.2740883231163025
+    }
+  },
+  "seed_44": {
+    "ImageImage": {
+      "Baseline": 0.018261106684803963,
+      "Procrustes": 0.8931588530540466
+    },
+    "TextText": {
+      "Baseline": 0.027027027681469917,
+      "Procrustes": 0.9189189672470093
+    },
+    "ImageText": {
+      "A_to_A": 0.934314489364624,
+      "B_to_B": 0.6884709596633911,
+      "Aligned_imgA_to_textB": 0.7582447528839111,
+      "Aligned_imgA_to_aligned_textA": 0.934314489364624,
+      "ImgB_to_aligned_textA": 0.615153968334198
+    },
+    "Cosine": {
+      "Image_before": -0.020829396322369576,
+      "Image_after": 0.45219430327415466,
+      "Text_before": 0.005414719693362713,
+      "Text_after": 0.2740883231163025
+    }
+  },
+  "mean": {
+    "ImageImage": {
+      "Baseline": 0.018261106684803963,
+      "Procrustes": 0.8931588530540466
+    },
+    "TextText": {
+      "Baseline": 0.027027027681469917,
+      "Procrustes": 0.9189189672470093
+    },
+    "ImageText": {
+      "A_to_A": 0.934314489364624,
+      "B_to_B": 0.6884709596633911,
+      "Aligned_imgA_to_textB": 0.7582447528839111,
+      "Aligned_imgA_to_aligned_textA": 0.934314489364624,
+      "ImgB_to_aligned_textA": 0.615153968334198
+    },
+    "Cosine": {
+      "Image_before": -0.020829396322369576,
+      "Image_after": 0.45219430327415466,
+      "Text_before": 0.005414719693362713,
+      "Text_after": 0.2740883231163025
+    }
+  },
+  "std": {
+    "ImageImage": {
+      "Baseline": 0.0,
+      "Procrustes": 0.0
+    },
+    "TextText": {
+      "Baseline": 0.0,
+      "Procrustes": 0.0
+    },
+    "ImageText": {
+      "A_to_A": 0.0,
+      "B_to_B": 0.0,
+      "Aligned_imgA_to_textB": 0.0,
+      "Aligned_imgA_to_aligned_textA": 0.0,
+      "ImgB_to_aligned_textA": 0.0
+    },
+    "Cosine": {
+      "Image_before": 0.0,
+      "Image_after": 0.0,
+      "Text_before": 0.0,
+      "Text_after": 0.0
+    }
+  }
+}

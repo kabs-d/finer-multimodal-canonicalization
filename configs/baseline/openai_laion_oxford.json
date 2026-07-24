@@ -1,0 +1,25 @@
+{
+  "schema_version": 1,
+  "run_id": "oxford_openai_vitb32_to_laion_vitb32",
+  "dataset": {
+    "name": "oxford",
+    "fit_split": "trainval",
+    "evaluation_split": "test",
+    "prompt": "a photo of a {}, a type of pet."
+  },
+  "source_model": {
+    "kind": "open_clip",
+    "name": "ViT-B-32",
+    "pretrained": "openai"
+  },
+  "target_model": {
+    "kind": "open_clip",
+    "name": "ViT-B-32",
+    "pretrained": "laion400m_e31"
+  },
+  "seeds": [42, 43, 44],
+  "batch_size": 64,
+  "num_workers": 4,
+  "paper_reference": "Canonicalizing Multimodal Contrastive Representation Learning, Figure 4"
+}
+

@@ -1,0 +1,47 @@
+{
+  "schema_version": 1,
+  "fit_dataset": "oxford",
+  "fit_examples": 3680,
+  "dimension": 768,
+  "source_model": {
+    "kind": "open_clip",
+    "name": "ViT-L-14",
+    "pretrained": "openai"
+  },
+  "target_model": {
+    "kind": "flava",
+    "name": "FLAVA",
+    "model_id": "facebook/flava-full",
+    "revision": "main"
+  },
+  "orthogonality_frobenius_error": 5.321778007782996e-05,
+  "source_embedding_diagnostics": {
+    "rows": 3680,
+    "columns": 768,
+    "numerical_rank": 768,
+    "stable_rank": 8.891257029694936,
+    "condition_number_nonzero": 4535.977203130603,
+    "largest_singular_value": 11.052433859896272,
+    "smallest_retained_singular_value": 0.002436615830491431
+  },
+  "target_embedding_diagnostics": {
+    "rows": 3680,
+    "columns": 768,
+    "numerical_rank": 768,
+    "stable_rank": 10.498002614734089,
+    "condition_number_nonzero": 18915820.592857983,
+    "largest_singular_value": 14.401514595389814,
+    "smallest_retained_singular_value": 7.613475992063158e-07
+  },
+  "cross_covariance_diagnostics": {
+    "rows": 768,
+    "columns": 768,
+    "numerical_rank": 768,
+    "stable_rank": 1.8722034597847361,
+    "condition_number_nonzero": 476908104277.2273,
+    "largest_singular_value": 155.05270078836,
+    "smallest_retained_singular_value": 3.2512070857623266e-10
+  },
+  "source_cache": "/indian-slp/Users/ug/Tokenization/paper/canon/embeddings/oxford/A=ViT-L-14-openai__B=FLAVA-facebook_flava-full/ViT-L-14_openai_flava_facebook_flava-full_tr_img.pt",
+  "source_cache_sha256": "4c22d4a31fdac28ddd5157cf322c8ea5ff75f44d60d977ef690508b5fd3eaa97"
+}

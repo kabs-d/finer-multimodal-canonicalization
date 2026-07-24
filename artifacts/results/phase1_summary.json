@@ -1,0 +1,153 @@
+{
+  "schema_version": 1,
+  "experiment": "Phase I: frozen cross-dataset decoder reuse",
+  "alignment": {
+    "fit_dataset": "Oxford-IIIT Pet trainval",
+    "fit_examples": 3680,
+    "rotation_refit_on_cub": false,
+    "cub_train_means_recomputed": true
+  },
+  "cub": {
+    "training_examples": 5994,
+    "test_examples": 5794,
+    "species": 200,
+    "raw_attributes": 312,
+    "eligible_attributes": 294,
+    "decoder_seeds": [42, 43, 44, 45, 46],
+    "mean_visible_positive_attributes_per_test_bird": 31.4727
+  },
+  "pairs": {
+    "openai_vitb32_to_laion_vitb32": {
+      "oxford_reproduction": {
+        "image_cosine_before": 0.02228471450507641,
+        "image_cosine_after": 0.8883169293403625,
+        "image_retrieval_before": 0.03243390470743179,
+        "image_retrieval_after": 0.9942763447761536
+      },
+      "cub_alignment": {
+        "image_cosine_before": 0.029583701863884926,
+        "image_cosine_after": 0.8031663298606873,
+        "image_retrieval_before": 0.0046599931083619595,
+        "image_retrieval_after": 0.9042112231254578,
+        "text_retrieval_before": 0.004999999888241291,
+        "text_retrieval_after": 0.6200000047683716
+      },
+      "cub_zero_shot_species_accuracy": {
+        "native_source": 0.5303762555122375,
+        "native_target": 0.5638591647148132,
+        "aligned_source_image_target_text": 0.18501898646354675,
+        "target_image_aligned_source_text": 0.3180876672267914,
+        "aligned_source_image_and_text": 0.4468415677547455
+      },
+      "linear_attributes": {
+        "native_target": {
+          "recovered": 21.7077,
+          "missed": 9.765,
+          "hallucinated": 25.2001,
+          "within_species_ranking": 0.620236
+        },
+        "aligned_source": {
+          "recovered": 16.4152,
+          "missed": 15.0575,
+          "hallucinated": 17.3526,
+          "within_species_ranking": 0.596903
+        },
+        "unaligned_source": {
+          "recovered": 15.0442,
+          "missed": 16.4285,
+          "hallucinated": 68.3591,
+          "within_species_ranking": 0.503225
+        }
+      },
+      "mlp_attributes": {
+        "native_target": {
+          "recovered": 21.782,
+          "missed": 9.6907,
+          "hallucinated": 23.9571,
+          "within_species_ranking": 0.622993
+        },
+        "aligned_source": {
+          "recovered": 17.8109,
+          "missed": 13.6619,
+          "hallucinated": 19.71,
+          "within_species_ranking": 0.594861
+        },
+        "unaligned_source": {
+          "recovered": 13.8683,
+          "missed": 17.6044,
+          "hallucinated": 43.8604,
+          "within_species_ranking": 0.502132
+        }
+      }
+    },
+    "openai_vitl14_to_flava": {
+      "oxford_reproduction": {
+        "image_cosine_before": -0.020829396322369576,
+        "image_cosine_after": 0.7941799163818359,
+        "image_retrieval_before": 0.018261106684803963,
+        "image_retrieval_after": 0.973017156124115
+      },
+      "cub_alignment": {
+        "image_cosine_before": 0.011178271844983101,
+        "image_cosine_after": 0.6811124682426453,
+        "image_retrieval_before": 0.002588885137811303,
+        "image_retrieval_after": 0.4000690281391144,
+        "text_retrieval_before": 0,
+        "text_retrieval_after": 0.1899999976158142
+      },
+      "cub_zero_shot_species_accuracy": {
+        "native_source": 0.6218501925468445,
+        "native_target": 0.4052467942237854,
+        "aligned_source_image_target_text": 0.08595098555088043,
+        "target_image_aligned_source_text": 0.13617534935474396,
+        "aligned_source_image_and_text": 0.540041446685791
+      },
+      "linear_attributes": {
+        "native_target": {
+          "recovered": 21.7209,
+          "missed": 9.7518,
+          "hallucinated": 26.0404,
+          "within_species_ranking": 0.608587
+        },
+        "aligned_source": {
+          "recovered": 15.0247,
+          "missed": 16.448,
+          "hallucinated": 16.2626,
+          "within_species_ranking": 0.574411
+        },
+        "unaligned_source": {
+          "recovered": 12.8497,
+          "missed": 18.623,
+          "hallucinated": 57.1391,
+          "within_species_ranking": 0.49737
+        }
+      },
+      "mlp_attributes": {
+        "native_target": {
+          "recovered": 21.7739,
+          "missed": 9.6988,
+          "hallucinated": 24.8878,
+          "within_species_ranking": 0.611555
+        },
+        "aligned_source": {
+          "recovered": 17.0698,
+          "missed": 14.4029,
+          "hallucinated": 20.7721,
+          "within_species_ranking": 0.572924
+        },
+        "unaligned_source": {
+          "recovered": 11.6898,
+          "missed": 19.7829,
+          "hallucinated": 57.0366,
+          "within_species_ranking": 0.495339
+        }
+      }
+    }
+  },
+  "species_only_attribute_baseline": {
+    "recovered": 21.9544,
+    "missed": 9.5183,
+    "hallucinated": 24.6403,
+    "within_species_ranking": 0.5
+  }
+}

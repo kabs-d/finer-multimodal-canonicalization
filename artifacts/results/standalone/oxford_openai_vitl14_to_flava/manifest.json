@@ -1,0 +1,51 @@
+{
+  "schema_version": 1,
+  "created_utc": "2026-07-23T23:58:45.093996+00:00",
+  "config": {
+    "schema_version": 1,
+    "run_id": "oxford_openai_vitl14_to_flava",
+    "dataset": {
+      "name": "oxford",
+      "fit_split": "trainval",
+      "evaluation_split": "test",
+      "prompt": "a photo of a {}, a type of pet."
+    },
+    "source_model": {
+      "kind": "open_clip",
+      "name": "ViT-L-14",
+      "pretrained": "openai"
+    },
+    "target_model": {
+      "kind": "flava",
+      "name": "FLAVA",
+      "model_id": "facebook/flava-full",
+      "revision": "main"
+    },
+    "seeds": [
+      42,
+      43,
+      44
+    ],
+    "batch_size": 64,
+    "num_workers": 4,
+    "paper_reference": "Canonicalizing Multimodal Contrastive Representation Learning, Figure 4"
+  },
+  "config_path": "/indian-slp/Users/ug/Tokenization/canonical-finetune-study/configs/baseline/openai_flava_oxford.json",
+  "data_root": "/tmp/canonical-study-data",
+  "embedding_root": "/tmp/canonical-study-embeddings",
+  "upstream_embedding_prefix": "/indian-slp/Users/ug/Tokenization/paper/canon/embeddings/oxford/A=ViT-L-14-openai__B=FLAVA-facebook_flava-full/ViT-L-14_openai_flava_facebook_flava-full",
+  "model_cache_root": "/tmp/canonical-study-model-cache",
+  "device": "cuda",
+  "cuda_device_name": "NVIDIA A100 80GB PCIe",
+  "orthogonality_frobenius_error": 0.009296942502260208,
+  "fit_examples": 3680,
+  "evaluation_examples": 3669,
+  "classes": 37,
+  "seed_note": "The released baseline has no stochastic anchor sampling or shuffling; the requested seeds therefore repeat the same deterministic evaluation.",
+  "runtime": {
+    "python": "3.10.12 (main, Jun 22 2026, 18:55:27) [GCC 11.4.0]",
+    "platform": "Linux-6.8.0-124-generic-x86_64-with-glibc2.35",
+    "torch": "2.3.0+cu121",
+    "numpy": "1.26.4"
+  }
+}

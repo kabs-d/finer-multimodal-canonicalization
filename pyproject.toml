@@ -1,0 +1,27 @@
+[build-system]
+requires = ["setuptools>=68", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "canonical-finetune-study"
+version = "0.1.0"
+description = "Reproducible baselines and fine-tuning extensions for multimodal canonicalization"
+readme = "README.md"
+requires-python = ">=3.10,<3.11"
+license = {text = "MIT"}
+authors = [{name = "canonical-finetune-study contributors"}]
+dependencies = [
+  "numpy==1.26.4",
+  "open-clip-torch==2.24.0",
+  "Pillow==9.0.1",
+  "torch==2.3.0",
+  "torchvision==0.18.0",
+  "tqdm==4.66.4",
+  "transformers==4.35.0",
+]
+
+[project.scripts]
+canonical-study = "canonical_study.cli:main"
+
+[tool.setuptools.packages.find]
+where = ["src"]

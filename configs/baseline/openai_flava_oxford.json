@@ -1,0 +1,26 @@
+{
+  "schema_version": 1,
+  "run_id": "oxford_openai_vitl14_to_flava",
+  "dataset": {
+    "name": "oxford",
+    "fit_split": "trainval",
+    "evaluation_split": "test",
+    "prompt": "a photo of a {}, a type of pet."
+  },
+  "source_model": {
+    "kind": "open_clip",
+    "name": "ViT-L-14",
+    "pretrained": "openai"
+  },
+  "target_model": {
+    "kind": "flava",
+    "name": "FLAVA",
+    "model_id": "facebook/flava-full",
+    "revision": "main"
+  },
+  "seeds": [42, 43, 44],
+  "batch_size": 64,
+  "num_workers": 4,
+  "paper_reference": "Canonicalizing Multimodal Contrastive Representation Learning, Figure 4"
+}
+

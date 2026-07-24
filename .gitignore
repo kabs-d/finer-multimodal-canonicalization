@@ -1,0 +1,13 @@
+.venv*/
+__pycache__/
+*.py[cod]
+.pytest_cache/
+
+# Downloaded data, weights, and derived embeddings are intentionally external.
+artifacts/cache/
+artifacts/data/
+artifacts/embeddings/
+artifacts/predictions/
+
+# Run logs are noisy and machine-specific; compact manifests and summaries are kept.
+artifacts/logs/
