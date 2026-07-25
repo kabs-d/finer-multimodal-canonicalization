@@ -19,7 +19,7 @@ We evaluate two frozen model pairs:
 - OpenAI CLIP ViT-B/32 → LAION CLIP ViT-B/32.
 - OpenAI CLIP ViT-L/14 → FLAVA.
 
-The main zero-shot alignment uses $Q_{\text{Oxford}}$, fitted on
+The main zero-shot alignment uses $Q_{\text{Oxford}}$, reproduced from the paper's setup, fitted on
 Oxford-IIIT Pet trainval images and transferred unchanged to CUB-200-2011.
 Following the canonicalization paper's cross-dataset protocol, CUB train means
 are recomputed before evaluating CUB test examples. The in-domain control
