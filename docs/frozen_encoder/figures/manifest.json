@@ -1,0 +1,44 @@
+{
+  "figures": [
+    {
+      "file": "geometry_alignment.svg",
+      "panels": [
+        "(a) Image-image cosine",
+        "(b) Text-text cosine"
+      ],
+      "source_root": "artifacts/results/frozen_decoder"
+    },
+    {
+      "file": "class_level_transfer.svg",
+      "panels": [
+        "(a) Image-image retrieval",
+        "(b) Joint zero-shot species"
+      ],
+      "source_root": "artifacts/results/frozen_decoder"
+    },
+    {
+      "file": "readout_counts.svg",
+      "panels": [
+        "(a) Correctly recovered",
+        "(b) Missed",
+        "(c) Hallucinated"
+      ],
+      "source_root": "artifacts/results/frozen_decoder"
+    },
+    {
+      "file": "within_species_ranking.svg",
+      "panels": [
+        "Species-controlled attribute ranking"
+      ],
+      "source_root": "artifacts/results/frozen_decoder"
+    },
+    {
+      "file": "mlp_capacity.svg",
+      "panels": [
+        "(a) Recovered attributes",
+        "(b) Within-species ranking"
+      ],
+      "source_root": "artifacts/results/frozen_decoder"
+    }
+  ]
+}

@@ -1,0 +1,114 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="990" height="332" viewBox="0 0 990 332">
+<rect width="100%" height="100%" fill="white"/>
+<rect x="20" y="18" width="11" height="11" fill="#67c5d0"/>
+<text x="36" y="28" font-size="11" font-family="Times New Roman, serif">Native target</text>
+<rect x="155" y="18" width="11" height="11" fill="#f2aa45"/>
+<text x="171" y="28" font-size="11" font-family="Times New Roman, serif">Oxford Q</text>
+<rect x="255" y="18" width="11" height="11" fill="#9bc75f"/>
+<text x="271" y="28" font-size="11" font-family="Times New Roman, serif">CUB-train Q</text>
+<rect x="376" y="18" width="11" height="11" fill="#b7b7b7"/>
+<text x="392" y="28" font-size="11" font-family="Times New Roman, serif">Unaligned source</text>
+<text x="165.0" y="63" text-anchor="middle" font-size="13" font-weight="600" font-family="Times New Roman, serif">(a) Correctly recovered</text>
+<line x1="42" y1="246.0" x2="318" y2="246.0" stroke="#999" stroke-width="0.6" stroke-dasharray="2 2"/>
+<text x="35" y="249.0" text-anchor="end" font-size="9" font-family="Times New Roman, serif">0.00</text>
+<line x1="42" y1="213.2" x2="318" y2="213.2" stroke="#999" stroke-width="0.6" stroke-dasharray="2 2"/>
+<text x="35" y="216.2" text-anchor="end" font-size="9" font-family="Times New Roman, serif">4.8</text>
+<line x1="42" y1="180.4" x2="318" y2="180.4" stroke="#999" stroke-width="0.6" stroke-dasharray="2 2"/>
+<text x="35" y="183.4" text-anchor="end" font-size="9" font-family="Times New Roman, serif">9.6</text>
+<line x1="42" y1="147.6" x2="318" y2="147.6" stroke="#999" stroke-width="0.6" stroke-dasharray="2 2"/>
+<text x="35" y="150.6" text-anchor="end" font-size="9" font-family="Times New Roman, serif">14.4</text>
+<line x1="42" y1="114.8" x2="318" y2="114.8" stroke="#999" stroke-width="0.6" stroke-dasharray="2 2"/>
+<text x="35" y="117.8" text-anchor="end" font-size="9" font-family="Times New Roman, serif">19.2</text>
+<line x1="42" y1="82.0" x2="318" y2="82.0" stroke="#999" stroke-width="0.6" stroke-dasharray="2 2"/>
+<text x="35" y="85.0" text-anchor="end" font-size="9" font-family="Times New Roman, serif">24.0</text>
+<line x1="42" y1="246" x2="318" y2="246" stroke="#444" stroke-width="0.8"/>
+<line x1="42" y1="82" x2="42" y2="246" stroke="#444" stroke-width="0.8"/>
+<rect x="70.5" y="97.7" width="18.0" height="148.3" fill="#67c5d0"/>
+<text x="79.5" y="94.7" text-anchor="middle" font-size="8" font-family="Times New Roman, serif">21.7</text>
+<rect x="91.5" y="133.8" width="18.0" height="112.2" fill="#f2aa45"/>
+<text x="100.5" y="130.8" text-anchor="middle" font-size="8" font-family="Times New Roman, serif">16.4</text>
+<rect x="112.5" y="107.5" width="18.0" height="138.5" fill="#9bc75f"/>
+<text x="121.5" y="104.5" text-anchor="middle" font-size="8" font-family="Times New Roman, serif">20.3</text>
+<rect x="133.5" y="143.2" width="18.0" height="102.8" fill="#b7b7b7"/>
+<text x="142.5" y="140.2" text-anchor="middle" font-size="8" font-family="Times New Roman, serif">15.0</text>
+<text x="111.0" y="264" text-anchor="middle" font-size="10" font-family="Times New Roman, serif">OpenAI->LAION</text>
+<rect x="208.5" y="97.6" width="18.0" height="148.4" fill="#67c5d0"/>
+<text x="217.5" y="94.6" text-anchor="middle" font-size="8" font-family="Times New Roman, serif">21.7</text>
+<rect x="229.5" y="143.3" width="18.0" height="102.7" fill="#f2aa45"/>
+<text x="238.5" y="140.3" text-anchor="middle" font-size="8" font-family="Times New Roman, serif">15.0</text>
+<rect x="250.5" y="106.9" width="18.0" height="139.1" fill="#9bc75f"/>
+<text x="259.5" y="103.9" text-anchor="middle" font-size="8" font-family="Times New Roman, serif">20.4</text>
+<rect x="271.5" y="158.2" width="18.0" height="87.8" fill="#b7b7b7"/>
+<text x="280.5" y="155.2" text-anchor="middle" font-size="8" font-family="Times New Roman, serif">12.8</text>
+<text x="249.0" y="264" text-anchor="middle" font-size="10" font-family="Times New Roman, serif">OpenAI->FLAVA</text>
+<text x="12" y="164.0" transform="rotate(-90 12 164.0)" text-anchor="middle" font-size="10" font-family="Times New Roman, serif">attributes / bird</text>
+<text x="495.0" y="63" text-anchor="middle" font-size="13" font-weight="600" font-family="Times New Roman, serif">(b) Missed</text>
+<line x1="372" y1="246.0" x2="648" y2="246.0" stroke="#999" stroke-width="0.6" stroke-dasharray="2 2"/>
+<text x="365" y="249.0" text-anchor="end" font-size="9" font-family="Times New Roman, serif">0.00</text>
+<line x1="372" y1="213.2" x2="648" y2="213.2" stroke="#999" stroke-width="0.6" stroke-dasharray="2 2"/>
+<text x="365" y="216.2" text-anchor="end" font-size="9" font-family="Times New Roman, serif">4.0</text>
+<line x1="372" y1="180.4" x2="648" y2="180.4" stroke="#999" stroke-width="0.6" stroke-dasharray="2 2"/>
+<text x="365" y="183.4" text-anchor="end" font-size="9" font-family="Times New Roman, serif">8.0</text>
+<line x1="372" y1="147.6" x2="648" y2="147.6" stroke="#999" stroke-width="0.6" stroke-dasharray="2 2"/>
+<text x="365" y="150.6" text-anchor="end" font-size="9" font-family="Times New Roman, serif">12.0</text>
+<line x1="372" y1="114.8" x2="648" y2="114.8" stroke="#999" stroke-width="0.6" stroke-dasharray="2 2"/>
+<text x="365" y="117.8" text-anchor="end" font-size="9" font-family="Times New Roman, serif">16.0</text>
+<line x1="372" y1="82.0" x2="648" y2="82.0" stroke="#999" stroke-width="0.6" stroke-dasharray="2 2"/>
+<text x="365" y="85.0" text-anchor="end" font-size="9" font-family="Times New Roman, serif">20.0</text>
+<line x1="372" y1="246" x2="648" y2="246" stroke="#444" stroke-width="0.8"/>
+<line x1="372" y1="82" x2="372" y2="246" stroke="#444" stroke-width="0.8"/>
+<rect x="400.5" y="165.9" width="18.0" height="80.1" fill="#67c5d0"/>
+<text x="409.5" y="162.9" text-anchor="middle" font-size="8" font-family="Times New Roman, serif">9.8</text>
+<rect x="421.5" y="122.5" width="18.0" height="123.5" fill="#f2aa45"/>
+<text x="430.5" y="119.5" text-anchor="middle" font-size="8" font-family="Times New Roman, serif">15.1</text>
+<rect x="442.5" y="154.1" width="18.0" height="91.9" fill="#9bc75f"/>
+<text x="451.5" y="151.1" text-anchor="middle" font-size="8" font-family="Times New Roman, serif">11.2</text>
+<rect x="463.5" y="111.3" width="18.0" height="134.7" fill="#b7b7b7"/>
+<text x="472.5" y="108.3" text-anchor="middle" font-size="8" font-family="Times New Roman, serif">16.4</text>
+<text x="441.0" y="264" text-anchor="middle" font-size="10" font-family="Times New Roman, serif">OpenAI->LAION</text>
+<rect x="538.5" y="166.0" width="18.0" height="80.0" fill="#67c5d0"/>
+<text x="547.5" y="163.0" text-anchor="middle" font-size="8" font-family="Times New Roman, serif">9.8</text>
+<rect x="559.5" y="111.1" width="18.0" height="134.9" fill="#f2aa45"/>
+<text x="568.5" y="108.1" text-anchor="middle" font-size="8" font-family="Times New Roman, serif">16.4</text>
+<rect x="580.5" y="154.9" width="18.0" height="91.1" fill="#9bc75f"/>
+<text x="589.5" y="151.9" text-anchor="middle" font-size="8" font-family="Times New Roman, serif">11.1</text>
+<rect x="601.5" y="93.3" width="18.0" height="152.7" fill="#b7b7b7"/>
+<text x="610.5" y="90.3" text-anchor="middle" font-size="8" font-family="Times New Roman, serif">18.6</text>
+<text x="579.0" y="264" text-anchor="middle" font-size="10" font-family="Times New Roman, serif">OpenAI->FLAVA</text>
+<text x="342" y="164.0" transform="rotate(-90 342 164.0)" text-anchor="middle" font-size="10" font-family="Times New Roman, serif">attributes / bird</text>
+<text x="825.0" y="63" text-anchor="middle" font-size="13" font-weight="600" font-family="Times New Roman, serif">(c) Hallucinated</text>
+<line x1="702" y1="246.0" x2="978" y2="246.0" stroke="#999" stroke-width="0.6" stroke-dasharray="2 2"/>
+<text x="695" y="249.0" text-anchor="end" font-size="9" font-family="Times New Roman, serif">0.00</text>
+<line x1="702" y1="213.2" x2="978" y2="213.2" stroke="#999" stroke-width="0.6" stroke-dasharray="2 2"/>
+<text x="695" y="216.2" text-anchor="end" font-size="9" font-family="Times New Roman, serif">14.4</text>
+<line x1="702" y1="180.4" x2="978" y2="180.4" stroke="#999" stroke-width="0.6" stroke-dasharray="2 2"/>
+<text x="695" y="183.4" text-anchor="end" font-size="9" font-family="Times New Roman, serif">28.8</text>
+<line x1="702" y1="147.6" x2="978" y2="147.6" stroke="#999" stroke-width="0.6" stroke-dasharray="2 2"/>
+<text x="695" y="150.6" text-anchor="end" font-size="9" font-family="Times New Roman, serif">43.2</text>
+<line x1="702" y1="114.8" x2="978" y2="114.8" stroke="#999" stroke-width="0.6" stroke-dasharray="2 2"/>
+<text x="695" y="117.8" text-anchor="end" font-size="9" font-family="Times New Roman, serif">57.6</text>
+<line x1="702" y1="82.0" x2="978" y2="82.0" stroke="#999" stroke-width="0.6" stroke-dasharray="2 2"/>
+<text x="695" y="85.0" text-anchor="end" font-size="9" font-family="Times New Roman, serif">72.0</text>
+<line x1="702" y1="246" x2="978" y2="246" stroke="#444" stroke-width="0.8"/>
+<line x1="702" y1="82" x2="702" y2="246" stroke="#444" stroke-width="0.8"/>
+<rect x="730.5" y="188.6" width="18.0" height="57.4" fill="#67c5d0"/>
+<text x="739.5" y="185.6" text-anchor="middle" font-size="8" font-family="Times New Roman, serif">25.2</text>
+<rect x="751.5" y="206.5" width="18.0" height="39.5" fill="#f2aa45"/>
+<text x="760.5" y="203.5" text-anchor="middle" font-size="8" font-family="Times New Roman, serif">17.4</text>
+<rect x="772.5" y="196.8" width="18.0" height="49.2" fill="#9bc75f"/>
+<text x="781.5" y="193.8" text-anchor="middle" font-size="8" font-family="Times New Roman, serif">21.6</text>
+<rect x="793.5" y="90.3" width="18.0" height="155.7" fill="#b7b7b7"/>
+<text x="802.5" y="87.3" text-anchor="middle" font-size="8" font-family="Times New Roman, serif">68.4</text>
+<text x="771.0" y="264" text-anchor="middle" font-size="10" font-family="Times New Roman, serif">OpenAI->LAION</text>
+<rect x="868.5" y="186.7" width="18.0" height="59.3" fill="#67c5d0"/>
+<text x="877.5" y="183.7" text-anchor="middle" font-size="8" font-family="Times New Roman, serif">26.0</text>
+<rect x="889.5" y="209.0" width="18.0" height="37.0" fill="#f2aa45"/>
+<text x="898.5" y="206.0" text-anchor="middle" font-size="8" font-family="Times New Roman, serif">16.3</text>
+<rect x="910.5" y="198.8" width="18.0" height="47.2" fill="#9bc75f"/>
+<text x="919.5" y="195.8" text-anchor="middle" font-size="8" font-family="Times New Roman, serif">20.7</text>
+<rect x="931.5" y="115.8" width="18.0" height="130.2" fill="#b7b7b7"/>
+<text x="940.5" y="112.8" text-anchor="middle" font-size="8" font-family="Times New Roman, serif">57.1</text>
+<text x="909.0" y="264" text-anchor="middle" font-size="10" font-family="Times New Roman, serif">OpenAI->FLAVA</text>
+<text x="672" y="164.0" transform="rotate(-90 672 164.0)" text-anchor="middle" font-size="10" font-family="Times New Roman, serif">attributes / bird</text>
+<text x="495.0" y="320" text-anchor="middle" font-size="11" font-family="Times New Roman, serif">CUB-train Q recovers more true attributes, with a hallucination tradeoff.</text>
+</svg>

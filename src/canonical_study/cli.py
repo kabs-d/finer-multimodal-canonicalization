@@ -12,6 +12,7 @@ import torch
 
 from .datasets import prepare_cub, prepare_oxford, validate_cub, validate_oxford
 from .attribute_analysis import run_attribute_analysis
+from .cub_train_q_control import run_cub_train_q_control
 from .decoder_experiment import (
     materialize_oxford_alignment,
     read_decoder_config,
@@ -139,6 +140,17 @@ def build_parser() -> argparse.ArgumentParser:
     attributes.add_argument("--prediction-root", type=Path, required=True)
     attributes.add_argument("--output-root", type=Path, required=True)
 
+    cub_train_q = subparsers.add_parser("cub-train-q-control")
+    cub_train_q.add_argument("--config", type=Path, required=True)
+    cub_train_q.add_argument("--data-root", type=Path, required=True)
+    cub_train_q.add_argument("--embedding-root", type=Path, required=True)
+    cub_train_q.add_argument("--prediction-root", type=Path, required=True)
+    cub_train_q.add_argument("--output-root", type=Path, required=True)
+    cub_train_q.add_argument("--alignment-root", type=Path, required=True)
+    cub_train_q.add_argument("--model-cache-root", type=Path, required=True)
+    cub_train_q.add_argument("--device", default="cuda")
+    cub_train_q.add_argument("--force", action="store_true")
+
     mlp_decoder = subparsers.add_parser("run-cached-mlp-decoder")
     mlp_decoder.add_argument("--config", type=Path, required=True)
     mlp_decoder.add_argument("--alignment", type=Path, required=True)
@@ -223,6 +235,22 @@ def main() -> None:
                     args.embedding_root,
                     args.prediction_root,
                     args.output_root,
+                )
+            )
+        }
+    elif args.command == "cub-train-q-control":
+        result = {
+            "output": str(
+                run_cub_train_q_control(
+                    args.config,
+                    args.data_root,
+                    args.embedding_root,
+                    args.prediction_root,
+                    args.output_root,
+                    args.alignment_root,
+                    args.model_cache_root,
+                    device_name=args.device,
+                    force=args.force,
                 )
             )
         }

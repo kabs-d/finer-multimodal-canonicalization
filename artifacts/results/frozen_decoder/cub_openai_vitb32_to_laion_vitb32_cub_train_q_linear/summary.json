@@ -1,0 +1,266 @@
+{
+  "schema_version": 1,
+  "run_id": "cub_openai_vitb32_to_laion_vitb32_cub_train_q_linear",
+  "base_run_id": "cub_openai_vitb32_to_laion_vitb32_linear",
+  "alignment_source": "CUB official train image Procrustes rotation",
+  "alignment_metrics": {
+    "ImageImage": {
+      "Baseline": 0.0046599931083619595,
+      "Procrustes": 0.9946496486663818
+    },
+    "TextText": {
+      "Baseline": 0.004999999888241291,
+      "Procrustes": 0.800000011920929
+    },
+    "ImageText": {
+      "A_to_A": 0.5303762555122375,
+      "B_to_B": 0.5638591647148132,
+      "Aligned_imgA_to_textB": 0.4767000377178192,
+      "Aligned_imgA_to_aligned_textA": 0.4477045238018036,
+      "ImgB_to_aligned_textA": 0.47048670053482056
+    },
+    "Cosine": {
+      "Image_before": 0.029583703726530075,
+      "Image_after": 0.9050300717353821,
+      "Text_before": 0.14198745787143707,
+      "Text_after": 0.7584071159362793
+    }
+  },
+  "eligible_attributes": 294,
+  "decoder_split": {
+    "training_examples": 4794,
+    "validation_examples": 1200,
+    "official_test_examples": 5794,
+    "split_seed": 2026
+  },
+  "aggregate": {
+    "native_target": {
+      "macro_map": {
+        "mean": 0.37471323961306646,
+        "std": 4.623007754931513e-05
+      },
+      "micro_map": {
+        "mean": 0.5198004763061832,
+        "std": 0.0003016826437397139
+      },
+      "macro_auroc": {
+        "mean": 0.8025851683071921,
+        "std": 1.8202661028522646e-05
+      }
+    },
+    "aligned_source": {
+      "macro_map": {
+        "mean": 0.36444899433965566,
+        "std": 3.5132385247576206e-05
+      },
+      "micro_map": {
+        "mean": 0.5285949877587022,
+        "std": 0.0003645617594909829
+      },
+      "macro_auroc": {
+        "mean": 0.7967490554446569,
+        "std": 1.6441506125743784e-05
+      }
+    },
+    "unaligned_source": {
+      "macro_map": {
+        "mean": 0.1292137213822112,
+        "std": 6.958457086243334e-05
+      },
+      "micro_map": {
+        "mean": 0.13086625952420813,
+        "std": 0.00012560396756303876
+      },
+      "macro_auroc": {
+        "mean": 0.5077741869539182,
+        "std": 0.0002472652805282037
+      }
+    },
+    "native_source": {
+      "macro_map": {
+        "mean": 0.36883030483076407,
+        "std": 5.108054520034634e-05
+      },
+      "micro_map": {
+        "mean": 0.5137016575845328,
+        "std": 0.0003269837107990461
+      },
+      "macro_auroc": {
+        "mean": 0.7978990387869735,
+        "std": 4.8715043318689277e-05
+      }
+    },
+    "transfer": {
+      "macro_map_gap_aligned_minus_native": {
+        "mean": -0.010264245273410777,
+        "std": 2.14348188311158e-05
+      },
+      "macro_map_retention": {
+        "mean": 0.9726077369930378,
+        "std": 5.49330653224412e-05
+      },
+      "paired_species_bootstrap": {
+        "replicates": 1000,
+        "seed": 2026,
+        "sampling_unit": "species",
+        "defined_attributes_per_replicate_min": 294,
+        "defined_attributes_per_replicate_max": 294,
+        "mean_gap": -0.010245500574567575,
+        "ci95_lower": -0.013004472235134458,
+        "ci95_upper": -0.007500522160055662
+      }
+    }
+  },
+  "seeds": [
+    {
+      "seed": 42,
+      "reused_checkpoint": "/indian-slp/Users/ug/Tokenization/canonical-finetune-study/artifacts/results/frozen_decoder/cub_openai_vitb32_to_laion_vitb32_linear/checkpoints/seed_42.pt",
+      "conditions": {
+        "native_target": {
+          "eligible_attributes": 294,
+          "macro_map": 0.37474064868816254,
+          "micro_map": 0.5197982170515464,
+          "macro_auroc": 0.8025951425931677
+        },
+        "aligned_source": {
+          "eligible_attributes": 294,
+          "macro_map": 0.364489356227739,
+          "micro_map": 0.5285943782551416,
+          "macro_auroc": 0.796770226099232
+        },
+        "unaligned_source": {
+          "eligible_attributes": 294,
+          "macro_map": 0.1291688631877481,
+          "micro_map": 0.13072661729481216,
+          "macro_auroc": 0.507681220056204
+        },
+        "native_source": {
+          "eligible_attributes": 294,
+          "macro_map": 0.36883815267585296,
+          "micro_map": 0.5132966991506589,
+          "macro_auroc": 0.7978813146504221
+        }
+      }
+    },
+    {
+      "seed": 43,
+      "reused_checkpoint": "/indian-slp/Users/ug/Tokenization/canonical-finetune-study/artifacts/results/frozen_decoder/cub_openai_vitb32_to_laion_vitb32_linear/checkpoints/seed_43.pt",
+      "conditions": {
+        "native_target": {
+          "eligible_attributes": 294,
+          "macro_map": 0.37463110037364333,
+          "micro_map": 0.5193502773832358,
+          "macro_auroc": 0.8025540957764832
+        },
+        "aligned_source": {
+          "eligible_attributes": 294,
+          "macro_map": 0.3643838288515883,
+          "micro_map": 0.5281156219363118,
+          "macro_auroc": 0.7967244540424149
+        },
+        "unaligned_source": {
+          "eligible_attributes": 294,
+          "macro_map": 0.1293060985744221,
+          "micro_map": 0.13091572712814398,
+          "macro_auroc": 0.5081531264483639
+        },
+        "native_source": {
+          "eligible_attributes": 294,
+          "macro_map": 0.3688868552466492,
+          "micro_map": 0.514283656368206,
+          "macro_auroc": 0.7979822992785883
+        }
+      }
+    },
+    {
+      "seed": 44,
+      "reused_checkpoint": "/indian-slp/Users/ug/Tokenization/canonical-finetune-study/artifacts/results/frozen_decoder/cub_openai_vitb32_to_laion_vitb32_linear/checkpoints/seed_44.pt",
+      "conditions": {
+        "native_target": {
+          "eligible_attributes": 294,
+          "macro_map": 0.37474856043427723,
+          "micro_map": 0.5196009426922484,
+          "macro_auroc": 0.8026080509493128
+        },
+        "aligned_source": {
+          "eligible_attributes": 294,
+          "macro_map": 0.36446404664498644,
+          "micro_map": 0.5282783392128975,
+          "macro_auroc": 0.7967609915484883
+        },
+        "unaligned_source": {
+          "eligible_attributes": 294,
+          "macro_map": 0.12926240401551137,
+          "micro_map": 0.13078514158063306,
+          "macro_auroc": 0.5078544483701679
+        },
+        "native_source": {
+          "eligible_attributes": 294,
+          "macro_map": 0.36873981235947084,
+          "micro_map": 0.5137621366461703,
+          "macro_auroc": 0.7978380329749067
+        }
+      }
+    },
+    {
+      "seed": 45,
+      "reused_checkpoint": "/indian-slp/Users/ug/Tokenization/canonical-finetune-study/artifacts/results/frozen_decoder/cub_openai_vitb32_to_laion_vitb32_linear/checkpoints/seed_45.pt",
+      "conditions": {
+        "native_target": {
+          "eligible_attributes": 294,
+          "macro_map": 0.3746933464249946,
+          "micro_map": 0.5201294388515958,
+          "macro_auroc": 0.802590041889008
+        },
+        "aligned_source": {
+          "eligible_attributes": 294,
+          "macro_map": 0.36445057727899804,
+          "micro_map": 0.5289006624419246,
+          "macro_auroc": 0.7967370713729556
+        },
+        "unaligned_source": {
+          "eligible_attributes": 294,
+          "macro_map": 0.12922335653280068,
+          "micro_map": 0.13081833168249823,
+          "macro_auroc": 0.5077910162391928
+        },
+        "native_source": {
+          "eligible_attributes": 294,
+          "macro_map": 0.3688684241417865,
+          "micro_map": 0.5135804113173689,
+          "macro_auroc": 0.7979178371183416
+        }
+      }
+    },
+    {
+      "seed": 46,
+      "reused_checkpoint": "/indian-slp/Users/ug/Tokenization/canonical-finetune-study/artifacts/results/frozen_decoder/cub_openai_vitb32_to_laion_vitb32_linear/checkpoints/seed_46.pt",
+      "conditions": {
+        "native_target": {
+          "eligible_attributes": 294,
+          "macro_map": 0.3747525421442544,
+          "micro_map": 0.5201235055522898,
+          "macro_auroc": 0.8025785103279882
+        },
+        "aligned_source": {
+          "eligible_attributes": 294,
+          "macro_map": 0.3644571626949664,
+          "micro_map": 0.5290859369472358,
+          "macro_auroc": 0.7967525341601936
+        },
+        "unaligned_source": {
+          "eligible_attributes": 294,
+          "macro_map": 0.1291078846005738,
+          "micro_map": 0.1310854799349532,
+          "macro_auroc": 0.5073911236556621
+        },
+        "native_source": {
+          "eligible_attributes": 294,
+          "macro_map": 0.3688182797300609,
+          "micro_map": 0.51358538444026,
+          "macro_auroc": 0.7978757099126088
+        }
+      }
+    }
+  ]
+}

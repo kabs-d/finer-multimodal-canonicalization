@@ -46,10 +46,13 @@ def read_decoder_config(path: Path | str) -> dict:
     if config["dataset"]["name"] != "cub":
         raise ValueError("frozen decoder experiments require dataset.name='cub'")
     alignment = config.get("alignment", {})
-    if alignment.get("rotation_fit_dataset") != "oxford":
-        raise ValueError("the frozen decoder phase requires an Oxford-fitted rotation")
-    if alignment.get("refit_rotation_on_cub") is not False:
-        raise ValueError("refitting the rotation on CUB is outside this phase")
+    rotation_fit_dataset = alignment.get("rotation_fit_dataset")
+    if rotation_fit_dataset not in {"oxford", "cub_train"}:
+        raise ValueError("rotation_fit_dataset must be 'oxford' or 'cub_train'")
+    if rotation_fit_dataset == "oxford" and alignment.get("refit_rotation_on_cub") is not False:
+        raise ValueError("Oxford decoder runs must not refit the rotation on CUB")
+    if rotation_fit_dataset == "cub_train" and alignment.get("refit_rotation_on_cub") is not True:
+        raise ValueError("CUB-train-Q controls must explicitly refit the rotation on CUB")
     if alignment.get("recompute_means_on_cub_train") is not True:
         raise ValueError("CUB train-set recentering must remain enabled")
     if alignment.get("raw_rotation_ablation") is not False:

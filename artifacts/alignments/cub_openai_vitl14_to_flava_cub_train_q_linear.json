@@ -1,0 +1,49 @@
+{
+  "schema_version": 1,
+  "fit_dataset": "cub",
+  "fit_split": "official_train",
+  "fit_examples": 5994,
+  "heldout_split": "official_test",
+  "heldout_examples": 5794,
+  "train_test_image_id_overlap": 0,
+  "dimension": 768,
+  "source_model": {
+    "kind": "open_clip",
+    "name": "ViT-L-14",
+    "pretrained": "openai"
+  },
+  "target_model": {
+    "kind": "flava",
+    "name": "FLAVA",
+    "model_id": "facebook/flava-full",
+    "revision": "main"
+  },
+  "orthogonality_frobenius_error": 5.2810351917287335e-05,
+  "source_embedding_diagnostics": {
+    "rows": 5994,
+    "columns": 768,
+    "numerical_rank": 768,
+    "stable_rank": 10.813028431091436,
+    "condition_number_nonzero": 4345.009272737076,
+    "largest_singular_value": 13.274054139783392,
+    "smallest_retained_singular_value": 0.0030550116942377878
+  },
+  "target_embedding_diagnostics": {
+    "rows": 5994,
+    "columns": 768,
+    "numerical_rank": 768,
+    "stable_rank": 11.177979938030475,
+    "condition_number_nonzero": 15602400.13662966,
+    "largest_singular_value": 16.932891397614476,
+    "smallest_retained_singular_value": 1.0852747814011788e-06
+  },
+  "cross_covariance_diagnostics": {
+    "rows": 768,
+    "columns": 768,
+    "numerical_rank": 768,
+    "stable_rank": 2.2929997926284322,
+    "condition_number_nonzero": 18838939198.444233,
+    "largest_singular_value": 215.68812081092537,
+    "smallest_retained_singular_value": 1.1449058704363642e-08
+  }
+}

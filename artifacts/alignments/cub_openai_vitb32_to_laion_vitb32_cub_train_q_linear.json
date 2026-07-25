@@ -1,0 +1,48 @@
+{
+  "schema_version": 1,
+  "fit_dataset": "cub",
+  "fit_split": "official_train",
+  "fit_examples": 5994,
+  "heldout_split": "official_test",
+  "heldout_examples": 5794,
+  "train_test_image_id_overlap": 0,
+  "dimension": 512,
+  "source_model": {
+    "kind": "open_clip",
+    "name": "ViT-B-32",
+    "pretrained": "openai"
+  },
+  "target_model": {
+    "kind": "open_clip",
+    "name": "ViT-B-32",
+    "pretrained": "laion400m_e31"
+  },
+  "orthogonality_frobenius_error": 4.5589240471599624e-05,
+  "source_embedding_diagnostics": {
+    "rows": 5994,
+    "columns": 512,
+    "numerical_rank": 512,
+    "stable_rank": 8.987264101521436,
+    "condition_number_nonzero": 30883.20752639699,
+    "largest_singular_value": 13.876720843294647,
+    "smallest_retained_singular_value": 0.000449329002871017
+  },
+  "target_embedding_diagnostics": {
+    "rows": 5994,
+    "columns": 512,
+    "numerical_rank": 512,
+    "stable_rank": 9.032739406213143,
+    "condition_number_nonzero": 4084.4265807161996,
+    "largest_singular_value": 16.636320892747715,
+    "smallest_retained_singular_value": 0.00407311052456978
+  },
+  "cross_covariance_diagnostics": {
+    "rows": 512,
+    "columns": 512,
+    "numerical_rank": 512,
+    "stable_rank": 2.0281808670164194,
+    "condition_number_nonzero": 1481081999.7516825,
+    "largest_singular_value": 224.25328550736486,
+    "smallest_retained_singular_value": 1.5141179593362357e-07
+  }
+}

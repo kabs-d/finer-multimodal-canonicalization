@@ -1,0 +1,23 @@
+{
+  "ImageImage": {
+    "Baseline": 0.0046599931083619595,
+    "Procrustes": 0.9946496486663818
+  },
+  "TextText": {
+    "Baseline": 0.004999999888241291,
+    "Procrustes": 0.800000011920929
+  },
+  "ImageText": {
+    "A_to_A": 0.5303762555122375,
+    "B_to_B": 0.5638591647148132,
+    "Aligned_imgA_to_textB": 0.4767000377178192,
+    "Aligned_imgA_to_aligned_textA": 0.4477045238018036,
+    "ImgB_to_aligned_textA": 0.47048670053482056
+  },
+  "Cosine": {
+    "Image_before": 0.029583703726530075,
+    "Image_after": 0.9050300717353821,
+    "Text_before": 0.14198745787143707,
+    "Text_after": 0.7584071159362793
+  }
+}

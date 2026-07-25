@@ -31,6 +31,24 @@ class ConfigTests(unittest.TestCase):
             self.assertEqual(config["decoder"]["architecture"], "linear")
             self.assertEqual(config["decoder"]["seeds"], [42, 43, 44, 45, 46])
 
+    def test_cub_train_q_control_configs_are_cache_only(self):
+        project_root = Path(__file__).resolve().parents[1]
+        configs = sorted(
+            (project_root / "configs" / "cub_train_q_control").glob("*.json")
+        )
+        self.assertEqual(len(configs), 2)
+        for path in configs:
+            config = read_decoder_config(path)
+            self.assertEqual(config["dataset"]["name"], "cub")
+            self.assertEqual(config["alignment"]["rotation_fit_dataset"], "cub_train")
+            self.assertTrue(config["alignment"]["refit_rotation_on_cub"])
+            self.assertTrue(config["alignment"]["recompute_means_on_cub_train"])
+            self.assertFalse(config["alignment"]["raw_rotation_ablation"])
+            self.assertEqual(config["decoder"]["architecture"], "linear")
+            self.assertEqual(config["decoder"]["seeds"], [42, 43, 44, 45, 46])
+            self.assertFalse(config["feature_extraction"]["repeat_encoder_inference"])
+            self.assertIn("linear", config["feature_extraction"]["reuse_run_id"])
+
     def test_mlp_configs_are_fixed_and_reuse_frozen_features(self):
         project_root = Path(__file__).resolve().parents[1]
         configs = sorted(

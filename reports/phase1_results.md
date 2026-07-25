@@ -34,7 +34,7 @@ using only the official CUB training split:
 =
 \operatorname{normalize}\!\left(
   (z-\mu_{A,\mathrm{CUB}})Q_{\mathrm{Oxford}}
-  \mu_{B,\mathrm{CUB}}
+  + \mu_{B,\mathrm{CUB}}
 \right).
 \]
 
