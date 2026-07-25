@@ -12,11 +12,11 @@ target-space decoder checkpoints are reused unchanged.
 
 For each model pair, fit
 
-\[
+$$
 Q_{\mathrm{CUB-train}} =
 \arg\min_{Q^\top Q=I}
 \|(A_{\mathrm{train}}-\mu_A)Q-(B_{\mathrm{train}}-\mu_B)\|_F^2 .
-\]
+$$
 
 Then compare the new CUB-train-fitted map against the original Oxford-fitted
 map using the same CUB test examples, masks, eligible 294 attributes, decoder

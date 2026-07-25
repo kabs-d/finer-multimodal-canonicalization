@@ -28,7 +28,7 @@ an attribute that the source representation never made linearly decodable.
   centering.
 - Official CUB test images are never used for fitting means, decoder weights,
   early stopping, or hyperparameter selection.
-- The raw-\(Q\) ablation is disabled for this phase.
+- The raw-$Q$ ablation is disabled for this phase.
 
 The official CUB training split is divided 80/20 within every species using
 split seed 2026. The internal validation partition is used only for decoder

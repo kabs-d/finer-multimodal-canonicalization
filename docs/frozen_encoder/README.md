@@ -4,8 +4,8 @@ Gupta et al. show that independently trained multimodal contrastive encoders
 can often be connected by a centered orthogonal map. Phase I asks a more
 functional question:
 
-> If we train a fine-grained bird-attribute decoder only in model \(B\)'s
-> native representation space, can we reuse it on model \(A\)'s embeddings
+> If we train a fine-grained bird-attribute decoder only in model $B$'s
+> native representation space, can we reuse it on model $A$'s embeddings
 > after applying the learned orthogonal map?
 
 The answer is yes, but with an important boundary: the transferred structure
@@ -19,11 +19,11 @@ We evaluate two frozen model pairs:
 - OpenAI CLIP ViT-B/32 → LAION CLIP ViT-B/32.
 - OpenAI CLIP ViT-L/14 → FLAVA.
 
-The main zero-shot alignment uses \(Q_{\text{Oxford}}\), fitted on
+The main zero-shot alignment uses $Q_{\text{Oxford}}$, fitted on
 Oxford-IIIT Pet trainval images and transferred unchanged to CUB-200-2011.
 Following the canonicalization paper's cross-dataset protocol, CUB train means
 are recomputed before evaluating CUB test examples. The in-domain control
-instead fits \(Q_{\text{CUB-train}}\) only on official CUB train images and
+instead fits $Q_{\text{CUB-train}}$ only on official CUB train images and
 evaluates on official CUB test.
 
 No CUB test image is used to fit a map, train a decoder, select an epoch, or

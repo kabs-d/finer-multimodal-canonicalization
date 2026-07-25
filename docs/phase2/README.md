@@ -32,7 +32,7 @@ compatibility survives:
    - target-space decoder transfer;
    - within-species attribute ranking;
    - fine-grained retrieval among same-species candidates.
-5. Compare a fixed pre-fine-tuning \(Q\) against a newly refit \(Q_t\) at each
+5. Compare a fixed pre-fine-tuning $Q$ against a newly refit $Q_t$ at each
    snapshot.
 
 The intended outcome is not merely “fine-tuning helps or hurts.” The

@@ -10,8 +10,8 @@ paper identifies lightweight decoding after alignment as a natural next step.
 
 We test the stronger operational claim:
 
-> If a decoder is trained only in model \(B\)'s native coordinates, can it be
-> reused on model \(A\)'s embeddings after applying an orthogonal map learned
+> If a decoder is trained only in model $B$'s native coordinates, can it be
+> reused on model $A$'s embeddings after applying an orthogonal map learned
 > on a different dataset?
 
 This separates geometric similarity from functional interchangeability.
@@ -23,20 +23,20 @@ We study two frozen pairs:
 1. OpenAI CLIP ViT-B/32 → LAION-400M CLIP ViT-B/32.
 2. OpenAI CLIP ViT-L/14 → FLAVA.
 
-For each pair, \(Q_{\text{Oxford}}\) is the centered orthogonal Procrustes
+For each pair, $Q_{\text{Oxford}}$ is the centered orthogonal Procrustes
 rotation fitted from all 3,680 paired Oxford-IIIT Pet `trainval` images. We
 then transfer that rotation to CUB-200-2011 without refitting it. Following
 the paper's cross-dataset protocol, source and target means are recomputed
 using only the official CUB training split:
 
-\[
+$$
 \operatorname{align}(z)
 =
 \operatorname{normalize}\!\left(
   (z-\mu_{A,\mathrm{CUB}})Q_{\mathrm{Oxford}}
   + \mu_{B,\mathrm{CUB}}
 \right).
-\]
+$$
 
 The official CUB split supplies 5,994 training and 5,794 test images across
 200 bird species. The training split is divided 80/20 within species using
@@ -44,7 +44,7 @@ split seed 2026. Both encoders remain frozen throughout.
 
 ### Leakage boundary
 
-- CUB never changes \(Q_{\text{Oxford}}\).
+- CUB never changes $Q_{\text{Oxford}}$.
 - Only official CUB training embeddings determine the new means.
 - The target decoder is trained only on native target embeddings.
 - Aligned and unaligned source embeddings are test conditions, never training
@@ -70,7 +70,7 @@ by the authors' code for both selected model pairs.
 This establishes that the local implementation recovers the paper baseline
 before introducing CUB or learned decoders.
 
-## 2. Does \(Q_{\text{Oxford}}\) transfer to CUB classification?
+## 2. Does $Q_{\text{Oxford}}$ transfer to CUB classification?
 
 Yes, although the strength depends on the task and model pair.
 
@@ -102,7 +102,7 @@ paper's evaluation.
 
 Jointly mapping source image and text embeddings retains much more
 classification performance than mixing a mapped modality with the target's
-native opposite modality. Thus \(Q_{\text{Oxford}}\) transfers strongly at
+native opposite modality. Thus $Q_{\text{Oxford}}$ transfers strongly at
 the intra-modal level, while cross-modal coordinate compatibility is only
 partial on CUB.
 
@@ -113,17 +113,17 @@ excluded from both training and evaluation. After fixed support filtering,
 294 attributes remain. The average test bird has 31.47 visible positive
 attributes.
 
-The linear decoder is one affine \(d\!\rightarrow\!312\) layer trained with
+The linear decoder is one affine $d\!\rightarrow\!312$ layer trained with
 masked, class-balanced binary cross entropy. It has one output logit per
 attribute.
 
 The target-space decoder is evaluated on:
 
-\[
+$$
 h_B(f_B(x)), \qquad
 h_B(\operatorname{align}(f_A(x))), \qquad
 h_B(f_A(x)).
-\]
+$$
 
 The last condition is an intentionally unaligned control. A ground-truth
 species lookup is also evaluated to expose how much apparent attribute
@@ -185,7 +185,7 @@ constant inside every comparison.
 | Species only | 50.00% | 50.00% |
 
 The aligned decoders stay well above chance and far above the unaligned
-controls. Therefore \(Q_{\text{Oxford}}\) preserves image-specific attribute
+controls. Therefore $Q_{\text{Oxford}}$ preserves image-specific attribute
 variation beyond coarse bird taxonomy.
 
 ## 4. What does decoder capacity reveal?
@@ -227,7 +227,7 @@ claim of improved nonlinear compatibility.
 - This phase studies one transfer dataset, two model pairs, and one fixed MLP.
 - The rotation is global across datasets, but the affine centering is
   dataset-specific, matching the paper's protocol.
-- \(Q_{\text{Oxford}}\) uses all Oxford `trainval` images rather than a
+- $Q_{\text{Oxford}}$ uses all Oxford `trainval` images rather than a
   small-anchor regime.
 - The MLP architecture was prespecified rather than tuned; the experiment
   tests transfer for this decoder, not every possible nonlinear readout.
