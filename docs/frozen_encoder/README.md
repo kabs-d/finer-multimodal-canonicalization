@@ -32,8 +32,10 @@ choose thresholds.
 ## 1. Cosine similarity: do paired embeddings occupy the same coordinates?
 
 Paired cosine compares the same CUB image or class text encoded by the source
-and target models. Before alignment, cosine is near zero. After alignment, the
-same object has a much more similar coordinate description.
+and target models. The native-target bar is the self-similarity ceiling:
+target embeddings compared with themselves, hence 1.0 by construction. Before
+alignment, cross-model cosine is near zero. After alignment, the same object
+has a much more similar coordinate description.
 
 ![Paired CUB cosine before and after alignment](figures/geometry_alignment.svg)
 
@@ -43,10 +45,12 @@ images still gives strong CUB image and text alignment.
 
 ## 2. Classification and retrieval: does the geometry support semantic reuse?
 
-Image-image retrieval asks whether each aligned source image retrieves its
-paired target image. Joint zero-shot species classification maps both source
-images and source text prompts before doing the paper-style class-name
-classification.
+Image-image retrieval asks whether each source-side image retrieves its paired
+target-side image. The native-target bar is again the within-model ceiling:
+target image retrieves target image. Joint zero-shot species classification
+maps both source images and source text prompts before doing the paper-style
+class-name classification, and is shown against native source and native
+target zero-shot accuracy.
 
 ![CUB retrieval and zero-shot species classification](figures/class_level_transfer.svg)
 
