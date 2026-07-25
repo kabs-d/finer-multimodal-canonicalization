@@ -109,6 +109,23 @@ metric. The clean interpretation is:
 > linearly accessible; the extra nonlinear discrimination learned by this MLP
 > is not more coordinate-compatible after alignment.
 
+## 6. Fine-grained retrieval: do neighborhoods transfer?
+
+The decoder experiment tests reusable readouts. The retrieval extension removes
+the decoder and asks whether aligned source embeddings retrieve target-space
+birds with matching attributes. Candidate pools are restricted to the same
+species and exclude the query image, so coarse class identity is not enough.
+
+![Same-species attribute retrieval gain over random](figures/fine_retrieval_attribute_overlap.svg)
+
+![Rare-attribute retrieval gain over random](figures/fine_retrieval_rare_recall.svg)
+
+Random same-species retrieval is already strong because birds of the same
+species share many typical attributes. The aligned conditions therefore matter
+most as gain over random and unaligned source. Oxford-Q remains competitive,
+while CUB-train-Q is strongest for strict top-1 overlap, matching its role as
+an in-domain image-geometry control.
+
 ## Compact takeaways
 
 1. Orthogonal alignment learned on Oxford Pets transfers to fine-grained CUB
@@ -119,7 +136,11 @@ metric. The clean interpretation is:
 4. CUB-train-fitted alignment substantially improves decoder transfer, but it
    does not make aligned readouts fully native.
 5. A stronger MLP readout does not establish stronger nonlinear transfer.
+6. Same-species retrieval shows that alignment also preserves fine-grained
+   neighborhood structure, not only decoder compatibility.
 
 For complete numerical tables and artifact provenance, see
 [the detailed Phase I report](../../reports/phase1_results.md) and
-[the CUB-train-Q control report](../../reports/cub_train_q_control.md).
+[the CUB-train-Q control report](../../reports/cub_train_q_control.md). For
+retrieval numbers, see
+[the fine-grained retrieval report](../../reports/fine_grained_retrieval.md).

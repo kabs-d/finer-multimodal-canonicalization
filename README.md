@@ -14,15 +14,15 @@ above chance even inside the same bird species.
 
 ## Read the study
 
-- [Phase I: frozen encoder canonical readouts](docs/frozen_encoder/README.md)  
+- [Frozen encoder canonical readouts](docs/frozen_encoder/README.md)  
   The completed experiment: cosine alignment, paper-style classification and
   retrieval diagnostics, linear attribute readout transfer, an in-domain
-  CUB-fitted alignment control, and a fixed MLP decoder-capacity control.
+  CUB-fitted alignment control, a fixed MLP decoder-capacity control, and
+  same-species fine-grained retrieval.
 
-- [Phase II: contrastive fine-tuning plan](docs/phase2/README.md)  
-  The next experiment: contrastively fine-tune aligned encoder pairs and test
-  whether coarse canonicalization survives while fine-grained readout and
-  retrieval compatibility degrades.
+- [Phase II: fine-grained retrieval](docs/phase2/README.md)  
+  The decoder-free extension: aligned source queries retrieve native target
+  birds from the same species and are scored by shared visible attributes.
 
 ## Headline
 
@@ -43,9 +43,10 @@ does not fully match native target readouts.
 
 ```text
 docs/frozen_encoder/              Phase I narrative and figures
-docs/phase2/                      Phase II plan
+docs/phase2/                      Phase II fine-grained retrieval summary
 reports/phase1_results.md         Detailed Phase I tables and protocol
 reports/cub_train_q_control.md    In-domain CUB-train-fitted Q control
+reports/fine_grained_retrieval.md Decoder-free same-species retrieval results
 reports/reproduction.md           Oxford baseline reproduction notes
 artifacts/results/phase1_summary.json
                                   Compact machine-readable headline results
@@ -66,6 +67,7 @@ prediction dumps are intentionally kept out of the exportable repository.
 ./scripts/bootstrap.sh
 .venv/bin/python -m unittest discover -s tests -v
 python3 scripts/render_phase1_figures.py
+python3 scripts/render_fine_grained_retrieval_figures.py
 ```
 
 The tmux launchers run the two configured model pairs concurrently on the

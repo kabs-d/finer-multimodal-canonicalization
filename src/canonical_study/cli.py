@@ -19,6 +19,7 @@ from .decoder_experiment import (
     run_frozen_decoder,
 )
 from .experiment import read_config, run_baseline
+from .fine_grained_retrieval import run_fine_grained_retrieval
 from .mlp_experiment import run_cached_mlp_decoder
 
 
@@ -160,6 +161,15 @@ def build_parser() -> argparse.ArgumentParser:
     mlp_decoder.add_argument("--device", default="cuda")
     mlp_decoder.add_argument("--force", action="store_true")
 
+    retrieval = subparsers.add_parser("fine-grained-retrieval")
+    retrieval.add_argument("--config", type=Path, required=True)
+    retrieval.add_argument("--embedding-root", type=Path, required=True)
+    retrieval.add_argument("--output-root", type=Path, required=True)
+    retrieval.add_argument("--alignment-root", type=Path, required=True)
+    retrieval.add_argument("--k", type=int, nargs="+", default=[1, 5, 10])
+    retrieval.add_argument("--random-seed", type=int, default=2026)
+    retrieval.add_argument("--force", action="store_true")
+
     environment = subparsers.add_parser("collect-env")
     environment.add_argument("--output", type=Path, required=True)
     return parser
@@ -264,6 +274,20 @@ def main() -> None:
                     args.prediction_root,
                     args.output_root,
                     device_name=args.device,
+                    force=args.force,
+                )
+            )
+        }
+    elif args.command == "fine-grained-retrieval":
+        result = {
+            "output": str(
+                run_fine_grained_retrieval(
+                    args.config,
+                    args.embedding_root,
+                    args.output_root,
+                    args.alignment_root,
+                    k_values=args.k,
+                    random_seed=args.random_seed,
                     force=args.force,
                 )
             )
