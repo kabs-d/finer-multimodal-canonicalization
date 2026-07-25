@@ -218,7 +218,6 @@ def geometry_panels() -> list[Panel]:
                 Bar(group, "Before Q", ox["Image_before"], COLORS["Before Q"]),
                 Bar(group, "Oxford Q", ox["Image_after"], COLORS["Oxford Q"]),
                 Bar(group, "CUB-train Q", cq["Image_after"], COLORS["CUB-train Q"]),
-                Bar(group, "Native target", 1.0, COLORS["Native target"]),
             ]
         )
         text_bars.extend(
@@ -226,7 +225,6 @@ def geometry_panels() -> list[Panel]:
                 Bar(group, "Before Q", ox["Text_before"], COLORS["Before Q"]),
                 Bar(group, "Oxford Q", ox["Text_after"], COLORS["Oxford Q"]),
                 Bar(group, "CUB-train Q", cq["Text_after"], COLORS["CUB-train Q"]),
-                Bar(group, "Native target", 1.0, COLORS["Native target"]),
             ]
         )
     return [
@@ -246,7 +244,6 @@ def class_panels() -> list[Panel]:
                 Bar(group, "Before Q", ox["ImageImage"]["Baseline"], COLORS["Before Q"]),
                 Bar(group, "Oxford Q", ox["ImageImage"]["Procrustes"], COLORS["Oxford Q"]),
                 Bar(group, "CUB-train Q", cq["ImageImage"]["Procrustes"], COLORS["CUB-train Q"]),
-                Bar(group, "Native target", 1.0, COLORS["Native target"]),
             ]
         )
         zeroshot_bars.extend(
@@ -327,8 +324,8 @@ def mlp_panels() -> list[Panel]:
 def main() -> None:
     FIGURE_ROOT.mkdir(parents=True, exist_ok=True)
     figures = [
-        ("geometry_alignment.svg", geometry_panels(), "Native target is the self-similarity ceiling; Q moves cross-model pairs toward it.", 2),
-        ("class_level_transfer.svg", class_panels(), "Native target gives the within-model reference; in-domain Q mainly improves image retrieval.", 2),
+        ("geometry_alignment.svg", geometry_panels(), "Q moves cross-model image/text pairs from near-zero cosine to strong agreement.", 2),
+        ("class_level_transfer.svg", class_panels(), "In-domain Q mainly improves image retrieval; zero-shot transfer is compared with native baselines.", 2),
         ("readout_counts.svg", readout_count_panels(), "CUB-train Q recovers more true attributes, with a hallucination tradeoff.", 3),
         ("within_species_ranking.svg", within_species_panel(), "Above-chance same-species ranking shows fine-grained signal beyond species identity.", 1),
         ("mlp_capacity.svg", mlp_panels(), "The MLP recovers more attributes but does not improve species-controlled transfer.", 2),

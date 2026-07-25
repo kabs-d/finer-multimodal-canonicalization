@@ -6,10 +6,10 @@
 <text x="136" y="28" font-size="11" font-family="Times New Roman, serif">Oxford Q</text>
 <rect x="220" y="18" width="11" height="11" fill="#9bc75f"/>
 <text x="236" y="28" font-size="11" font-family="Times New Roman, serif">CUB-train Q</text>
-<rect x="341" y="18" width="11" height="11" fill="#67c5d0"/>
-<text x="357" y="28" font-size="11" font-family="Times New Roman, serif">Native target</text>
-<rect x="476" y="18" width="11" height="11" fill="#e779b8"/>
-<text x="492" y="28" font-size="11" font-family="Times New Roman, serif">Native source</text>
+<rect x="341" y="18" width="11" height="11" fill="#e779b8"/>
+<text x="357" y="28" font-size="11" font-family="Times New Roman, serif">Native source</text>
+<rect x="476" y="18" width="11" height="11" fill="#67c5d0"/>
+<text x="492" y="28" font-size="11" font-family="Times New Roman, serif">Native target</text>
 <text x="165.0" y="63" text-anchor="middle" font-size="13" font-weight="600" font-family="Times New Roman, serif">(a) Image-image retrieval</text>
 <line x1="42" y1="246.0" x2="318" y2="246.0" stroke="#999" stroke-width="0.6" stroke-dasharray="2 2"/>
 <text x="35" y="249.0" text-anchor="end" font-size="9" font-family="Times New Roman, serif">0.0</text>
@@ -25,23 +25,19 @@
 <text x="35" y="85.0" text-anchor="end" font-size="9" font-family="Times New Roman, serif">100.0</text>
 <line x1="42" y1="246" x2="318" y2="246" stroke="#444" stroke-width="0.8"/>
 <line x1="42" y1="82" x2="42" y2="246" stroke="#444" stroke-width="0.8"/>
-<rect x="70.5" y="245.2" width="18.0" height="0.8" fill="#e779b8"/>
-<text x="79.5" y="242.2" text-anchor="middle" font-size="8" font-family="Times New Roman, serif">0.5</text>
-<rect x="91.5" y="97.7" width="18.0" height="148.3" fill="#f2aa45"/>
-<text x="100.5" y="94.7" text-anchor="middle" font-size="8" font-family="Times New Roman, serif">90.4</text>
-<rect x="112.5" y="82.9" width="18.0" height="163.1" fill="#9bc75f"/>
-<text x="121.5" y="79.9" text-anchor="middle" font-size="8" font-family="Times New Roman, serif">99.5</text>
-<rect x="133.5" y="82.0" width="18.0" height="164.0" fill="#67c5d0"/>
-<text x="142.5" y="79.0" text-anchor="middle" font-size="8" font-family="Times New Roman, serif">100.0</text>
+<rect x="81.0" y="245.2" width="18.0" height="0.8" fill="#e779b8"/>
+<text x="90.0" y="242.2" text-anchor="middle" font-size="8" font-family="Times New Roman, serif">0.5</text>
+<rect x="102.0" y="97.7" width="18.0" height="148.3" fill="#f2aa45"/>
+<text x="111.0" y="94.7" text-anchor="middle" font-size="8" font-family="Times New Roman, serif">90.4</text>
+<rect x="123.0" y="82.9" width="18.0" height="163.1" fill="#9bc75f"/>
+<text x="132.0" y="79.9" text-anchor="middle" font-size="8" font-family="Times New Roman, serif">99.5</text>
 <text x="111.0" y="264" text-anchor="middle" font-size="10" font-family="Times New Roman, serif">OpenAI->LAION</text>
-<rect x="208.5" y="245.6" width="18.0" height="0.4" fill="#e779b8"/>
-<text x="217.5" y="242.6" text-anchor="middle" font-size="8" font-family="Times New Roman, serif">0.3</text>
-<rect x="229.5" y="180.4" width="18.0" height="65.6" fill="#f2aa45"/>
-<text x="238.5" y="177.4" text-anchor="middle" font-size="8" font-family="Times New Roman, serif">40.0</text>
-<rect x="250.5" y="94.3" width="18.0" height="151.7" fill="#9bc75f"/>
-<text x="259.5" y="91.3" text-anchor="middle" font-size="8" font-family="Times New Roman, serif">92.5</text>
-<rect x="271.5" y="82.0" width="18.0" height="164.0" fill="#67c5d0"/>
-<text x="280.5" y="79.0" text-anchor="middle" font-size="8" font-family="Times New Roman, serif">100.0</text>
+<rect x="219.0" y="245.6" width="18.0" height="0.4" fill="#e779b8"/>
+<text x="228.0" y="242.6" text-anchor="middle" font-size="8" font-family="Times New Roman, serif">0.3</text>
+<rect x="240.0" y="180.4" width="18.0" height="65.6" fill="#f2aa45"/>
+<text x="249.0" y="177.4" text-anchor="middle" font-size="8" font-family="Times New Roman, serif">40.0</text>
+<rect x="261.0" y="94.3" width="18.0" height="151.7" fill="#9bc75f"/>
+<text x="270.0" y="91.3" text-anchor="middle" font-size="8" font-family="Times New Roman, serif">92.5</text>
 <text x="249.0" y="264" text-anchor="middle" font-size="10" font-family="Times New Roman, serif">OpenAI->FLAVA</text>
 <text x="12" y="164.0" transform="rotate(-90 12 164.0)" text-anchor="middle" font-size="10" font-family="Times New Roman, serif">top-1 accuracy</text>
 <text x="495.0" y="63" text-anchor="middle" font-size="13" font-weight="600" font-family="Times New Roman, serif">(b) Joint zero-shot species</text>
@@ -78,5 +74,5 @@
 <text x="610.5" y="125.4" text-anchor="middle" font-size="8" font-family="Times New Roman, serif">53.8</text>
 <text x="579.0" y="264" text-anchor="middle" font-size="10" font-family="Times New Roman, serif">OpenAI->FLAVA</text>
 <text x="342" y="164.0" transform="rotate(-90 342 164.0)" text-anchor="middle" font-size="10" font-family="Times New Roman, serif">top-1 accuracy</text>
-<text x="330.0" y="320" text-anchor="middle" font-size="11" font-family="Times New Roman, serif">Native target gives the within-model reference; in-domain Q mainly improves image retrieval.</text>
+<text x="330.0" y="320" text-anchor="middle" font-size="11" font-family="Times New Roman, serif">In-domain Q mainly improves image retrieval; zero-shot transfer is compared with native baselines.</text>
 </svg>
