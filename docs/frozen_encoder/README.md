@@ -1,17 +1,10 @@
 # Phase I: Frozen Encoder Fine-Grained Canonicalization
 
-Gupta et al. show that independently trained multimodal contrastive encoders
-can often be connected by a centered orthogonal map. Phase I asks a more
-functional question:
 
 > If we train a fine-grained bird-attribute decoder only in model $B$'s
 > native representation space, can we reuse it on model $A$'s embeddings
 > after applying the learned orthogonal map?
-
-The answer is yes, but with an important boundary: the transferred structure
-is strong and species-controlled, while the extra nonlinear discrimination
-captured by a small MLP does not transfer better than a linear readout.
-
+> 
 ## Experimental frame
 
 We evaluate two frozen model pairs:
