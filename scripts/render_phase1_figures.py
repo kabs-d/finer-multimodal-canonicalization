@@ -42,6 +42,10 @@ COLORS = {
     "Linear": "#f2aa45",
     "MLP": "#9bc75f",
     "Two-layer MLP": "#9bc75f",
+    "Linear native": "#67c5d0",
+    "Linear aligned": "#f2aa45",
+    "Two-layer MLP native": "#9bc75f",
+    "Two-layer MLP aligned": "#5c9e56",
 }
 
 
@@ -185,8 +189,15 @@ def render_panel(panel: Panel, x0: int, y0: int, width: int, height: int) -> str
     return "\n".join(out)
 
 
-def render_figure(path: Path, panels: list[Panel], caption: str, *, columns: int = 2) -> None:
-    panel_w, panel_h = 330, 250
+def render_figure(
+    path: Path,
+    panels: list[Panel],
+    caption: str,
+    *,
+    columns: int = 2,
+    panel_width: int = 330,
+) -> None:
+    panel_w, panel_h = panel_width, 250
     rows = (len(panels) + columns - 1) // columns
     width = columns * panel_w
     height = 48 + rows * panel_h + 34
@@ -322,26 +333,21 @@ def mlp_panels() -> list[Panel]:
     ]
 
 
-def bidirectional_decoder_panels() -> list[Panel]:
-    """OpenAI B/32 -> LAION capacity comparison from bidirectional probes."""
-    linear = load_probe("linear_bidirectional_probe", "cub_openai_vitb32_to_laion_vitb32_linear")
-    deep = load_probe("deep_mlp_probe", "cub_openai_vitb32_to_laion_vitb32_linear")
-    native = [
-        Bar("Source decoder", "Linear", linear["source_native_percent_mean"] / 100, COLORS["Linear"]),
-        Bar("Source decoder", "Two-layer MLP", deep["source_native_percent_mean"] / 100, COLORS["Two-layer MLP"]),
-        Bar("Target decoder", "Linear", linear["target_native_percent_mean"] / 100, COLORS["Linear"]),
-        Bar("Target decoder", "Two-layer MLP", deep["target_native_percent_mean"] / 100, COLORS["Two-layer MLP"]),
+def bidirectional_decoder_panel(pair: str, title: str) -> list[Panel]:
+    """One compact four-bar-per-direction figure for a model pair."""
+    linear = load_probe("linear_bidirectional_probe", pair)
+    deep = load_probe("deep_mlp_probe", pair)
+    bars = [
+        Bar("Source → target", "Linear native", linear["source_native_percent_mean"] / 100, COLORS["Linear native"]),
+        Bar("Source → target", "Linear aligned", linear["source_decoder_on_aligned_target_percent_mean"] / 100, COLORS["Linear aligned"]),
+        Bar("Source → target", "Two-layer MLP native", deep["source_native_percent_mean"] / 100, COLORS["Two-layer MLP native"]),
+        Bar("Source → target", "Two-layer MLP aligned", deep["source_decoder_on_aligned_target_percent_mean"] / 100, COLORS["Two-layer MLP aligned"]),
+        Bar("Target → source", "Linear native", linear["target_native_percent_mean"] / 100, COLORS["Linear native"]),
+        Bar("Target → source", "Linear aligned", linear["target_decoder_on_aligned_source_percent_mean"] / 100, COLORS["Linear aligned"]),
+        Bar("Target → source", "Two-layer MLP native", deep["target_native_percent_mean"] / 100, COLORS["Two-layer MLP native"]),
+        Bar("Target → source", "Two-layer MLP aligned", deep["target_decoder_on_aligned_source_percent_mean"] / 100, COLORS["Two-layer MLP aligned"]),
     ]
-    transfer = [
-        Bar("Source → target", "Linear", linear["source_decoder_on_aligned_target_percent_mean"] / 100, COLORS["Linear"]),
-        Bar("Source → target", "Two-layer MLP", deep["source_decoder_on_aligned_target_percent_mean"] / 100, COLORS["Two-layer MLP"]),
-        Bar("Target → source", "Linear", linear["target_decoder_on_aligned_source_percent_mean"] / 100, COLORS["Linear"]),
-        Bar("Target → source", "Two-layer MLP", deep["target_decoder_on_aligned_source_percent_mean"] / 100, COLORS["Two-layer MLP"]),
-    ]
-    return [
-        Panel("(a) Native attribute decoding", "attributes recovered (%)", native, 0.8, percent=True),
-        Panel("(b) After canonical alignment", "attributes recovered (%)", transfer, 0.8, percent=True),
-    ]
+    return [Panel(title, "attributes recovered (%)", bars, 0.8, percent=True)]
 
 
 def load_probe(probe: str, pair: str) -> dict:
@@ -352,16 +358,23 @@ def load_probe(probe: str, pair: str) -> dict:
 def main() -> None:
     FIGURE_ROOT.mkdir(parents=True, exist_ok=True)
     figures = [
-        ("geometry_alignment.svg", geometry_panels(), "Q moves cross-model image/text pairs from near-zero cosine to strong agreement.", 2),
-        ("class_level_transfer.svg", class_panels(), "In-domain Q mainly improves image retrieval; zero-shot transfer is compared with native baselines.", 2),
-        ("readout_counts.svg", readout_count_panels(), "CUB-train Q recovers more true attributes, with a hallucination tradeoff.", 3),
-        ("within_species_ranking.svg", within_species_panel(), "Above-chance same-species ranking shows fine-grained signal beyond species identity.", 1),
-        ("mlp_capacity.svg", mlp_panels(), "The MLP recovers more attributes but does not improve species-controlled transfer.", 2),
-        ("bidirectional_decoder_transfer.svg", bidirectional_decoder_panels(), "OpenAI B/32 → LAION: deeper decoding preserves more attributes after applying Q or Qᵀ.", 2),
+        ("geometry_alignment.svg", geometry_panels(), "Q moves cross-model image/text pairs from near-zero cosine to strong agreement.", 2, 330),
+        ("class_level_transfer.svg", class_panels(), "In-domain Q mainly improves image retrieval; zero-shot transfer is compared with native baselines.", 2, 330),
+        ("readout_counts.svg", readout_count_panels(), "CUB-train Q recovers more true attributes, with a hallucination tradeoff.", 3, 330),
+        ("within_species_ranking.svg", within_species_panel(), "Above-chance same-species ranking shows fine-grained signal beyond species identity.", 1, 330),
+        ("mlp_capacity.svg", mlp_panels(), "The MLP recovers more attributes but does not improve species-controlled transfer.", 2, 330),
+        ("decoder_transfer_laion.svg", bidirectional_decoder_panel("cub_openai_vitb32_to_laion_vitb32_linear", "OpenAI B/32 → LAION B/32"), "Each group compares native and aligned decoder inputs in one transfer direction.", 1, 660),
+        ("decoder_transfer_flava.svg", bidirectional_decoder_panel("cub_openai_vitl14_to_flava_linear", "OpenAI L/14 → FLAVA"), "Each group compares native and aligned decoder inputs in one transfer direction.", 1, 660),
     ]
     manifest = {"figures": []}
-    for name, panels, caption, columns in figures:
-        render_figure(FIGURE_ROOT / name, panels, caption, columns=columns)
+    for name, panels, caption, columns, panel_width in figures:
+        render_figure(
+            FIGURE_ROOT / name,
+            panels,
+            caption,
+            columns=columns,
+            panel_width=panel_width,
+        )
         manifest["figures"].append(
             {
                 "file": name,

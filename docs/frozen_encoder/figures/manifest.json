@@ -41,10 +41,16 @@
       "source_root": "artifacts/results/frozen_decoder"
     },
     {
-      "file": "bidirectional_decoder_transfer.svg",
+      "file": "decoder_transfer_laion.svg",
       "panels": [
-        "(a) Native attribute decoding",
-        "(b) After canonical alignment"
+        "OpenAI B/32 \u2192 LAION B/32"
+      ],
+      "source_root": "artifacts/results/frozen_decoder"
+    },
+    {
+      "file": "decoder_transfer_flava.svg",
+      "panels": [
+        "OpenAI L/14 \u2192 FLAVA"
       ],
       "source_root": "artifacts/results/frozen_decoder"
     }

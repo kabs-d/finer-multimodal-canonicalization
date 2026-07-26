@@ -71,12 +71,14 @@ Linear(d, 512) → GELU → Dropout(0.1) → Linear(512, 256)
 → GELU → Dropout(0.1) → Linear(256, 312)
 ```
 
-![Bidirectional decoder transfer: OpenAI B/32 to LAION](figures/bidirectional_decoder_transfer.svg)
+![Bidirectional decoder transfer: OpenAI B/32 to LAION](figures/decoder_transfer_laion.svg)
 
-For OpenAI B/32 → LAION, native decoding is nearly identical for the two
-architectures. After alignment, however, the two-layer MLP retains more of the
-bird's visible attributes in both directions. The full results for both model
-pairs are in the [bidirectional decoder-transfer report](../../reports/bidirectional_decoder_transfer.md).
+![Bidirectional decoder transfer: OpenAI L/14 to FLAVA](figures/decoder_transfer_flava.svg)
+
+Each group contains four bars: linear and two-layer MLP, each on native and
+aligned embeddings. Native decoding is nearly identical across architectures;
+the separation appears after alignment. The full results for both model pairs
+are in the [bidirectional decoder-transfer report](../../reports/bidirectional_decoder_transfer.md).
 
 > **Protocol note.** The two-layer MLP is a follow-up capacity probe using the
 > same frozen caches, data split, seeds, and loss, but its early stopping and

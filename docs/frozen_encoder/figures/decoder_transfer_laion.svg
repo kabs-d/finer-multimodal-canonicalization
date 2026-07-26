@@ -1,0 +1,46 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="660" height="332" viewBox="0 0 660 332">
+<rect width="100%" height="100%" fill="white"/>
+<rect x="20" y="18" width="11" height="11" fill="#67c5d0"/>
+<text x="36" y="28" font-size="11" font-family="Times New Roman, serif">Linear native</text>
+<rect x="155" y="18" width="11" height="11" fill="#f2aa45"/>
+<text x="171" y="28" font-size="11" font-family="Times New Roman, serif">Linear aligned</text>
+<rect x="297" y="18" width="11" height="11" fill="#9bc75f"/>
+<text x="313" y="28" font-size="11" font-family="Times New Roman, serif">Two-layer MLP native</text>
+<rect x="481" y="18" width="11" height="11" fill="#5c9e56"/>
+<text x="497" y="28" font-size="11" font-family="Times New Roman, serif">Two-layer MLP aligned</text>
+<text x="330.0" y="63" text-anchor="middle" font-size="13" font-weight="600" font-family="Times New Roman, serif">OpenAI B/32 → LAION B/32</text>
+<line x1="42" y1="246.0" x2="648" y2="246.0" stroke="#999" stroke-width="0.6" stroke-dasharray="2 2"/>
+<text x="35" y="249.0" text-anchor="end" font-size="9" font-family="Times New Roman, serif">0.0</text>
+<line x1="42" y1="213.2" x2="648" y2="213.2" stroke="#999" stroke-width="0.6" stroke-dasharray="2 2"/>
+<text x="35" y="216.2" text-anchor="end" font-size="9" font-family="Times New Roman, serif">16.0</text>
+<line x1="42" y1="180.4" x2="648" y2="180.4" stroke="#999" stroke-width="0.6" stroke-dasharray="2 2"/>
+<text x="35" y="183.4" text-anchor="end" font-size="9" font-family="Times New Roman, serif">32.0</text>
+<line x1="42" y1="147.6" x2="648" y2="147.6" stroke="#999" stroke-width="0.6" stroke-dasharray="2 2"/>
+<text x="35" y="150.6" text-anchor="end" font-size="9" font-family="Times New Roman, serif">48.0</text>
+<line x1="42" y1="114.8" x2="648" y2="114.8" stroke="#999" stroke-width="0.6" stroke-dasharray="2 2"/>
+<text x="35" y="117.8" text-anchor="end" font-size="9" font-family="Times New Roman, serif">64.0</text>
+<line x1="42" y1="82.0" x2="648" y2="82.0" stroke="#999" stroke-width="0.6" stroke-dasharray="2 2"/>
+<text x="35" y="85.0" text-anchor="end" font-size="9" font-family="Times New Roman, serif">80.0</text>
+<line x1="42" y1="246" x2="648" y2="246" stroke="#444" stroke-width="0.8"/>
+<line x1="42" y1="82" x2="42" y2="246" stroke="#444" stroke-width="0.8"/>
+<rect x="153.0" y="102.3" width="18.0" height="143.7" fill="#67c5d0"/>
+<text x="162.0" y="99.3" text-anchor="middle" font-size="8" font-family="Times New Roman, serif">70.1</text>
+<rect x="174.0" y="114.1" width="18.0" height="131.9" fill="#f2aa45"/>
+<text x="183.0" y="111.1" text-anchor="middle" font-size="8" font-family="Times New Roman, serif">64.3</text>
+<rect x="195.0" y="100.8" width="18.0" height="145.2" fill="#9bc75f"/>
+<text x="204.0" y="97.8" text-anchor="middle" font-size="8" font-family="Times New Roman, serif">70.8</text>
+<rect x="216.0" y="107.4" width="18.0" height="138.6" fill="#5c9e56"/>
+<text x="225.0" y="104.4" text-anchor="middle" font-size="8" font-family="Times New Roman, serif">67.6</text>
+<text x="193.5" y="264" text-anchor="middle" font-size="10" font-family="Times New Roman, serif">Source → target</text>
+<rect x="456.0" y="103.2" width="18.0" height="142.8" fill="#67c5d0"/>
+<text x="465.0" y="100.2" text-anchor="middle" font-size="8" font-family="Times New Roman, serif">69.7</text>
+<rect x="477.0" y="137.6" width="18.0" height="108.4" fill="#f2aa45"/>
+<text x="486.0" y="134.6" text-anchor="middle" font-size="8" font-family="Times New Roman, serif">52.9</text>
+<rect x="498.0" y="100.9" width="18.0" height="145.1" fill="#9bc75f"/>
+<text x="507.0" y="97.9" text-anchor="middle" font-size="8" font-family="Times New Roman, serif">70.8</text>
+<rect x="519.0" y="110.7" width="18.0" height="135.3" fill="#5c9e56"/>
+<text x="528.0" y="107.7" text-anchor="middle" font-size="8" font-family="Times New Roman, serif">66.0</text>
+<text x="496.5" y="264" text-anchor="middle" font-size="10" font-family="Times New Roman, serif">Target → source</text>
+<text x="12" y="164.0" transform="rotate(-90 12 164.0)" text-anchor="middle" font-size="10" font-family="Times New Roman, serif">attributes recovered (%)</text>
+<text x="330.0" y="320" text-anchor="middle" font-size="11" font-family="Times New Roman, serif">Each group compares native and aligned decoder inputs in one transfer direction.</text>
+</svg>
