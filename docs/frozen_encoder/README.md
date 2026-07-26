@@ -71,19 +71,12 @@ Linear(d, 512) → GELU → Dropout(0.1) → Linear(512, 256)
 → GELU → Dropout(0.1) → Linear(256, 312)
 ```
 
-| Pair and decoder | Source native | Target native | Source decoder on aligned target | Target decoder on aligned source |
-| --- | ---: | ---: | ---: | ---: |
-| OpenAI B/32 → LAION, linear | 70.11% | 69.66% | 64.34% | 52.87% |
-| OpenAI B/32 → LAION, two-layer MLP | 70.82% | 70.80% | 67.59% | 66.02% |
-| OpenAI L/14 → FLAVA, linear | 70.45% | 69.69% | 55.77% | 48.60% |
-| OpenAI L/14 → FLAVA, two-layer MLP | 71.08% | 70.71% | 61.41% | 62.21% |
+![Bidirectional decoder transfer: OpenAI B/32 to LAION](figures/bidirectional_decoder_transfer.svg)
 
-Native decoding is close to 70% for every model and decoder. The notable
-difference appears after transfer: the two-layer MLP retains more visible
-attributes in both directions, particularly for the harder CLIP–FLAVA pair.
-The linear result is directional even though $Q^\top$ is exactly the inverse
-of $Q$; the same reversible map can interact differently with the two learned
-decoder boundaries.
+For OpenAI B/32 → LAION, native decoding is nearly identical for the two
+architectures. After alignment, however, the two-layer MLP retains more of the
+bird's visible attributes in both directions. The full results for both model
+pairs are in the [bidirectional decoder-transfer report](../../reports/bidirectional_decoder_transfer.md).
 
 > **Protocol note.** The two-layer MLP is a follow-up capacity probe using the
 > same frozen caches, data split, seeds, and loss, but its early stopping and

@@ -39,6 +39,14 @@
         "(b) Within-species ranking"
       ],
       "source_root": "artifacts/results/frozen_decoder"
+    },
+    {
+      "file": "bidirectional_decoder_transfer.svg",
+      "panels": [
+        "(a) Native attribute decoding",
+        "(b) After canonical alignment"
+      ],
+      "source_root": "artifacts/results/frozen_decoder"
     }
   ]
 }

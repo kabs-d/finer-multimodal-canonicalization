@@ -41,6 +41,7 @@ COLORS = {
     "Species only": "#8f8f8f",
     "Linear": "#f2aa45",
     "MLP": "#9bc75f",
+    "Two-layer MLP": "#9bc75f",
 }
 
 
@@ -321,6 +322,33 @@ def mlp_panels() -> list[Panel]:
     ]
 
 
+def bidirectional_decoder_panels() -> list[Panel]:
+    """OpenAI B/32 -> LAION capacity comparison from bidirectional probes."""
+    linear = load_probe("linear_bidirectional_probe", "cub_openai_vitb32_to_laion_vitb32_linear")
+    deep = load_probe("deep_mlp_probe", "cub_openai_vitb32_to_laion_vitb32_linear")
+    native = [
+        Bar("Source decoder", "Linear", linear["source_native_percent_mean"] / 100, COLORS["Linear"]),
+        Bar("Source decoder", "Two-layer MLP", deep["source_native_percent_mean"] / 100, COLORS["Two-layer MLP"]),
+        Bar("Target decoder", "Linear", linear["target_native_percent_mean"] / 100, COLORS["Linear"]),
+        Bar("Target decoder", "Two-layer MLP", deep["target_native_percent_mean"] / 100, COLORS["Two-layer MLP"]),
+    ]
+    transfer = [
+        Bar("Source → target", "Linear", linear["source_decoder_on_aligned_target_percent_mean"] / 100, COLORS["Linear"]),
+        Bar("Source → target", "Two-layer MLP", deep["source_decoder_on_aligned_target_percent_mean"] / 100, COLORS["Two-layer MLP"]),
+        Bar("Target → source", "Linear", linear["target_decoder_on_aligned_source_percent_mean"] / 100, COLORS["Linear"]),
+        Bar("Target → source", "Two-layer MLP", deep["target_decoder_on_aligned_source_percent_mean"] / 100, COLORS["Two-layer MLP"]),
+    ]
+    return [
+        Panel("(a) Native attribute decoding", "attributes recovered (%)", native, 0.8, percent=True),
+        Panel("(b) After canonical alignment", "attributes recovered (%)", transfer, 0.8, percent=True),
+    ]
+
+
+def load_probe(probe: str, pair: str) -> dict:
+    path = PROJECT_ROOT / "artifacts" / "results" / probe / pair / "summary.json"
+    return json.loads(path.read_text(encoding="utf-8"))
+
+
 def main() -> None:
     FIGURE_ROOT.mkdir(parents=True, exist_ok=True)
     figures = [
@@ -329,6 +357,7 @@ def main() -> None:
         ("readout_counts.svg", readout_count_panels(), "CUB-train Q recovers more true attributes, with a hallucination tradeoff.", 3),
         ("within_species_ranking.svg", within_species_panel(), "Above-chance same-species ranking shows fine-grained signal beyond species identity.", 1),
         ("mlp_capacity.svg", mlp_panels(), "The MLP recovers more attributes but does not improve species-controlled transfer.", 2),
+        ("bidirectional_decoder_transfer.svg", bidirectional_decoder_panels(), "OpenAI B/32 → LAION: deeper decoding preserves more attributes after applying Q or Qᵀ.", 2),
     ]
     manifest = {"figures": []}
     for name, panels, caption, columns in figures:

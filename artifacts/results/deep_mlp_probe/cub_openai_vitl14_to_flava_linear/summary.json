@@ -1,0 +1,97 @@
+{
+  "architecture": "deep_mlp_512_256",
+  "pair": "cub_openai_vitl14_to_flava_linear",
+  "eligible_attributes": 294,
+  "metric": "percent of visible-positive ground-truth attributes recovered",
+  "seeds": [
+    {
+      "seed": 42,
+      "source_native_percent": 70.94413833699849,
+      "target_native_percent": 71.12075141711381,
+      "source_decoder_on_aligned_target_percent": 61.84476843912062,
+      "target_decoder_on_aligned_source_percent": 63.082554100479406,
+      "source_training": {
+        "best_epoch": 51,
+        "epochs_run": 71,
+        "validation_macro_f1": 0.38813815228263215
+      },
+      "target_training": {
+        "best_epoch": 52,
+        "epochs_run": 72,
+        "validation_macro_f1": 0.3831000858784687
+      }
+    },
+    {
+      "seed": 43,
+      "source_native_percent": 71.06333689412914,
+      "target_native_percent": 70.50563088966729,
+      "source_decoder_on_aligned_target_percent": 60.54053691589923,
+      "target_decoder_on_aligned_source_percent": 61.50457121941017,
+      "source_training": {
+        "best_epoch": 112,
+        "epochs_run": 132,
+        "validation_macro_f1": 0.39128710600489286
+      },
+      "target_training": {
+        "best_epoch": 39,
+        "epochs_run": 59,
+        "validation_macro_f1": 0.38641397214439127
+      }
+    },
+    {
+      "seed": 44,
+      "source_native_percent": 71.46791148744214,
+      "target_native_percent": 70.83555470830993,
+      "source_decoder_on_aligned_target_percent": 60.36927195278569,
+      "target_decoder_on_aligned_source_percent": 62.95234473355353,
+      "source_training": {
+        "best_epoch": 194,
+        "epochs_run": 200,
+        "validation_macro_f1": 0.4018246842971053
+      },
+      "target_training": {
+        "best_epoch": 52,
+        "epochs_run": 72,
+        "validation_macro_f1": 0.38306629700355843
+      }
+    },
+    {
+      "seed": 45,
+      "source_native_percent": 71.29036587805129,
+      "target_native_percent": 70.5167756464182,
+      "source_decoder_on_aligned_target_percent": 62.45339014815933,
+      "target_decoder_on_aligned_source_percent": 61.453665429450396,
+      "source_training": {
+        "best_epoch": 59,
+        "epochs_run": 79,
+        "validation_macro_f1": 0.385815000254516
+      },
+      "target_training": {
+        "best_epoch": 51,
+        "epochs_run": 71,
+        "validation_macro_f1": 0.3832214385316672
+      }
+    },
+    {
+      "seed": 46,
+      "source_native_percent": 70.6522507278276,
+      "target_native_percent": 70.5649057121317,
+      "source_decoder_on_aligned_target_percent": 61.84115194079494,
+      "target_decoder_on_aligned_source_percent": 62.042030241499106,
+      "source_training": {
+        "best_epoch": 52,
+        "epochs_run": 72,
+        "validation_macro_f1": 0.383543532587771
+      },
+      "target_training": {
+        "best_epoch": 73,
+        "epochs_run": 93,
+        "validation_macro_f1": 0.38386698475351066
+      }
+    }
+  ],
+  "source_native_percent_mean": 71.08360066488973,
+  "target_native_percent_mean": 70.70872367472819,
+  "source_decoder_on_aligned_target_percent_mean": 61.40982387935196,
+  "target_decoder_on_aligned_source_percent_mean": 62.207033144878515
+}

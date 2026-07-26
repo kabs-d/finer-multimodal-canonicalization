@@ -1,0 +1,47 @@
+{
+  "architecture": "linear",
+  "pair": "cub_openai_vitl14_to_flava_linear",
+  "eligible_attributes": 294,
+  "metric": "mean per-bird percentage of visible-positive ground-truth attributes recovered",
+  "seeds": [
+    {
+      "seed": 42,
+      "source_native_percent": 70.51402528148368,
+      "target_native_percent": 69.37898638125671,
+      "source_decoder_on_aligned_target_percent": 55.8674954760472,
+      "target_decoder_on_aligned_source_percent": 48.26017561101337
+    },
+    {
+      "seed": 43,
+      "source_native_percent": 70.58930206960206,
+      "target_native_percent": 69.62948282232732,
+      "source_decoder_on_aligned_target_percent": 55.96286725065555,
+      "target_decoder_on_aligned_source_percent": 48.47877705230864
+    },
+    {
+      "seed": 44,
+      "source_native_percent": 70.53436068305588,
+      "target_native_percent": 69.73900786812062,
+      "source_decoder_on_aligned_target_percent": 55.87719660213416,
+      "target_decoder_on_aligned_source_percent": 48.72613130784356
+    },
+    {
+      "seed": 45,
+      "source_native_percent": 70.45196384221532,
+      "target_native_percent": 69.91308767545709,
+      "source_decoder_on_aligned_target_percent": 55.63181874786104,
+      "target_decoder_on_aligned_source_percent": 48.93024297312225
+    },
+    {
+      "seed": 46,
+      "source_native_percent": 70.15298540012786,
+      "target_native_percent": 69.77800970806587,
+      "source_decoder_on_aligned_target_percent": 55.498300019290234,
+      "target_decoder_on_aligned_source_percent": 48.60540873256695
+    }
+  ],
+  "source_native_percent_mean": 70.44852745529695,
+  "target_native_percent_mean": 69.68771489104552,
+  "source_decoder_on_aligned_target_percent_mean": 55.76753561919763,
+  "target_decoder_on_aligned_source_percent_mean": 48.60014713537096
+}
