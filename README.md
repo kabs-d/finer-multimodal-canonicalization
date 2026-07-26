@@ -18,7 +18,7 @@ A central result of my analyses is that the orthogonal map derived from the Oxfo
 
 ## What the results show
 
-![Fine-grained attribute transfer](docs/frozen_encoder/figures/within_species_ranking.svg)
+![Unidirectional fine-grained attribute transfer](docs/frozen_encoder/figures/unidirectional_mlp_transfer.svg)
 
 A two-layer MLP is trained in the target
 model’s native space to predict each bird’s visible CUB attributes. We then

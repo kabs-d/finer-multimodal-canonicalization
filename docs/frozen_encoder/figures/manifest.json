@@ -53,6 +53,13 @@
         "OpenAI L/14 \u2192 FLAVA"
       ],
       "source_root": "artifacts/results/frozen_decoder"
+    },
+    {
+      "file": "unidirectional_mlp_transfer.svg",
+      "panels": [
+        "Target-space MLP transfer"
+      ],
+      "source_root": "artifacts/results/frozen_decoder"
     }
   ]
 }

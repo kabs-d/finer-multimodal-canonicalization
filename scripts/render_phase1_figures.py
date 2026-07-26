@@ -50,6 +50,8 @@ COLORS = {
     "Unaligned MLP": "#b7b7b7",
     "Aligned MLP": "#5c9e56",
     "CUB-aligned MLP": "#9bc75f",
+    "Oxford-Q aligned": "#5c9e56",
+    "CUB-Q aligned": "#9bc75f",
 }
 
 
@@ -353,6 +355,26 @@ def bidirectional_mlp_panel(pair: str, title: str) -> list[Panel]:
     return [Panel(title, "attributes recovered (%)", bars, 0.8, percent=True)]
 
 
+def unidirectional_mlp_panel() -> list[Panel]:
+    """Target-space MLP applied to native, unaligned, and aligned sources."""
+    specs = [
+        ("OpenAI → LAION", "cub_openai_vitb32_to_laion_vitb32_linear"),
+        ("OpenAI → FLAVA", "cub_openai_vitl14_to_flava_linear"),
+    ]
+    bars = []
+    for group, pair in specs:
+        deep = load_probe("deep_mlp_probe", pair)
+        bars.extend(
+            [
+                Bar(group, "Native target", deep["target_native_percent_mean"] / 100, COLORS["Native MLP"]),
+                Bar(group, "Unaligned source", deep["target_decoder_on_unaligned_source_percent_mean"] / 100, COLORS["Unaligned MLP"]),
+                Bar(group, "Oxford-Q aligned", deep["target_decoder_on_aligned_source_percent_mean"] / 100, COLORS["Aligned MLP"]),
+                Bar(group, "CUB-Q aligned", deep["target_decoder_on_cub_aligned_source_percent_mean"] / 100, COLORS["CUB-aligned MLP"]),
+            ]
+        )
+    return [Panel("Target-space MLP transfer", "attributes recovered (%)", bars, 0.8, percent=True)]
+
+
 def load_probe(probe: str, pair: str) -> dict:
     path = PROJECT_ROOT / "artifacts" / "results" / probe / pair / "summary.json"
     return json.loads(path.read_text(encoding="utf-8"))
@@ -368,6 +390,7 @@ def main() -> None:
         ("mlp_capacity.svg", mlp_panels(), "The MLP recovers more attributes but does not improve species-controlled transfer.", 2, 330),
         ("decoder_transfer_laion.svg", bidirectional_mlp_panel("cub_openai_vitb32_to_laion_vitb32_linear", "OpenAI B/32 → LAION B/32"), "Each group compares the two-layer MLP on native, unaligned, Oxford-aligned, and CUB-aligned embeddings.", 1, 660),
         ("decoder_transfer_flava.svg", bidirectional_mlp_panel("cub_openai_vitl14_to_flava_linear", "OpenAI L/14 → FLAVA"), "Each group compares the two-layer MLP on native, unaligned, Oxford-aligned, and CUB-aligned embeddings.", 1, 660),
+        ("unidirectional_mlp_transfer.svg", unidirectional_mlp_panel(), "A target-space MLP evaluated on native and source embeddings before and after alignment.", 1, 660),
     ]
     manifest = {"figures": []}
     for name, panels, caption, columns, panel_width in figures:
