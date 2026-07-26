@@ -56,60 +56,41 @@ FLAVA. Species classification changes only slightly, which is useful: the
 control is not simply making every semantic metric go up. It mostly improves
 paired image geometry.
 
-## 3. Fine-grained readout transfer: can the target decoder be reused?
+## 3. Fine-grained attribute transfer in both directions
 
-The decoder predicts CUB's visible binary bird attributes. We report the
-counts that are easiest to reason about per bird:
+Each decoder predicts CUB's visible bird attributes from an image embedding.
+We train one decoder in each model's native space, then use the same Oxford
+map in both directions: source to target uses $Q$, while target to source uses
+$Q^\top$. The metric is the mean percentage of each bird's visible-positive
+ground-truth attributes that the decoder recovers.
 
-- Recovered: visible true attributes predicted present.
-- Missed: visible true attributes predicted absent.
-- Hallucinated: visible absent attributes predicted present.
-
-True negatives are omitted because there are many of them and they make the
-problem look easier than it is.
-
-![Per-bird fine-grained attribute readout counts](figures/readout_counts.svg)
-
-The Oxford-aligned decoder recovers fewer attributes than the native target
-decoder, but it is far less pathological than the unaligned control. Fitting
-the rotation on CUB train recovers roughly four to five additional true
-attributes per bird, while also hallucinating more. That tradeoff is exactly
-why the next metric matters.
-
-## 4. Species-controlled signal: is this more than bird identity?
-
-Within-species ranking compares positive and negative birds of the same
-species for the same attribute. If the decoder only knows the species, it gets
-50%. Chance and the species-only baseline are therefore both 50%.
-
-![Within-species positive-versus-negative ranking](figures/within_species_ranking.svg)
-
-Both Oxford-aligned decoders are well above 50%, so the transferred signal is
-not just “this species usually has a red crown.” The aligned representation
-retains image-specific, within-species visual variation.
-
-## 5. Decoder capacity control: does a stronger readout transfer better?
-
-We also train one prespecified MLP:
+We compare a linear decoder with a two-hidden-layer MLP:
 
 ```text
-Linear(d,512) → GELU → Dropout(0.1) → Linear(512,312)
+Linear(d, 512) → GELU → Dropout(0.1) → Linear(512, 256)
+→ GELU → Dropout(0.1) → Linear(256, 312)
 ```
 
-The MLP is trained only on native target CUB embeddings. It is never selected
-using aligned-source examples.
+| Pair and decoder | Source native | Target native | Source decoder on aligned target | Target decoder on aligned source |
+| --- | ---: | ---: | ---: | ---: |
+| OpenAI B/32 → LAION, linear | 70.11% | 69.66% | 64.34% | 52.87% |
+| OpenAI B/32 → LAION, two-layer MLP | 70.82% | 70.80% | 67.59% | 66.02% |
+| OpenAI L/14 → FLAVA, linear | 70.45% | 69.69% | 55.77% | 48.60% |
+| OpenAI L/14 → FLAVA, two-layer MLP | 71.08% | 70.71% | 61.41% | 62.21% |
 
-![Linear versus MLP readout transfer](figures/mlp_capacity.svg)
+Native decoding is close to 70% for every model and decoder. The notable
+difference appears after transfer: the two-layer MLP retains more visible
+attributes in both directions, particularly for the harder CLIP–FLAVA pair.
+The linear result is directional even though $Q^\top$ is exactly the inverse
+of $Q$; the same reversible map can interact differently with the two learned
+decoder boundaries.
 
-The MLP gives a small native-target gain, so the capacity comparison is not
-vacuous. But that gain does not survive alignment in the species-controlled
-metric. The clean interpretation is:
+> **Protocol note.** The two-layer MLP is a follow-up capacity probe using the
+> same frozen caches, data split, seeds, and loss, but its early stopping and
+> threshold implementation have not yet been folded into the locked Phase I
+> protocol. Treat the magnitude of its improvement as preliminary.
 
-> Orthogonal alignment transfers fine-grained structure that is largely
-> linearly accessible; the extra nonlinear discrimination learned by this MLP
-> is not more coordinate-compatible after alignment.
-
-## 6. Fine-grained retrieval: do neighborhoods transfer?
+## 4. Fine-grained retrieval: do neighborhoods transfer?
 
 The decoder experiment tests reusable readouts. The retrieval extension removes
 the decoder and asks whether aligned source embeddings retrieve target-space
@@ -130,13 +111,13 @@ an in-domain image-geometry control.
 
 1. Orthogonal alignment learned on Oxford Pets transfers to fine-grained CUB
    bird geometry.
-2. A target-space attribute decoder remains useful on aligned source
-   embeddings without seeing aligned examples during training.
-3. The transferred attribute signal survives a within-species control.
-4. CUB-train-fitted alignment substantially improves decoder transfer, but it
-   does not make aligned readouts fully native.
-5. A stronger MLP readout does not establish stronger nonlinear transfer.
-6. Same-species retrieval shows that alignment also preserves fine-grained
+2. Independently trained source and target attribute decoders both remain
+   useful after applying $Q$ or $Q^\top$.
+3. The two-layer MLP capacity probe retains more visible attributes after
+   alignment, although its comparison is preliminary.
+4. CUB-train-fitted alignment improves transfer, but it does not make aligned
+   decoding fully native.
+5. Same-species retrieval shows that alignment also preserves fine-grained
    neighborhood structure, not only decoder compatibility.
 
 For complete numerical tables and artifact provenance, see
