@@ -1,98 +1,88 @@
-# Phase II: Fine-Grained Retrieval Under Canonical Alignment
+# Phase II: Attribute-Guided Retrieval
 
-Phase II keeps the encoders frozen and removes the decoder. It asks whether
-orthogonal alignment preserves fine-grained nearest-neighbor structure:
+This experiment asks whether attribute-only text prompts retrieve CUB birds that
+visibly have the queried attribute, and whether that behavior survives
+orthogonal alignment across model spaces.
 
-> Can an aligned source embedding retrieve target-space birds from the same
-> species that share the query bird's visible attributes?
+The prompt template is:
 
-This is deliberately stricter than class retrieval. Candidate pools are
-restricted to the same CUB species, and the query image itself is excluded.
+```text
+a photo of a bird with {attribute phrase}.
+```
 
-## What is measured
+For each attribute, candidates are all official CUB test images where that
+attribute is visible. Positives are visible-positive images for the queried
+attribute; negatives are visible-negative images.
 
-- Same-species attribute overlap@k for `k = 1, 5, 10`.
-- Rare-attribute recall@k, where rare attributes are selected from official
-  CUB train labels only as the bottom quartile by visible-positive prevalence.
-- Cross-space compatibility:
-  - native target query → native target candidates;
-  - Oxford-Q aligned source query → native target candidates;
-  - CUB-train-Q aligned source query → native target candidates;
-  - unaligned source query → native target candidates;
-  - random same-species baseline.
+## What is reported
 
-The experiment is cache-only: no encoder reruns, decoder training, or
-fine-tuning.
+Two attribute sets are reported:
 
-## Same-species attribute overlap
+- **CLIP-readable subset:** 95 pre-specified attributes with ordinary visual
+  phrases such as `white belly`, `black bill`, `striped wing`, and `long wings`.
+- **All CUB attributes:** all 312 raw CUB attributes, including noisier
+  annotation terms such as `primary color`, `upper tail`, and rare/obscure
+  color words.
 
-For each query bird, retrieve top-k birds from the same species. The score is
-the fraction of the query's visible-positive attributes also visible-positive
-in the retrieved birds.
+Two metrics are emphasized:
 
-The figure reports gain over a random same-species baseline, because random is
-already strong when candidates are from the same bird species.
+- **P@10:** among the top 10 retrieved images, how many are visible-positive for
+  the queried attribute?
+- **Ranking accuracy:** how often does the prompt score a visible-positive image
+  above a visible-negative image? Chance is 50%.
 
-![Same-species attribute retrieval gain over random](../frozen_encoder/figures/fine_retrieval_attribute_overlap.svg)
+The random baseline for P@k is the attribute base rate: if 19% of visible
+candidate images have the attribute, random P@1/P@5/P@10 is 19% in expectation.
 
-| Pair | Condition | Overlap@1 | Overlap@5 | Overlap@10 |
-| --- | --- | ---: | ---: | ---: |
-| OpenAI B/32 → LAION B/32 | Native target | **46.14%** | **45.55%** | **45.02%** |
-| OpenAI B/32 → LAION B/32 | Oxford-Q aligned source | 45.19% | 44.90% | 44.69% |
-| OpenAI B/32 → LAION B/32 | CUB-train-Q aligned source | 45.74% | 45.31% | 44.92% |
-| OpenAI B/32 → LAION B/32 | Unaligned source | 42.38% | 43.35% | 43.53% |
-| OpenAI B/32 → LAION B/32 | Random same-species | 43.69% | 43.46% | 43.46% |
-| OpenAI L/14 → FLAVA | Native target | 45.90% | 45.22% | 44.80% |
-| OpenAI L/14 → FLAVA | Oxford-Q aligned source | 45.49% | 44.78% | 44.44% |
-| OpenAI L/14 → FLAVA | CUB-train-Q aligned source | **46.28%** | **45.37%** | **44.91%** |
-| OpenAI L/14 → FLAVA | Unaligned source | 43.04% | 43.12% | 43.31% |
-| OpenAI L/14 → FLAVA | Random same-species | 43.69% | 43.46% | 43.46% |
+## P@10 retrieval purity
 
-## Rare-attribute recall
+![Global attribute P@10](figures/global_attribute_p10.svg)
 
-Rare attributes are defined from official CUB train labels only. We select the
-bottom quartile by visible-positive prevalence: 78 rare attributes out of 312
-evaluable attributes, with maximum rare prevalence 1.78%.
+| Pair | Attribute set | Random | Native source | Native target | Unaligned | Oxford-Q | CUB-train-Q |
+| --- | --- | ---: | ---: | ---: | ---: | ---: | ---: |
+| OpenAI B/32 → LAION B/32 | CLIP-readable | 19.19 | 41.58 | 38.32 | 18.63 | 34.95 | 38.63 |
+| OpenAI B/32 → LAION B/32 | All 312 | 11.40 | 32.31 | 31.51 | 10.80 | 27.66 | 30.13 |
+| OpenAI L/14 → FLAVA | CLIP-readable | 19.19 | 37.89 | 33.58 | 18.32 | 30.21 | 33.47 |
+| OpenAI L/14 → FLAVA | All 312 | 11.40 | 29.39 | 26.35 | 11.31 | 22.76 | 24.71 |
 
-For each query with at least one visible-positive rare attribute, recall@k is
-the fraction of those rare positives recovered by at least one retrieved bird.
+## Positive-versus-negative ranking
 
-![Rare-attribute retrieval gain over random](../frozen_encoder/figures/fine_retrieval_rare_recall.svg)
+![Global attribute ranking accuracy](figures/global_attribute_ranking.svg)
 
-| Pair | Condition | Rare@1 | Rare@5 | Rare@10 |
-| --- | --- | ---: | ---: | ---: |
-| OpenAI B/32 → LAION B/32 | Native target | 10.53% | 29.34% | **40.85%** |
-| OpenAI B/32 → LAION B/32 | Oxford-Q aligned source | **10.71%** | **30.14%** | 40.01% |
-| OpenAI B/32 → LAION B/32 | CUB-train-Q aligned source | 10.45% | 29.97% | 40.57% |
-| OpenAI B/32 → LAION B/32 | Unaligned source | 8.30% | 27.15% | 39.02% |
-| OpenAI B/32 → LAION B/32 | Random same-species | 8.62% | 27.55% | 38.79% |
-| OpenAI L/14 → FLAVA | Native target | 9.23% | **29.69%** | **41.16%** |
-| OpenAI L/14 → FLAVA | Oxford-Q aligned source | 8.76% | 28.03% | 40.56% |
-| OpenAI L/14 → FLAVA | CUB-train-Q aligned source | **9.69%** | 29.52% | 41.10% |
-| OpenAI L/14 → FLAVA | Unaligned source | 7.85% | 26.33% | 39.81% |
-| OpenAI L/14 → FLAVA | Random same-species | 8.62% | 27.55% | 38.79% |
+| Pair | Attribute set | Random | Native source | Native target | Unaligned | Oxford-Q | CUB-train-Q |
+| --- | --- | ---: | ---: | ---: | ---: | ---: | ---: |
+| OpenAI B/32 → LAION B/32 | CLIP-readable | 50.00 | 62.82 | 63.71 | 50.73 | 61.79 | 62.91 |
+| OpenAI B/32 → LAION B/32 | All 312 | 50.00 | 64.84 | 66.57 | 49.32 | 64.23 | 65.13 |
+| OpenAI L/14 → FLAVA | CLIP-readable | 50.00 | 62.63 | 60.06 | 50.78 | 57.22 | 58.72 |
+| OpenAI L/14 → FLAVA | All 312 | 50.00 | 64.56 | 62.20 | 50.86 | 59.37 | 60.84 |
 
 ## Interpretation
 
-Same-species random retrieval is already strong because birds from the same
-species share many canonical attributes. The important comparison is therefore
-gain over random and over the unaligned source control. Aligned source queries
-retrieve target-space neighbors with more matching fine-grained attributes,
-especially at strict top-1.
+The unaligned source-to-target condition is essentially random: P@10 falls back
+to the base rate and ranking accuracy sits near 50%. Applying an orthogonal map
+recovers most of the native text-image retrieval signal.
 
-The strongest clean result is not “retrieval is solved.” It is narrower and
-better:
+The CUB-train-fitted map is consistently stronger than the Oxford-fitted map,
+especially for P@10. On the CLIP-readable subset, CUB-train-Q reaches 38.63%
+P@10 for OpenAI B/32 → LAION B/32, compared with 19.19% random and 38.32%
+native target. For OpenAI L/14 → FLAVA, CUB-train-Q reaches 33.47% P@10,
+close to the 33.58% native target result.
 
-> Orthogonal alignment preserves enough fine-grained neighborhood structure
-> that source embeddings can retrieve target-space birds with more matching
-> attributes than unaligned or random same-species controls.
+The full 312-attribute benchmark is noisier in raw P@10 because many CUB
+attributes are not natural text prompts. Even there, aligned retrieval remains
+well above random and far above the unaligned control.
 
-For artifact provenance, see
-[the fine-grained retrieval report](../../reports/fine_grained_retrieval.md).
+## Reproduce
 
-## Parked direction
+```bash
+PYTHONPATH=src python3 -m canonical_study audit-cub-attribute-prompts \
+  --data-root artifacts/data/cub \
+  --output-root artifacts/results/attribute_text_retrieval \
+  --manifest-min-positive 5 \
+  --manifest-min-negative 5
+./scripts/run_attribute_text_global_retrieval.sh --force
+./scripts/render_attribute_text_retrieval_figures.py
+```
 
-Contrastive fine-tuning remains a possible later experiment, but it is not the
-current Phase II. Fine-tuning would introduce new optimization and data-design
-confounds; retrieval is the cleaner extension of the frozen canonicalization
-result.
+Detailed artifact provenance is in
+[the attribute-text retrieval report](../../reports/attribute_text_retrieval.md).

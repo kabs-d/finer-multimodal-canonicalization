@@ -11,6 +11,8 @@ from pathlib import Path
 import torch
 
 from .datasets import prepare_cub, prepare_oxford, validate_cub, validate_oxford
+from .attribute_prompt_audit import run_attribute_prompt_audit
+from .attribute_text_global_retrieval import run_attribute_text_global_retrieval
 from .attribute_analysis import run_attribute_analysis
 from .cub_train_q_control import run_cub_train_q_control
 from .decoder_experiment import (
@@ -170,6 +172,25 @@ def build_parser() -> argparse.ArgumentParser:
     retrieval.add_argument("--random-seed", type=int, default=2026)
     retrieval.add_argument("--force", action="store_true")
 
+    prompt_audit = subparsers.add_parser("audit-cub-attribute-prompts")
+    prompt_audit.add_argument("--data-root", type=Path, required=True)
+    prompt_audit.add_argument("--output-root", type=Path, required=True)
+    prompt_audit.add_argument("--manifest-min-positive", type=int, default=3)
+    prompt_audit.add_argument("--manifest-min-negative", type=int, default=3)
+    prompt_audit.add_argument("--force", action="store_true")
+
+    attribute_text_global = subparsers.add_parser("attribute-text-global-retrieval")
+    attribute_text_global.add_argument("--config", type=Path, required=True)
+    attribute_text_global.add_argument("--embedding-root", type=Path, required=True)
+    attribute_text_global.add_argument("--output-root", type=Path, required=True)
+    attribute_text_global.add_argument("--alignment-root", type=Path, required=True)
+    attribute_text_global.add_argument("--model-cache-root", type=Path, required=True)
+    attribute_text_global.add_argument("--audit-root", type=Path)
+    attribute_text_global.add_argument("--k", type=int, nargs="+", default=[1, 5, 10])
+    attribute_text_global.add_argument("--text-batch-size", type=int, default=64)
+    attribute_text_global.add_argument("--device", default="cuda")
+    attribute_text_global.add_argument("--force", action="store_true")
+
     environment = subparsers.add_parser("collect-env")
     environment.add_argument("--output", type=Path, required=True)
     return parser
@@ -288,6 +309,35 @@ def main() -> None:
                     args.alignment_root,
                     k_values=args.k,
                     random_seed=args.random_seed,
+                    force=args.force,
+                )
+            )
+        }
+    elif args.command == "audit-cub-attribute-prompts":
+        result = {
+            "output": str(
+                run_attribute_prompt_audit(
+                    args.data_root,
+                    args.output_root,
+                    manifest_min_positive=args.manifest_min_positive,
+                    manifest_min_negative=args.manifest_min_negative,
+                    force=args.force,
+                )
+            )
+        }
+    elif args.command == "attribute-text-global-retrieval":
+        result = {
+            "output": str(
+                run_attribute_text_global_retrieval(
+                    args.config,
+                    args.embedding_root,
+                    args.output_root,
+                    args.alignment_root,
+                    args.model_cache_root,
+                    audit_root=args.audit_root,
+                    k_values=args.k,
+                    text_batch_size=args.text_batch_size,
+                    device_name=args.device,
                     force=args.force,
                 )
             )

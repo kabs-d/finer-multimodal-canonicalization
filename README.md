@@ -17,12 +17,12 @@ above chance even inside the same bird species.
 - [Frozen encoder canonical readouts](docs/frozen_encoder/README.md)  
   The completed experiment: cosine alignment, paper-style classification and
   retrieval diagnostics, linear attribute readout transfer, an in-domain
-  CUB-fitted alignment control, a fixed MLP decoder-capacity control, and
-  same-species fine-grained retrieval.
+  CUB-fitted alignment control, and a fixed MLP decoder-capacity control.
 
-- [Phase II: fine-grained retrieval](docs/phase2/README.md)  
-  The decoder-free extension: aligned source queries retrieve native target
-  birds from the same species and are scored by shared visible attributes.
+- [Phase II: attribute-guided retrieval](docs/phase2/README.md)  
+  The decoder-free extension: attribute-only text prompts retrieve CUB birds
+  with visible fine-grained attributes, and image-fitted orthogonal maps are
+  tested for preserving that text-to-image retrieval structure.
 
 ## Headline
 
@@ -43,10 +43,12 @@ does not fully match native target readouts.
 
 ```text
 docs/frozen_encoder/              Phase I narrative and figures
-docs/phase2/                      Phase II fine-grained retrieval summary
+docs/phase2/                      Phase II attribute-text retrieval summary
 reports/phase1_results.md         Detailed Phase I tables and protocol
 reports/cub_train_q_control.md    In-domain CUB-train-fitted Q control
-reports/fine_grained_retrieval.md Decoder-free same-species retrieval results
+reports/attribute_text_retrieval.md
+                                  Attribute-text retrieval under alignment
+reports/fine_grained_retrieval.md Supplementary image-neighbor retrieval results
 reports/reproduction.md           Oxford baseline reproduction notes
 artifacts/results/phase1_summary.json
                                   Compact machine-readable headline results
@@ -66,7 +68,9 @@ prediction dumps are intentionally kept out of the exportable repository.
 ```bash
 ./scripts/bootstrap.sh
 .venv/bin/python -m unittest discover -s tests -v
+./scripts/run_attribute_text_global_retrieval.sh
 python3 scripts/render_phase1_figures.py
+python3 scripts/render_attribute_text_retrieval_figures.py
 python3 scripts/render_fine_grained_retrieval_figures.py
 ```
 

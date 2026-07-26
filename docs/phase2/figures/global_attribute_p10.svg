@@ -1,0 +1,98 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="880" height="351" viewBox="0 0 880 351">
+<rect width="100%" height="100%" fill="white"/>
+<rect x="18" y="17" width="11" height="11" fill="#4c78a8"/>
+<text x="34" y="27" font-size="11" font-family="Times New Roman, serif">Native source</text>
+<rect x="139.8" y="17" width="11" height="11" fill="#67c5d0"/>
+<text x="155.8" y="27" font-size="11" font-family="Times New Roman, serif">Native target</text>
+<rect x="261.6" y="17" width="11" height="11" fill="#f2aa45"/>
+<text x="277.6" y="27" font-size="11" font-family="Times New Roman, serif">Oxford Q</text>
+<rect x="350.40000000000003" y="17" width="11" height="11" fill="#9bc75f"/>
+<text x="366.40000000000003" y="27" font-size="11" font-family="Times New Roman, serif">CUB-train Q</text>
+<rect x="459.0" y="17" width="11" height="11" fill="#b7b7b7"/>
+<text x="475.0" y="27" font-size="11" font-family="Times New Roman, serif">Unaligned</text>
+<rect x="554.4" y="17" width="11" height="11" fill="#ffffff" stroke="#444" stroke-width="0.8"/>
+<text x="570.4" y="27" font-size="11" font-family="Times New Roman, serif">Random</text>
+<text x="220.0" y="63" text-anchor="middle" font-size="13" font-weight="600" font-family="Times New Roman, serif">CLIP-readable subset</text>
+<line x1="50" y1="254.0" x2="426" y2="254.0" stroke="#999" stroke-width="0.6" stroke-dasharray="2 2"/>
+<text x="43" y="257.0" text-anchor="end" font-size="9" font-family="Times New Roman, serif">0</text>
+<line x1="50" y1="219.6" x2="426" y2="219.6" stroke="#999" stroke-width="0.6" stroke-dasharray="2 2"/>
+<text x="43" y="222.6" text-anchor="end" font-size="9" font-family="Times New Roman, serif">10</text>
+<line x1="50" y1="185.2" x2="426" y2="185.2" stroke="#999" stroke-width="0.6" stroke-dasharray="2 2"/>
+<text x="43" y="188.2" text-anchor="end" font-size="9" font-family="Times New Roman, serif">20</text>
+<line x1="50" y1="150.8" x2="426" y2="150.8" stroke="#999" stroke-width="0.6" stroke-dasharray="2 2"/>
+<text x="43" y="153.8" text-anchor="end" font-size="9" font-family="Times New Roman, serif">30</text>
+<line x1="50" y1="116.4" x2="426" y2="116.4" stroke="#999" stroke-width="0.6" stroke-dasharray="2 2"/>
+<text x="43" y="119.4" text-anchor="end" font-size="9" font-family="Times New Roman, serif">40</text>
+<line x1="50" y1="82.0" x2="426" y2="82.0" stroke="#999" stroke-width="0.6" stroke-dasharray="2 2"/>
+<text x="43" y="85.0" text-anchor="end" font-size="9" font-family="Times New Roman, serif">50</text>
+<line x1="50" y1="82" x2="50" y2="254" stroke="#444" stroke-width="0.8"/>
+<rect x="94.5" y="111.0" width="14.0" height="143.0" fill="#4c78a8"/>
+<text x="101.5" y="108.0" text-anchor="middle" font-size="7.5" font-family="Times New Roman, serif">41.6</text>
+<rect x="111.5" y="122.2" width="14.0" height="131.8" fill="#67c5d0"/>
+<text x="118.5" y="119.2" text-anchor="middle" font-size="7.5" font-family="Times New Roman, serif">38.3</text>
+<rect x="128.5" y="133.8" width="14.0" height="120.2" fill="#f2aa45"/>
+<text x="135.5" y="130.8" text-anchor="middle" font-size="7.5" font-family="Times New Roman, serif">34.9</text>
+<rect x="145.5" y="121.1" width="14.0" height="132.9" fill="#9bc75f"/>
+<text x="152.5" y="118.1" text-anchor="middle" font-size="7.5" font-family="Times New Roman, serif">38.6</text>
+<rect x="162.5" y="189.9" width="14.0" height="64.1" fill="#b7b7b7"/>
+<text x="169.5" y="186.9" text-anchor="middle" font-size="7.5" font-family="Times New Roman, serif">18.6</text>
+<rect x="179.5" y="188.0" width="14.0" height="66.0" fill="#ffffff" stroke="#444" stroke-width="0.8"/>
+<text x="186.5" y="185.0" text-anchor="middle" font-size="7.5" font-family="Times New Roman, serif">19.2</text>
+<text x="144.0" y="272" text-anchor="middle" font-size="10" font-family="Times New Roman, serif">OpenAI B/32 → LAION B/32</text>
+<rect x="282.5" y="123.6" width="14.0" height="130.4" fill="#4c78a8"/>
+<text x="289.5" y="120.6" text-anchor="middle" font-size="7.5" font-family="Times New Roman, serif">37.9</text>
+<rect x="299.5" y="138.5" width="14.0" height="115.5" fill="#67c5d0"/>
+<text x="306.5" y="135.5" text-anchor="middle" font-size="7.5" font-family="Times New Roman, serif">33.6</text>
+<rect x="316.5" y="150.1" width="14.0" height="103.9" fill="#f2aa45"/>
+<text x="323.5" y="147.1" text-anchor="middle" font-size="7.5" font-family="Times New Roman, serif">30.2</text>
+<rect x="333.5" y="138.9" width="14.0" height="115.1" fill="#9bc75f"/>
+<text x="340.5" y="135.9" text-anchor="middle" font-size="7.5" font-family="Times New Roman, serif">33.5</text>
+<rect x="350.5" y="191.0" width="14.0" height="63.0" fill="#b7b7b7"/>
+<text x="357.5" y="188.0" text-anchor="middle" font-size="7.5" font-family="Times New Roman, serif">18.3</text>
+<rect x="367.5" y="188.0" width="14.0" height="66.0" fill="#ffffff" stroke="#444" stroke-width="0.8"/>
+<text x="374.5" y="185.0" text-anchor="middle" font-size="7.5" font-family="Times New Roman, serif">19.2</text>
+<text x="332.0" y="272" text-anchor="middle" font-size="10" font-family="Times New Roman, serif">OpenAI L/14 → FLAVA</text>
+<text x="13" y="168.0" transform="rotate(-90 13 168.0)" text-anchor="middle" font-size="10" font-family="Times New Roman, serif">P@10 (%)</text>
+<text x="660.0" y="63" text-anchor="middle" font-size="13" font-weight="600" font-family="Times New Roman, serif">All 312 CUB attributes</text>
+<line x1="490" y1="254.0" x2="866" y2="254.0" stroke="#999" stroke-width="0.6" stroke-dasharray="2 2"/>
+<text x="483" y="257.0" text-anchor="end" font-size="9" font-family="Times New Roman, serif">0</text>
+<line x1="490" y1="219.6" x2="866" y2="219.6" stroke="#999" stroke-width="0.6" stroke-dasharray="2 2"/>
+<text x="483" y="222.6" text-anchor="end" font-size="9" font-family="Times New Roman, serif">8</text>
+<line x1="490" y1="185.2" x2="866" y2="185.2" stroke="#999" stroke-width="0.6" stroke-dasharray="2 2"/>
+<text x="483" y="188.2" text-anchor="end" font-size="9" font-family="Times New Roman, serif">16</text>
+<line x1="490" y1="150.8" x2="866" y2="150.8" stroke="#999" stroke-width="0.6" stroke-dasharray="2 2"/>
+<text x="483" y="153.8" text-anchor="end" font-size="9" font-family="Times New Roman, serif">24</text>
+<line x1="490" y1="116.4" x2="866" y2="116.4" stroke="#999" stroke-width="0.6" stroke-dasharray="2 2"/>
+<text x="483" y="119.4" text-anchor="end" font-size="9" font-family="Times New Roman, serif">32</text>
+<line x1="490" y1="82.0" x2="866" y2="82.0" stroke="#999" stroke-width="0.6" stroke-dasharray="2 2"/>
+<text x="483" y="85.0" text-anchor="end" font-size="9" font-family="Times New Roman, serif">40</text>
+<line x1="490" y1="82" x2="490" y2="254" stroke="#444" stroke-width="0.8"/>
+<rect x="534.5" y="115.1" width="14.0" height="138.9" fill="#4c78a8"/>
+<text x="541.5" y="112.1" text-anchor="middle" font-size="7.5" font-family="Times New Roman, serif">32.3</text>
+<rect x="551.5" y="118.5" width="14.0" height="135.5" fill="#67c5d0"/>
+<text x="558.5" y="115.5" text-anchor="middle" font-size="7.5" font-family="Times New Roman, serif">31.5</text>
+<rect x="568.5" y="135.1" width="14.0" height="118.9" fill="#f2aa45"/>
+<text x="575.5" y="132.1" text-anchor="middle" font-size="7.5" font-family="Times New Roman, serif">27.7</text>
+<rect x="585.5" y="124.4" width="14.0" height="129.6" fill="#9bc75f"/>
+<text x="592.5" y="121.4" text-anchor="middle" font-size="7.5" font-family="Times New Roman, serif">30.1</text>
+<rect x="602.5" y="207.6" width="14.0" height="46.4" fill="#b7b7b7"/>
+<text x="609.5" y="204.6" text-anchor="middle" font-size="7.5" font-family="Times New Roman, serif">10.8</text>
+<rect x="619.5" y="205.0" width="14.0" height="49.0" fill="#ffffff" stroke="#444" stroke-width="0.8"/>
+<text x="626.5" y="202.0" text-anchor="middle" font-size="7.5" font-family="Times New Roman, serif">11.4</text>
+<text x="584.0" y="272" text-anchor="middle" font-size="10" font-family="Times New Roman, serif">OpenAI B/32 → LAION B/32</text>
+<rect x="722.5" y="127.6" width="14.0" height="126.4" fill="#4c78a8"/>
+<text x="729.5" y="124.6" text-anchor="middle" font-size="7.5" font-family="Times New Roman, serif">29.4</text>
+<rect x="739.5" y="140.7" width="14.0" height="113.3" fill="#67c5d0"/>
+<text x="746.5" y="137.7" text-anchor="middle" font-size="7.5" font-family="Times New Roman, serif">26.3</text>
+<rect x="756.5" y="156.1" width="14.0" height="97.9" fill="#f2aa45"/>
+<text x="763.5" y="153.1" text-anchor="middle" font-size="7.5" font-family="Times New Roman, serif">22.8</text>
+<rect x="773.5" y="147.7" width="14.0" height="106.3" fill="#9bc75f"/>
+<text x="780.5" y="144.7" text-anchor="middle" font-size="7.5" font-family="Times New Roman, serif">24.7</text>
+<rect x="790.5" y="205.3" width="14.0" height="48.7" fill="#b7b7b7"/>
+<text x="797.5" y="202.3" text-anchor="middle" font-size="7.5" font-family="Times New Roman, serif">11.3</text>
+<rect x="807.5" y="205.0" width="14.0" height="49.0" fill="#ffffff" stroke="#444" stroke-width="0.8"/>
+<text x="814.5" y="202.0" text-anchor="middle" font-size="7.5" font-family="Times New Roman, serif">11.4</text>
+<text x="772.0" y="272" text-anchor="middle" font-size="10" font-family="Times New Roman, serif">OpenAI L/14 → FLAVA</text>
+<text x="453" y="168.0" transform="rotate(-90 453 168.0)" text-anchor="middle" font-size="10" font-family="Times New Roman, serif">P@10 (%)</text>
+<text x="440.0" y="339" text-anchor="middle" font-size="11" font-family="Times New Roman, serif">Attribute-only text retrieval over all CUB test images with visible labels; random is the attribute base rate.</text>
+</svg>
