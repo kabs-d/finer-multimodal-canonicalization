@@ -27,7 +27,7 @@ alignment. Without alignment, attribute recovery falls sharply; Oxford-\(Q\)
 restores most of the lost performance, while CUB-train-\(Q\) nearly reaches the
 native target result.
 
-![Attribute-guided retrieval](docs/phase2/figures/global_attribute_p10.svg)
+![Attribute-guided retrieval](docs/phase2/figures/global_attribute_p10_all312.svg)
 
 An attribute-only text prompt—such as “a bird
 with a yellow wing”—is used to retrieve matching images from the CUB test set.

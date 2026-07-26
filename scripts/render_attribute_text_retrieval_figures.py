@@ -57,17 +57,24 @@ def metric(data: dict, subset: str, condition: str, name: str) -> float:
     return 100.0 * data["aggregate"][subset][condition][name]
 
 
-def legend() -> str:
+def legend(width: int) -> tuple[str, int]:
     pieces = []
     x = 18
+    y = 17
+    rows = 1
     for label, _, color in CONDITIONS:
+        item_width = 16 + 6.6 * len(label) + 20
+        if x != 18 and x + item_width > width - 18:
+            x = 18
+            y += 17
+            rows += 1
         outline = ' stroke="#444" stroke-width="0.8"' if label == "Random" else ""
-        pieces.append(f'<rect x="{x}" y="17" width="11" height="11" fill="{color}"{outline}/>')
+        pieces.append(f'<rect x="{x}" y="{y}" width="11" height="11" fill="{color}"{outline}/>')
         pieces.append(
-            f'<text x="{x + 16}" y="27" font-size="11" font-family="Times New Roman, serif">{label}</text>'
+            f'<text x="{x + 16}" y="{y + 10}" font-size="11" font-family="Times New Roman, serif">{label}</text>'
         )
-        x += 16 + 6.6 * len(label) + 20
-    return "\n".join(pieces)
+        x += item_width
+    return "\n".join(pieces), rows
 
 
 def render_panel(panel: Panel, x0: int, y0: int, width: int, height: int) -> str:
@@ -84,10 +91,12 @@ def render_panel(panel: Panel, x0: int, y0: int, width: int, height: int) -> str
     max_bars = max(sum(bar.group == group for bar in panel.bars) for group in groups)
     bar_w = min(14, group_w / (max_bars + 1.5))
     span = panel.ymax - panel.ymin
-    out = [
-        f'<text x="{x0 + width / 2:.1f}" y="{y0 + 15}" text-anchor="middle" '
-        f'font-size="13" font-weight="600" font-family="Times New Roman, serif">{panel.title}</text>'
-    ]
+    out = []
+    if panel.title:
+        out.append(
+            f'<text x="{x0 + width / 2:.1f}" y="{y0 + 15}" text-anchor="middle" '
+            f'font-size="13" font-weight="600" font-family="Times New Roman, serif">{panel.title}</text>'
+        )
     for tick in range(6):
         value = panel.ymin + span * tick / 5
         y = plot_y + plot_h - plot_h * (value - panel.ymin) / span
@@ -142,14 +151,16 @@ def render_panel(panel: Panel, x0: int, y0: int, width: int, height: int) -> str
 def render(path: Path, panels: list[Panel], caption: str) -> None:
     panel_w, panel_h = 440, 268
     width = panel_w * len(panels)
-    height = 48 + panel_h + 35
+    legend_svg, legend_rows = legend(width)
+    panel_y = 48 + 17 * (legend_rows - 1)
+    height = panel_y + panel_h + 35
     body = [
         f'<svg xmlns="http://www.w3.org/2000/svg" width="{width}" height="{height}" viewBox="0 0 {width} {height}">',
         '<rect width="100%" height="100%" fill="white"/>',
-        legend(),
+        legend_svg,
     ]
     for index, panel in enumerate(panels):
-        body.append(render_panel(panel, panel_w * index, 48, panel_w, panel_h))
+        body.append(render_panel(panel, panel_w * index, panel_y, panel_w, panel_h))
     body.append(
         f'<text x="{width / 2:.1f}" y="{height - 12}" text-anchor="middle" '
         f'font-size="11" font-family="Times New Roman, serif">{caption}</text>'
@@ -185,6 +196,13 @@ def main() -> None:
         ],
         "Attribute-only text retrieval over all CUB test images with visible labels; random is the attribute base rate.",
     )
+    # A compact, title-free single-panel version for the project landing page.
+    # The two-panel version above remains the detailed Phase II figure.
+    render(
+        FIGURE_ROOT / "global_attribute_p10_all312.svg",
+        [panel_for("all_312", "precision_at_10_macro", "", "P@10 (%)", 40)],
+        "Attribute-only text retrieval over all CUB test images with visible labels; random is the attribute base rate.",
+    )
     render(
         FIGURE_ROOT / "global_attribute_ranking.svg",
         [
@@ -197,6 +215,7 @@ def main() -> None:
         json.dumps(
             {
                 "global_attribute_p10": "global_attribute_p10.svg",
+                "global_attribute_p10_all312": "global_attribute_p10_all312.svg",
                 "global_attribute_ranking": "global_attribute_ranking.svg",
             },
             indent=2,
