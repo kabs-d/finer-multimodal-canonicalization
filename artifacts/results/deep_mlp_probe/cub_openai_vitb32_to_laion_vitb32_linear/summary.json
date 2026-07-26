@@ -8,6 +8,8 @@
       "seed": 42,
       "source_native_percent": 70.41853353805894,
       "target_native_percent": 70.64950102217924,
+      "source_decoder_on_unaligned_target_percent": 39.18059771483263,
+      "target_decoder_on_unaligned_source_percent": 43.82396256508983,
       "source_decoder_on_aligned_target_percent": 66.21807491136205,
       "target_decoder_on_aligned_source_percent": 65.43687564831106,
       "source_training": {
@@ -25,6 +27,8 @@
       "seed": 43,
       "source_native_percent": 70.70519740982122,
       "target_native_percent": 70.94066806318442,
+      "source_decoder_on_unaligned_target_percent": 43.42485578148818,
+      "target_decoder_on_unaligned_source_percent": 42.53926713108416,
       "source_decoder_on_aligned_target_percent": 67.77872750464127,
       "target_decoder_on_aligned_source_percent": 66.78110976911007,
       "source_training": {
@@ -42,6 +46,8 @@
       "seed": 44,
       "source_native_percent": 71.07446341253699,
       "target_native_percent": 70.82205015086764,
+      "source_decoder_on_unaligned_target_percent": 43.08057940668482,
+      "target_decoder_on_unaligned_source_percent": 43.575305813430646,
       "source_decoder_on_aligned_target_percent": 68.01013289033294,
       "target_decoder_on_aligned_source_percent": 66.17167643692486,
       "source_training": {
@@ -59,6 +65,8 @@
       "seed": 45,
       "source_native_percent": 71.11577903591295,
       "target_native_percent": 70.49870229084509,
+      "source_decoder_on_unaligned_target_percent": 40.24399030677414,
+      "target_decoder_on_unaligned_source_percent": 42.21026356159774,
       "source_decoder_on_aligned_target_percent": 68.04235660241486,
       "target_decoder_on_aligned_source_percent": 65.9116013229871,
       "source_training": {
@@ -76,6 +84,8 @@
       "seed": 46,
       "source_native_percent": 70.80982695673164,
       "target_native_percent": 71.08932798844346,
+      "source_decoder_on_unaligned_target_percent": 45.02349713081126,
+      "target_decoder_on_unaligned_source_percent": 43.35973299543656,
       "source_decoder_on_aligned_target_percent": 67.88397929904026,
       "target_decoder_on_aligned_source_percent": 65.81155546697165,
       "source_training": {
@@ -92,6 +102,8 @@
   ],
   "source_native_percent_mean": 70.82476007061236,
   "target_native_percent_mean": 70.80004990310397,
+  "source_decoder_on_unaligned_target_percent_mean": 42.19070406811821,
+  "target_decoder_on_unaligned_source_percent_mean": 43.10170641332779,
   "source_decoder_on_aligned_target_percent_mean": 67.58665424155828,
   "target_decoder_on_aligned_source_percent_mean": 66.02256372886094
 }

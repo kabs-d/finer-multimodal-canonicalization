@@ -150,6 +150,8 @@ def run(pair, embedding_root, alignment_path, output_root, device_name):
             "seed": seed,
             "source_native_percent": recovered_percent(labels.numpy(), mask.numpy(), sp, eligible, source_cut),
             "target_native_percent": recovered_percent(labels.numpy(), mask.numpy(), tp, eligible, target_cut),
+            "source_decoder_on_unaligned_target_percent": recovered_percent(labels.numpy(), mask.numpy(), predict(source_model, target_test, device), eligible, source_cut),
+            "target_decoder_on_unaligned_source_percent": recovered_percent(labels.numpy(), mask.numpy(), predict(target_model, source_test, device), eligible, target_cut),
             "source_decoder_on_aligned_target_percent": recovered_percent(labels.numpy(), mask.numpy(), predict(source_model, aligned_target_test, device), eligible, source_cut),
             "target_decoder_on_aligned_source_percent": recovered_percent(labels.numpy(), mask.numpy(), predict(target_model, aligned_source_test, device), eligible, target_cut),
             "source_training": source_training,
@@ -159,7 +161,7 @@ def run(pair, embedding_root, alignment_path, output_root, device_name):
     output = Path(output_root) / pair
     output.mkdir(parents=True, exist_ok=True)
     summary = {"architecture": "deep_mlp_512_256", "pair": pair, "eligible_attributes": int(eligible.sum()), "metric": "percent of visible-positive ground-truth attributes recovered", "seeds": rows}
-    for key in ["source_native_percent", "target_native_percent", "source_decoder_on_aligned_target_percent", "target_decoder_on_aligned_source_percent"]:
+    for key in ["source_native_percent", "target_native_percent", "source_decoder_on_unaligned_target_percent", "target_decoder_on_unaligned_source_percent", "source_decoder_on_aligned_target_percent", "target_decoder_on_aligned_source_percent"]:
         summary[key + "_mean"] = float(np.mean([r[key] for r in rows]))
     (output / "summary.json").write_text(json.dumps(summary, indent=2) + "\n")
     print(json.dumps(summary, indent=2))

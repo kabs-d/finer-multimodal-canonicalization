@@ -21,6 +21,18 @@ The asymmetry of the linear rows arises despite $Q^\top = Q^{-1}$, indicating
 that the reversible map interacts differently with the two decoders' learned
 decision boundaries.
 
+## Two-layer MLP alignment controls
+
+The figures in the frozen-encoder summary show the two-layer MLP alone. Its
+unaligned controls make the contribution of $Q$ explicit:
+
+| Pair and direction | Native MLP | Unaligned MLP | Aligned MLP |
+| --- | ---: | ---: | ---: |
+| OpenAI B/32 → LAION, source → target | 70.82% | 42.19% | 67.59% |
+| OpenAI B/32 → LAION, target → source | 70.80% | 43.10% | 66.02% |
+| OpenAI L/14 → FLAVA, source → target | 71.08% | 43.24% | 61.41% |
+| OpenAI L/14 → FLAVA, target → source | 70.71% | 34.29% | 62.21% |
+
 ## Protocol note
 
 The linear numbers reuse the original five Phase I decoder checkpoints. The

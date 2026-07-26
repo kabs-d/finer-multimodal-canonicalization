@@ -64,7 +64,7 @@ map in both directions: source to target uses $Q$, while target to source uses
 $Q^\top$. The metric is the mean percentage of each bird's visible-positive
 ground-truth attributes that the decoder recovers.
 
-We compare a linear decoder with a two-hidden-layer MLP:
+The follow-up decoder is a two-hidden-layer MLP:
 
 ```text
 Linear(d, 512) → GELU → Dropout(0.1) → Linear(512, 256)
@@ -75,10 +75,10 @@ Linear(d, 512) → GELU → Dropout(0.1) → Linear(512, 256)
 
 ![Bidirectional decoder transfer: OpenAI L/14 to FLAVA](figures/decoder_transfer_flava.svg)
 
-Each group contains four bars: linear and two-layer MLP, each on native and
-aligned embeddings. Native decoding is nearly identical across architectures;
-the separation appears after alignment. The full results for both model pairs
-are in the [bidirectional decoder-transfer report](../../reports/bidirectional_decoder_transfer.md).
+Each group contains the same MLP evaluated on native, unaligned, and aligned
+embeddings. The aligned bar isolates the contribution of canonical alignment;
+the full results for both model pairs are in the
+[bidirectional decoder-transfer report](../../reports/bidirectional_decoder_transfer.md).
 
 > **Protocol note.** The two-layer MLP is a follow-up capacity probe using the
 > same frozen caches, data split, seeds, and loss, but its early stopping and

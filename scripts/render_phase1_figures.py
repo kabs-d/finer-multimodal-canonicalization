@@ -46,6 +46,9 @@ COLORS = {
     "Linear aligned": "#f2aa45",
     "Two-layer MLP native": "#9bc75f",
     "Two-layer MLP aligned": "#5c9e56",
+    "Native MLP": "#67c5d0",
+    "Unaligned MLP": "#b7b7b7",
+    "Aligned MLP": "#5c9e56",
 }
 
 
@@ -333,19 +336,16 @@ def mlp_panels() -> list[Panel]:
     ]
 
 
-def bidirectional_decoder_panel(pair: str, title: str) -> list[Panel]:
-    """One compact four-bar-per-direction figure for a model pair."""
-    linear = load_probe("linear_bidirectional_probe", pair)
+def bidirectional_mlp_panel(pair: str, title: str) -> list[Panel]:
+    """One compact native/unaligned/aligned MLP figure for a model pair."""
     deep = load_probe("deep_mlp_probe", pair)
     bars = [
-        Bar("Source → target", "Linear native", linear["source_native_percent_mean"] / 100, COLORS["Linear native"]),
-        Bar("Source → target", "Linear aligned", linear["source_decoder_on_aligned_target_percent_mean"] / 100, COLORS["Linear aligned"]),
-        Bar("Source → target", "Two-layer MLP native", deep["source_native_percent_mean"] / 100, COLORS["Two-layer MLP native"]),
-        Bar("Source → target", "Two-layer MLP aligned", deep["source_decoder_on_aligned_target_percent_mean"] / 100, COLORS["Two-layer MLP aligned"]),
-        Bar("Target → source", "Linear native", linear["target_native_percent_mean"] / 100, COLORS["Linear native"]),
-        Bar("Target → source", "Linear aligned", linear["target_decoder_on_aligned_source_percent_mean"] / 100, COLORS["Linear aligned"]),
-        Bar("Target → source", "Two-layer MLP native", deep["target_native_percent_mean"] / 100, COLORS["Two-layer MLP native"]),
-        Bar("Target → source", "Two-layer MLP aligned", deep["target_decoder_on_aligned_source_percent_mean"] / 100, COLORS["Two-layer MLP aligned"]),
+        Bar("Source → target", "Native MLP", deep["source_native_percent_mean"] / 100, COLORS["Native MLP"]),
+        Bar("Source → target", "Unaligned MLP", deep["source_decoder_on_unaligned_target_percent_mean"] / 100, COLORS["Unaligned MLP"]),
+        Bar("Source → target", "Aligned MLP", deep["source_decoder_on_aligned_target_percent_mean"] / 100, COLORS["Aligned MLP"]),
+        Bar("Target → source", "Native MLP", deep["target_native_percent_mean"] / 100, COLORS["Native MLP"]),
+        Bar("Target → source", "Unaligned MLP", deep["target_decoder_on_unaligned_source_percent_mean"] / 100, COLORS["Unaligned MLP"]),
+        Bar("Target → source", "Aligned MLP", deep["target_decoder_on_aligned_source_percent_mean"] / 100, COLORS["Aligned MLP"]),
     ]
     return [Panel(title, "attributes recovered (%)", bars, 0.8, percent=True)]
 
@@ -363,8 +363,8 @@ def main() -> None:
         ("readout_counts.svg", readout_count_panels(), "CUB-train Q recovers more true attributes, with a hallucination tradeoff.", 3, 330),
         ("within_species_ranking.svg", within_species_panel(), "Above-chance same-species ranking shows fine-grained signal beyond species identity.", 1, 330),
         ("mlp_capacity.svg", mlp_panels(), "The MLP recovers more attributes but does not improve species-controlled transfer.", 2, 330),
-        ("decoder_transfer_laion.svg", bidirectional_decoder_panel("cub_openai_vitb32_to_laion_vitb32_linear", "OpenAI B/32 → LAION B/32"), "Each group compares native and aligned decoder inputs in one transfer direction.", 1, 660),
-        ("decoder_transfer_flava.svg", bidirectional_decoder_panel("cub_openai_vitl14_to_flava_linear", "OpenAI L/14 → FLAVA"), "Each group compares native and aligned decoder inputs in one transfer direction.", 1, 660),
+        ("decoder_transfer_laion.svg", bidirectional_mlp_panel("cub_openai_vitb32_to_laion_vitb32_linear", "OpenAI B/32 → LAION B/32"), "Each group compares the two-layer MLP on native, unaligned, and aligned embeddings.", 1, 660),
+        ("decoder_transfer_flava.svg", bidirectional_mlp_panel("cub_openai_vitl14_to_flava_linear", "OpenAI L/14 → FLAVA"), "Each group compares the two-layer MLP on native, unaligned, and aligned embeddings.", 1, 660),
     ]
     manifest = {"figures": []}
     for name, panels, caption, columns, panel_width in figures:
