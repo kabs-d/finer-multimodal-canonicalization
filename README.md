@@ -20,16 +20,19 @@ A central result of my analyses is that the orthogonal map derived from the Oxfo
 
 ![Fine-grained attribute transfer](docs/frozen_encoder/figures/within_species_ranking.svg)
 
-Aligned embeddings retain clear attribute-level information, including when
-the map was learned on Oxford-Pets. Performance moves from approximately
-chance-level ranking before alignment to around 60% after alignment.
+A two-layer MLP predicts each bird’s
+visible CUB attributes from its image embedding. We train it separately in each
+model’s native space, then apply it across models using \(Q\) or \(Q^\top\).
+Without alignment, attribute recovery drops sharply; Oxford-\(Q\) restores most
+of the lost performance, while CUB-train-\(Q\) nearly reaches native decoding.
 
 ![Attribute-guided retrieval](docs/phase2/figures/global_attribute_p10.svg)
 
-For attribute-only text queries, unaligned cross-model retrieval is close to
-the random attribute-frequency baseline. Alignment recovers much of the
-native retrieval signal, while the CUB-trained map is consistently stronger
-than the Oxford-Pets map.
+An attribute-only text prompt—such as “a bird
+with a yellow wing”—is used to retrieve matching images from the CUB test set.
+Attribute-level text-to-image behavior transfers as well: Oxford-\(Q\) turns
+near-random unaligned cross-model retrieval into a clearly above-baseline
+result, while CUB-train-\(Q\) improves it further.
 
 These figures summarize the central result: canonical alignment transfers
 useful fine-grained behavior, but not perfectly.
