@@ -20,11 +20,12 @@ A central result of my analyses is that the orthogonal map derived from the Oxfo
 
 ![Fine-grained attribute transfer](docs/frozen_encoder/figures/within_species_ranking.svg)
 
-A two-layer MLP predicts each bird’s
-visible CUB attributes from its image embedding. We train it separately in each
-model’s native space, then apply it across models using \(Q\) or \(Q^\top\).
-Without alignment, attribute recovery drops sharply; Oxford-\(Q\) restores most
-of the lost performance, while CUB-train-\(Q\) nearly reaches native decoding.
+A two-layer MLP is trained in the target
+model’s native space to predict each bird’s visible CUB attributes. We then
+apply that frozen decoder to source embeddings before and after canonical
+alignment. Without alignment, attribute recovery falls sharply; Oxford-\(Q\)
+restores most of the lost performance, while CUB-train-\(Q\) nearly reaches the
+native target result.
 
 ![Attribute-guided retrieval](docs/phase2/figures/global_attribute_p10.svg)
 
