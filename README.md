@@ -1,59 +1,55 @@
 # Finer Multimodal Canonicalization
 
-This repository studies a sharper version of the question raised by
-Gupta et al., *Canonicalizing Multimodal Contrastive Representation Learning*:
+Can an alignment between two multimodal models preserve the details that make
+images visually different—not just their broad semantic meaning?
 
-> Once two frozen multimodal encoders are orthogonally aligned, do their
-> representations merely look similar, or can they share fine-grained
-> downstream readouts?
+This repository studies that question using **CUB-200-2011**, a fine-grained
+bird dataset with 200 species and 312 per-image attributes such as bill shape,
+wing color, head color, and tail pattern. Each attribute can also be marked
+“not visible,” which lets us evaluate only what the image actually shows.
 
-The current result is a compact Phase I extension on CUB-200-2011 bird
-attributes. A decoder trained only in one model's native space can be reused on
-another model's embeddings after alignment, and the transferred signal remains
-above chance even inside the same bird species.
+We study two simple tests:
 
-## Read the study
+- **Attribute decoder transfer:** train a decoder in one model’s space to
+  predict a bird’s visible attributes, then reuse it on another model after
+  alignment.
+- **Attribute-guided retrieval:** use a text prompt describing an attribute,
+  such as “a bird with a yellow wing,” and retrieve matching CUB images.
 
-- [Frozen encoder canonical readouts](docs/frozen_encoder/README.md)  
-  The completed experiment: cosine alignment, paper-style classification and
-  retrieval diagnostics, linear attribute readout transfer, an in-domain
-  CUB-fitted alignment control, and a fixed MLP decoder-capacity control.
+The main alignment is learned from Oxford-IIIT Pets and transferred to CUB.
+A separate CUB-trained alignment provides an in-domain comparison.
 
-- [Phase II: attribute-guided retrieval](docs/phase2/README.md)  
-  The decoder-free extension: attribute-only text prompts retrieve CUB birds
-  with visible fine-grained attributes, and image-fitted orthogonal maps are
-  tested for preserving that text-to-image retrieval structure.
+## What the results show
 
-## Headline
+![Fine-grained attribute transfer](docs/frozen_encoder/figures/within_species_ranking.svg)
 
-On CUB test images, an Oxford-Pets-fitted orthogonal map transfers measurable
-within-species attribute structure:
+Aligned embeddings retain clear attribute-level information, including when
+the map was learned on Oxford-Pets. Performance moves from approximately
+chance-level ranking before alignment to around 60% after alignment.
 
-- OpenAI ViT-B/32 → LAION ViT-B/32: within-species attribute ranking rises
-  from 50.32% unaligned to 59.69% aligned.
-- OpenAI ViT-L/14 → FLAVA: within-species attribute ranking rises from 49.74%
-  unaligned to 57.44% aligned.
+![Attribute-guided retrieval](docs/phase2/figures/global_attribute_p10.svg)
 
-Fitting the same kind of map on official CUB train images raises the aligned
-linear decoder to 60.78% and 60.23%, respectively. The gain shows that part of
-the Phase I gap is cross-dataset alignment error, but even the in-domain map
-does not fully match native target readouts.
+For attribute-only text queries, unaligned cross-model retrieval is close to
+the random attribute-frequency baseline. Alignment recovers much of the
+native retrieval signal, while the CUB-trained map is consistently stronger
+than the Oxford-Pets map.
+
+These figures summarize the central result: canonical alignment transfers
+useful fine-grained behavior, but not perfectly.
+
+## Explore the experiments
+
+- [Frozen encoder and decoder-transfer study](docs/frozen_encoder/README.md)
+- [Attribute-guided retrieval study](docs/phase2/README.md)
+- [Detailed results and protocols](reports/)
 
 ## Repository map
 
 ```text
-docs/frozen_encoder/              Phase I narrative and figures
-docs/phase2/                      Phase II attribute-text retrieval summary
-reports/phase1_results.md         Detailed Phase I tables and protocol
-reports/cub_train_q_control.md    In-domain CUB-train-fitted Q control
-reports/attribute_text_retrieval.md
-                                  Attribute-text retrieval under alignment
-reports/fine_grained_retrieval.md Supplementary image-neighbor retrieval results
-reports/reproduction.md           Oxford baseline reproduction notes
-artifacts/results/phase1_summary.json
-                                  Compact machine-readable headline results
-artifacts/results/frozen_decoder/ Decoder summaries and manifests
-artifacts/alignments/             Saved orthogonal maps and diagnostics
+docs/frozen_encoder/              Frozen encoder and decoder-transfer study
+docs/phase2/                      Attribute-guided retrieval study
+reports/                          Detailed results and protocols
+artifacts/                        Compact machine-readable results
 configs/                          Locked experiment configurations
 src/canonical_study/              Alignment, evaluation, and decoder code
 scripts/                          Reproducible launchers and figure rendering
@@ -71,28 +67,4 @@ prediction dumps are intentionally kept out of the exportable repository.
 ./scripts/run_attribute_text_global_retrieval.sh
 python3 scripts/render_phase1_figures.py
 python3 scripts/render_attribute_text_retrieval_figures.py
-python3 scripts/render_fine_grained_retrieval_figures.py
-```
-
-The tmux launchers run the two configured model pairs concurrently on the
-freest GPUs:
-
-```bash
-./scripts/launch_frozen_decoder_tmux.sh
-./scripts/launch_mlp_decoder_tmux.sh
-./scripts/launch_cub_train_q_control_tmux.sh
-```
-
-See the Phase I README for the exact leakage boundary and interpretation.
-
-## Reference
-
-```bibtex
-@article{gupta2026canonicalizing,
-  title={Canonicalizing Multimodal Contrastive Representation Learning},
-  author={Gupta, Sharut and Kansal, Sanyam and Jegelka, Stefanie and
-          Isola, Phillip and Garg, Vikas},
-  journal={arXiv preprint arXiv:2602.17584},
-  year={2026}
-}
 ```
