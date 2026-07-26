@@ -29,8 +29,8 @@ native target result.
 
 ![Attribute-guided retrieval](docs/phase2/figures/global_attribute_p10_all312.svg)
 
-An attribute-only text prompt—such as “a bird
-with a yellow wing”—is used to retrieve matching images from the CUB test set.
+An attribute-only text prompt, such as “a bird
+with a yellow wing”, is used to retrieve matching images from the CUB test set.
 Attribute-level text-to-image behavior transfers as well: Oxford-\(Q\) turns
 near-random unaligned cross-model retrieval into a clearly above-baseline
 result, while CUB-train-\(Q\) improves it further.
