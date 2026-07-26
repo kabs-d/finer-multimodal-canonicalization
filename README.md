@@ -1,23 +1,20 @@
 # Finer Multimodal Canonicalization
 
-Can an alignment between two multimodal models preserve the details that make
-images visually different—not just their broad semantic meaning?
+This project is inspired by Gupta et al., *Canonicalizing Multimodal Contrastive
+Representation Learning*, and follows up on the limitations and future
+directions identified in that work. We ask whether canonical alignment remains
+useful when the evaluation concerns fine visual details rather than only broad
+semantic similarity.
 
-This repository studies that question using **CUB-200-2011**, a fine-grained
-bird dataset with 200 species and 312 per-image attributes such as bill shape,
-wing color, head color, and tail pattern. Each attribute can also be marked
-“not visible,” which lets us evaluate only what the image actually shows.
+We study this on **CUB-200-2011**, a fine-grained bird dataset containing
+11,788 images from 200 species. Each bird image has 312 visual-attribute labels, such as bill shape, wing color, head color, and tail pattern.
 
-We study two simple tests:
+The repository contains two main experiments:
 
-- **Attribute decoder transfer:** train a decoder in one model’s space to
-  predict a bird’s visible attributes, then reuse it on another model after
-  alignment.
-- **Attribute-guided retrieval:** use a text prompt describing an attribute,
-  such as “a bird with a yellow wing,” and retrieve matching CUB images.
+- **Attribute decoder transfer:** train a decoder head to predict bird attributes in one model’s native embedding space, then evaluate the frozen decoder's performance on a second model aligned in the first model's space.
+- **Attribute-guided retrieval:** use an attribute-only text prompt, such as “a bird with a yellow wing,” to retrieve matching CUB images.
 
-The main alignment is learned from Oxford-IIIT Pets and transferred to CUB.
-A separate CUB-trained alignment provides an in-domain comparison.
+A central result of my analyses is that the orthogonal map derived from the Oxford-IIIT Pets image embeddings, after replicating the paper's methodology, remains effective on CUB’s much denser, attribute-level bird annotations, even though it was never fitted to CUB images.  A CUB-specific alignment improves performance further, though, by slight margins on most tasks.
 
 ## What the results show
 
