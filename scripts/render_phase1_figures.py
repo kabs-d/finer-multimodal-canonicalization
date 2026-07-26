@@ -49,6 +49,7 @@ COLORS = {
     "Native MLP": "#67c5d0",
     "Unaligned MLP": "#b7b7b7",
     "Aligned MLP": "#5c9e56",
+    "CUB-aligned MLP": "#9bc75f",
 }
 
 
@@ -343,9 +344,11 @@ def bidirectional_mlp_panel(pair: str, title: str) -> list[Panel]:
         Bar("Source → target", "Native MLP", deep["source_native_percent_mean"] / 100, COLORS["Native MLP"]),
         Bar("Source → target", "Unaligned MLP", deep["source_decoder_on_unaligned_target_percent_mean"] / 100, COLORS["Unaligned MLP"]),
         Bar("Source → target", "Aligned MLP", deep["source_decoder_on_aligned_target_percent_mean"] / 100, COLORS["Aligned MLP"]),
+        Bar("Source → target", "CUB-aligned MLP", deep["source_decoder_on_cub_aligned_target_percent_mean"] / 100, COLORS["CUB-aligned MLP"]),
         Bar("Target → source", "Native MLP", deep["target_native_percent_mean"] / 100, COLORS["Native MLP"]),
         Bar("Target → source", "Unaligned MLP", deep["target_decoder_on_unaligned_source_percent_mean"] / 100, COLORS["Unaligned MLP"]),
         Bar("Target → source", "Aligned MLP", deep["target_decoder_on_aligned_source_percent_mean"] / 100, COLORS["Aligned MLP"]),
+        Bar("Target → source", "CUB-aligned MLP", deep["target_decoder_on_cub_aligned_source_percent_mean"] / 100, COLORS["CUB-aligned MLP"]),
     ]
     return [Panel(title, "attributes recovered (%)", bars, 0.8, percent=True)]
 
@@ -363,8 +366,8 @@ def main() -> None:
         ("readout_counts.svg", readout_count_panels(), "CUB-train Q recovers more true attributes, with a hallucination tradeoff.", 3, 330),
         ("within_species_ranking.svg", within_species_panel(), "Above-chance same-species ranking shows fine-grained signal beyond species identity.", 1, 330),
         ("mlp_capacity.svg", mlp_panels(), "The MLP recovers more attributes but does not improve species-controlled transfer.", 2, 330),
-        ("decoder_transfer_laion.svg", bidirectional_mlp_panel("cub_openai_vitb32_to_laion_vitb32_linear", "OpenAI B/32 → LAION B/32"), "Each group compares the two-layer MLP on native, unaligned, and aligned embeddings.", 1, 660),
-        ("decoder_transfer_flava.svg", bidirectional_mlp_panel("cub_openai_vitl14_to_flava_linear", "OpenAI L/14 → FLAVA"), "Each group compares the two-layer MLP on native, unaligned, and aligned embeddings.", 1, 660),
+        ("decoder_transfer_laion.svg", bidirectional_mlp_panel("cub_openai_vitb32_to_laion_vitb32_linear", "OpenAI B/32 → LAION B/32"), "Each group compares the two-layer MLP on native, unaligned, Oxford-aligned, and CUB-aligned embeddings.", 1, 660),
+        ("decoder_transfer_flava.svg", bidirectional_mlp_panel("cub_openai_vitl14_to_flava_linear", "OpenAI L/14 → FLAVA"), "Each group compares the two-layer MLP on native, unaligned, Oxford-aligned, and CUB-aligned embeddings.", 1, 660),
     ]
     manifest = {"figures": []}
     for name, panels, caption, columns, panel_width in figures:

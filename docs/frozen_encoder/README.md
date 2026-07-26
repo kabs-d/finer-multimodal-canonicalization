@@ -71,13 +71,14 @@ Linear(d, 512) → GELU → Dropout(0.1) → Linear(512, 256)
 → GELU → Dropout(0.1) → Linear(256, 312)
 ```
 
-![Bidirectional decoder transfer: OpenAI B/32 to LAION](figures/decoder_transfer_laion.svg)
+<p align="center">
+  <img src="figures/decoder_transfer_laion.svg" alt="Bidirectional decoder transfer: OpenAI B/32 to LAION" width="49%" />
+  <img src="figures/decoder_transfer_flava.svg" alt="Bidirectional decoder transfer: OpenAI L/14 to FLAVA" width="49%" />
+</p>
 
-![Bidirectional decoder transfer: OpenAI L/14 to FLAVA](figures/decoder_transfer_flava.svg)
-
-Each group contains the same MLP evaluated on native, unaligned, and aligned
-embeddings. The aligned bar isolates the contribution of canonical alignment;
-the full results for both model pairs are in the
+Each group contains the same MLP evaluated on native, unaligned, Oxford-aligned,
+and CUB-aligned embeddings. The two aligned bars isolate cross-dataset versus
+in-domain canonical alignment; the full results for both model pairs are in the
 [bidirectional decoder-transfer report](../../reports/bidirectional_decoder_transfer.md).
 
 > **Protocol note.** The two-layer MLP is a follow-up capacity probe using the

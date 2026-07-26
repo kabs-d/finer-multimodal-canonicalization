@@ -114,13 +114,14 @@ def train(features, labels, mask, train_idx, val_idx, eligible, seed, device):
     return model, {"best_epoch": best_epoch, "epochs_run": epoch, "validation_macro_f1": best_score}
 
 
-def run(pair, embedding_root, alignment_path, output_root, device_name):
+def run(pair, embedding_root, alignment_path, cub_alignment_path, output_root, device_name):
     device = torch.device(device_name)
     train_path = embedding_root / pair / "cub_train.pt"
     test_path = embedding_root / pair / "cub_test.pt"
     train_data = torch.load(train_path, map_location="cpu")
     test_data = torch.load(test_path, map_location="cpu")
     payload = torch.load(alignment_path, map_location="cpu")
+    cub_payload = torch.load(cub_alignment_path, map_location="cpu") if cub_alignment_path else None
     source_mean = train_data["source"].mean(0, keepdim=True)
     target_mean = train_data["target"].mean(0, keepdim=True)
     alignment = OrthogonalAlignment(payload["rotation"], source_mean, target_mean)
@@ -130,6 +131,10 @@ def run(pair, embedding_root, alignment_path, output_root, device_name):
     target_test = F.normalize(test_data["target"], dim=1)
     aligned_source_test = F.normalize(alignment.transform(source_test), dim=1)
     aligned_target_test = F.normalize((target_test - target_mean) @ payload["rotation"].T + source_mean, dim=1)
+    if cub_payload:
+        cub_alignment = OrthogonalAlignment(cub_payload["rotation"], source_mean, target_mean)
+        cub_aligned_source_test = F.normalize(cub_alignment.transform(source_test), dim=1)
+        cub_aligned_target_test = F.normalize((target_test - target_mean) @ cub_payload["rotation"].T + source_mean, dim=1)
     train_idx, val_idx = _species_stratified_split(train_data["labels"], validation_fraction=0.2, seed=2026)
     eligible = _attribute_eligibility(
         train_data["attributes"], train_data["attribute_mask"], train_idx,
@@ -157,12 +162,18 @@ def run(pair, embedding_root, alignment_path, output_root, device_name):
             "source_training": source_training,
             "target_training": target_training,
         })
+        if cub_payload:
+            rows[-1]["source_decoder_on_cub_aligned_target_percent"] = recovered_percent(labels.numpy(), mask.numpy(), predict(source_model, cub_aligned_target_test, device), eligible, source_cut)
+            rows[-1]["target_decoder_on_cub_aligned_source_percent"] = recovered_percent(labels.numpy(), mask.numpy(), predict(target_model, cub_aligned_source_test, device), eligible, target_cut)
         print(f"{pair} seed {seed} complete")
     output = Path(output_root) / pair
     output.mkdir(parents=True, exist_ok=True)
     summary = {"architecture": "deep_mlp_512_256", "pair": pair, "eligible_attributes": int(eligible.sum()), "metric": "percent of visible-positive ground-truth attributes recovered", "seeds": rows}
     for key in ["source_native_percent", "target_native_percent", "source_decoder_on_unaligned_target_percent", "target_decoder_on_unaligned_source_percent", "source_decoder_on_aligned_target_percent", "target_decoder_on_aligned_source_percent"]:
         summary[key + "_mean"] = float(np.mean([r[key] for r in rows]))
+    if cub_payload:
+        for key in ["source_decoder_on_cub_aligned_target_percent", "target_decoder_on_cub_aligned_source_percent"]:
+            summary[key + "_mean"] = float(np.mean([r[key] for r in rows]))
     (output / "summary.json").write_text(json.dumps(summary, indent=2) + "\n")
     print(json.dumps(summary, indent=2))
 
@@ -172,7 +183,8 @@ if __name__ == "__main__":
     parser.add_argument("--pair", required=True)
     parser.add_argument("--embedding-root", type=Path, default=Path("artifacts/embeddings/cub"))
     parser.add_argument("--alignment", type=Path, required=True)
+    parser.add_argument("--cub-alignment", type=Path)
     parser.add_argument("--output-root", type=Path, default=Path("artifacts/results/deep_mlp_probe"))
     parser.add_argument("--device", default="cuda")
     args = parser.parse_args()
-    run(args.pair, args.embedding_root, args.alignment, args.output_root, args.device)
+    run(args.pair, args.embedding_root, args.alignment, args.cub_alignment, args.output_root, args.device)

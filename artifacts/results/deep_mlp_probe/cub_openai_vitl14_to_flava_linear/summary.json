@@ -21,7 +21,9 @@
         "best_epoch": 52,
         "epochs_run": 72,
         "validation_macro_f1": 0.3831000858784687
-      }
+      },
+      "source_decoder_on_cub_aligned_target_percent": 68.38631070125824,
+      "target_decoder_on_cub_aligned_source_percent": 71.17263411794274
     },
     {
       "seed": 43,
@@ -40,7 +42,9 @@
         "best_epoch": 39,
         "epochs_run": 59,
         "validation_macro_f1": 0.38641397214439127
-      }
+      },
+      "source_decoder_on_cub_aligned_target_percent": 67.59473712262655,
+      "target_decoder_on_cub_aligned_source_percent": 70.29072598600477
     },
     {
       "seed": 44,
@@ -59,7 +63,9 @@
         "best_epoch": 52,
         "epochs_run": 72,
         "validation_macro_f1": 0.38306629700355843
-      }
+      },
+      "source_decoder_on_cub_aligned_target_percent": 66.70639666423618,
+      "target_decoder_on_cub_aligned_source_percent": 70.94035770865727
     },
     {
       "seed": 45,
@@ -78,7 +84,9 @@
         "best_epoch": 51,
         "epochs_run": 71,
         "validation_macro_f1": 0.3832214385316672
-      }
+      },
+      "source_decoder_on_cub_aligned_target_percent": 68.53561640975337,
+      "target_decoder_on_cub_aligned_source_percent": 70.18090533799428
     },
     {
       "seed": 46,
@@ -97,7 +105,9 @@
         "best_epoch": 73,
         "epochs_run": 93,
         "validation_macro_f1": 0.38386698475351066
-      }
+      },
+      "source_decoder_on_cub_aligned_target_percent": 68.19715953464744,
+      "target_decoder_on_cub_aligned_source_percent": 70.80960095558785
     }
   ],
   "source_native_percent_mean": 71.08360066488973,
@@ -105,5 +115,7 @@
   "source_decoder_on_unaligned_target_percent_mean": 43.23928568527611,
   "target_decoder_on_unaligned_source_percent_mean": 34.29007876859093,
   "source_decoder_on_aligned_target_percent_mean": 61.40982387935196,
-  "target_decoder_on_aligned_source_percent_mean": 62.207033144878515
+  "target_decoder_on_aligned_source_percent_mean": 62.207033144878515,
+  "source_decoder_on_cub_aligned_target_percent_mean": 67.88404408650436,
+  "target_decoder_on_cub_aligned_source_percent_mean": 70.67884482123739
 }
