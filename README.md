@@ -24,17 +24,17 @@ A central result of my analyses is that the orthogonal map derived from the Oxfo
 A two-layer MLP is trained in the target
 model’s native space to predict each bird’s visible CUB attributes. I then
 apply that frozen decoder to source embeddings before and after canonical
-alignment. Without alignment, attribute recovery falls sharply; Oxford-\(Q\)
-restores most of the lost performance, while CUB-train-\(Q\) nearly reaches the
+alignment. Without alignment, attribute recovery falls sharply; $Q_{\text{Oxford}}$
+restores most of the lost performance, while $Q_{\text{CUB-train}}$ nearly reaches the
 native target result.
 
 ![Attribute-guided retrieval](docs/phase2/figures/global_attribute_p10_all312.svg)
 
 An attribute-only text prompt, such as “a bird
 with a yellow wing”, is used to retrieve matching images from the CUB test set.
-Attribute-level text-to-image behavior transfers as well: Oxford-\(Q\) turns
+Attribute-level text-to-image behavior transfers as well: $Q_{\text{Oxford}}$ turns
 near-random unaligned cross-model retrieval into a clearly above-baseline
-result, while CUB-train-\(Q\) improves it further.
+result, while $Q_{\text{CUB-train}}$ improves it further.
 
 [Detailed results and protocols](reports/)
 
