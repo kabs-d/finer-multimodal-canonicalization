@@ -15,12 +15,10 @@ We evaluate two frozen model pairs:
 The main zero-shot alignment uses $Q_{\text{Oxford}}$, reproduced from the paper's setup, fitted on
 Oxford-IIIT Pet trainval images and transferred unchanged to CUB-200-2011.
 Following the canonicalization paper's cross-dataset protocol, CUB train means
-are recomputed before evaluating CUB test examples. The in-domain control
-instead fits $Q_{\text{CUB-train}}$ only on official CUB train images and
+are recomputed before evaluating CUB test examples. 
+The in-domain alignment fits $Q_{\text{CUB-train}}$ only on official CUB train images and
 evaluates on official CUB test.
 
-No CUB test image is used to fit a map, train a decoder, select an epoch, or
-choose thresholds.
 
 ## 1. Cosine similarity: do paired embeddings occupy the same coordinates?
 
