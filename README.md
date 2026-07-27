@@ -10,7 +10,7 @@ The repository contains two main experiments:
 
 - **Attribute decoder transfer:** train a decoder head to predict bird attributes in one model’s native embedding space, then evaluate the frozen decoder's performance on a second model aligned in the first model's space.
   
-  [Decoder-transfer study, along with classification, similarity and retireval analysis](docs/frozen_encoder/README.md)
+  [Decoder-transfer study, along with classification, similarity and retrieval analysis](docs/frozen_encoder/README.md)
 - **Attribute-guided retrieval:** use an attribute-only text prompt, such as “a bird with a yellow wing,” to retrieve matching CUB images.
   
   [Attribute-Text Image Retrieval under Canonical Alignment](docs/phase2/README.md)
