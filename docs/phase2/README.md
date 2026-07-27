@@ -11,8 +11,8 @@ a photo of a bird with {attribute phrase}.
 ```
 
 For each attribute, candidates are all official CUB test images where that
-attribute is visible. Positives are visible-positive images for the queried
-attribute; negatives are visible-negative images.
+attribute is visible. Positives and negatives are positive and negative images for the queried
+attribute respectively.
 
 ## What is reported
 
