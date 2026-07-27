@@ -1,4 +1,4 @@
-# I: Frozen-Encoder Transfer under Canonical Alignment
+# Frozen-Encoder Transfer under Canonical Alignment
 
 
 > If we train a fine-grained bird-attribute decoder only in model $B$'s
