@@ -48,7 +48,7 @@ candidate images have the attribute, random P@1/P@5/P@10 is 19% in expectation.
 
 ![Global attribute ranking accuracy](figures/global_attribute_ranking.svg)
 
-| Pair | Attribute set | Random | Native source | Native target | Unaligned | $Q_{\text{Oxford}}$ | $Q_{\text{Oxford}}$ |
+| Pair | Attribute set | Random | Native source | Native target | Unaligned | $Q_{\text{Oxford}}$ | $Q_{\text{CUB-train}}$ |
 | --- | --- | ---: | ---: | ---: | ---: | ---: | ---: |
 | OpenAI B/32 → LAION B/32 | CLIP-readable | 50.00 | 62.82 | 63.71 | 50.73 | 61.79 | 62.91 |
 | OpenAI B/32 → LAION B/32 | All 312 | 50.00 | 64.84 | 66.57 | 49.32 | 64.23 | 65.13 |
@@ -62,10 +62,10 @@ to the base rate and ranking accuracy sits near 50%. Applying an orthogonal map
 recovers most of the native text-image retrieval signal.
 
 The $Q_{\text{CUB-train}}$ is consistently stronger than the $Q_{\text{Oxford}}$,
-especially for P@10. On the CLIP-readable subset, $Q_{\text{Oxford}}$ reaches 38.63%
-P@10 for OpenAI B/32 → LAION B/32, compared with 19.19% random and 38.32%
-native target. For OpenAI L/14 → FLAVA, $Q_{\text{Oxford}}$ reaches 33.47% P@10,
-close to the 33.58% native target result.
+especially for P@10. On the CLIP-readable subset, $Q_{\text{CUB-train}}$ reaches
+38.63% P@10 for OpenAI B/32 → LAION B/32, versus 34.95% for $Q_{\text{Oxford}}$
+and 38.32% for the native target. For OpenAI L/14 → FLAVA, it reaches 33.47%,
+versus 30.21% for $Q_{\text{Oxford}}$ and 33.58% for the native target.
 
 The full 312-attribute benchmark is noisier in raw P@10 because many CUB
 attributes are not natural text prompts. Even there, aligned retrieval remains
