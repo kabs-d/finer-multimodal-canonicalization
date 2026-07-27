@@ -20,7 +20,6 @@ from torch import nn
 from .attribute_prompt_audit import clean_attribute_phrase
 from .alignment import OrthogonalAlignment
 from .decoder_experiment import _sha256, read_decoder_config
-from .fine_grained_retrieval import _load_alignment, _load_embedding_cache, _oxford_alignment_name
 from .metrics import l2_normalize
 from .models import load_encoder
 
@@ -46,6 +45,53 @@ CLIP_READABLE_ATTRIBUTE_INDICES = [
     294, 298, 299, 304, 305, 306,
     308, 309, 310, 311,
 ]
+
+
+def _required_file(path: Path, description: str) -> None:
+    if not path.is_file():
+        raise FileNotFoundError(f"missing {description}: {path}")
+
+
+def _load_embedding_cache(embedding_root: Path, run_id: str) -> tuple[dict, dict, Path, Path]:
+    run_dir = embedding_root / run_id
+    train_path = run_dir / "cub_train.pt"
+    test_path = run_dir / "cub_test.pt"
+    _required_file(train_path, "CUB train embedding cache")
+    _required_file(test_path, "CUB test embedding cache")
+    return (
+        torch.load(train_path, map_location="cpu"),
+        torch.load(test_path, map_location="cpu"),
+        train_path,
+        test_path,
+    )
+
+
+def _load_alignment(path: Path, config: dict) -> dict:
+    _required_file(path, "alignment artifact")
+    payload = torch.load(path, map_location="cpu")
+    if payload["source_model"] != config["source_model"]:
+        raise ValueError(f"alignment source model does not match config: {path}")
+    if payload["target_model"] != config["target_model"]:
+        raise ValueError(f"alignment target model does not match config: {path}")
+    return payload
+
+
+def _oxford_alignment_name(config: dict) -> str:
+    source = config["source_model"]
+    target = config["target_model"]
+    source_key = f"{source['pretrained']}_{source['name']}".lower().replace("-", "")
+    if target["kind"] == "open_clip":
+        target_key = f"{target['pretrained']}_{target['name']}".lower().replace("-", "")
+    else:
+        target_key = target["name"].lower()
+    if source_key == "openai_vitb32" and target_key == "laion400m_e31_vitb32":
+        return "oxford_openai_vitb32_to_laion_vitb32.pt"
+    if source_key == "openai_vitl14" and target_key == "flava":
+        return "oxford_openai_vitl14_to_flava.pt"
+    raise ValueError(
+        "do not know Oxford alignment artifact name for "
+        f"{config['source_model']} -> {config['target_model']}"
+    )
 
 
 def attribute_only_prompt(attribute_phrase: str) -> str:

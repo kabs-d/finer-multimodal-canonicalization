@@ -49,26 +49,5 @@ class ConfigTests(unittest.TestCase):
             self.assertFalse(config["feature_extraction"]["repeat_encoder_inference"])
             self.assertIn("linear", config["feature_extraction"]["reuse_run_id"])
 
-    def test_mlp_configs_are_fixed_and_reuse_frozen_features(self):
-        project_root = Path(__file__).resolve().parents[1]
-        configs = sorted(
-            (project_root / "configs" / "mlp_decoder").glob("*.json")
-        )
-        self.assertEqual(len(configs), 2)
-        for path in configs:
-            config = read_decoder_config(path)
-            decoder = config["decoder"]
-            self.assertEqual(decoder["architecture"], "mlp")
-            self.assertEqual(decoder["hidden_dim"], 512)
-            self.assertEqual(decoder["activation"], "gelu")
-            self.assertEqual(decoder["dropout"], 0.1)
-            self.assertFalse(
-                config["feature_extraction"]["repeat_encoder_inference"]
-            )
-            self.assertIn(
-                "linear", config["feature_extraction"]["reuse_run_id"]
-            )
-
-
 if __name__ == "__main__":
     unittest.main()

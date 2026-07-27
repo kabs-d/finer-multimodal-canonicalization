@@ -31,7 +31,7 @@
 <text x="204.0" y="104.4" text-anchor="middle" font-size="8" font-family="Times New Roman, serif">67.6</text>
 <rect x="216.0" y="103.2" width="18.0" height="142.8" fill="#9bc75f"/>
 <text x="225.0" y="100.2" text-anchor="middle" font-size="8" font-family="Times New Roman, serif">69.7</text>
-<text x="193.5" y="264" text-anchor="middle" font-size="10" font-family="Times New Roman, serif">Source → target</text>
+<text x="193.5" y="264" text-anchor="middle" font-size="10" font-family="Times New Roman, serif">Target → source</text>
 <rect x="456.0" y="100.9" width="18.0" height="145.1" fill="#67c5d0"/>
 <text x="465.0" y="97.9" text-anchor="middle" font-size="8" font-family="Times New Roman, serif">70.8</text>
 <rect x="477.0" y="157.6" width="18.0" height="88.4" fill="#b7b7b7"/>
@@ -40,7 +40,7 @@
 <text x="507.0" y="107.7" text-anchor="middle" font-size="8" font-family="Times New Roman, serif">66.0</text>
 <rect x="519.0" y="102.1" width="18.0" height="143.9" fill="#9bc75f"/>
 <text x="528.0" y="99.1" text-anchor="middle" font-size="8" font-family="Times New Roman, serif">70.2</text>
-<text x="496.5" y="264" text-anchor="middle" font-size="10" font-family="Times New Roman, serif">Target → source</text>
-<text x="12" y="164.0" transform="rotate(-90 12 164.0)" text-anchor="middle" font-size="10" font-family="Times New Roman, serif">attributes recovered (%)</text>
+<text x="496.5" y="264" text-anchor="middle" font-size="10" font-family="Times New Roman, serif">Source → target</text>
+<text x="12" y="164.0" transform="rotate(-90 12 164.0)" text-anchor="middle" font-size="10" font-family="Times New Roman, serif">visible-positive attributes recovered (%)</text>
 <text x="330.0" y="320" text-anchor="middle" font-size="11" font-family="Times New Roman, serif">Each group compares the two-layer MLP on native, unaligned, Oxford-aligned, and CUB-aligned embeddings.</text>
 </svg>

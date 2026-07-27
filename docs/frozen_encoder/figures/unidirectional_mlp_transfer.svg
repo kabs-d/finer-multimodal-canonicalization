@@ -41,6 +41,6 @@
 <rect x="519.0" y="101.1" width="18.0" height="144.9" fill="#9bc75f"/>
 <text x="528.0" y="98.1" text-anchor="middle" font-size="8" font-family="Times New Roman, serif">70.7</text>
 <text x="496.5" y="264" text-anchor="middle" font-size="10" font-family="Times New Roman, serif">OpenAI → FLAVA</text>
-<text x="12" y="164.0" transform="rotate(-90 12 164.0)" text-anchor="middle" font-size="10" font-family="Times New Roman, serif">attributes recovered (%)</text>
+<text x="12" y="164.0" transform="rotate(-90 12 164.0)" text-anchor="middle" font-size="10" font-family="Times New Roman, serif">visible-positive attributes recovered (%)</text>
 <text x="330.0" y="320" text-anchor="middle" font-size="11" font-family="Times New Roman, serif">A target-space MLP evaluated on native and source embeddings before and after alignment.</text>
 </svg>

@@ -61,16 +61,8 @@ def read_decoder_config(path: Path | str) -> dict:
     if feature_config.get("encoders_frozen") is not True:
         raise ValueError("both encoders must remain frozen")
     decoder_config = config["decoder"]
-    if decoder_config.get("architecture") not in {"linear", "mlp"}:
-        raise ValueError("decoder architecture must be 'linear' or 'mlp'")
-    if decoder_config.get("architecture") == "mlp":
-        if decoder_config.get("hidden_dim") != 512:
-            raise ValueError("the prespecified MLP requires hidden_dim=512")
-        if decoder_config.get("activation") != "gelu":
-            raise ValueError("the prespecified MLP requires activation='gelu'")
-        dropout = decoder_config.get("dropout")
-        if dropout is None or not 0 <= dropout < 1:
-            raise ValueError("MLP dropout must be in [0, 1)")
+    if decoder_config.get("architecture") != "linear":
+        raise ValueError("decoder architecture must be 'linear'")
     if decoder_config.get("outputs") != config["dataset"].get("attributes"):
         raise ValueError("decoder outputs must equal the dataset attribute count")
     if not decoder_config.get("seeds"):

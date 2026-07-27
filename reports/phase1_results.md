@@ -79,6 +79,6 @@ This phase establishes transfer for two frozen encoder pairs, one fine-grained
 dataset, and fixed decoder architectures. It does not claim that every
 nonlinear decoder or fine-tuned encoder will retain the same compatibility.
 
-Machine-readable run summaries, predictions, and alignment artifacts remain
-under `artifacts/results/frozen_decoder/`, `artifacts/results/deep_mlp_probe/`,
-and `artifacts/alignments/`.
+Machine-readable run summaries and alignment artifacts are committed under
+`artifacts/results/frozen_decoder/`, `artifacts/results/deep_mlp_probe/`, and
+`artifacts/alignments/`.

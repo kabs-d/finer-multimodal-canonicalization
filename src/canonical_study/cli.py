@@ -21,8 +21,6 @@ from .decoder_experiment import (
     run_frozen_decoder,
 )
 from .experiment import read_config, run_baseline
-from .fine_grained_retrieval import run_fine_grained_retrieval
-from .mlp_experiment import run_cached_mlp_decoder
 
 
 def _package_version(name: str) -> str | None:
@@ -154,24 +152,6 @@ def build_parser() -> argparse.ArgumentParser:
     cub_train_q.add_argument("--device", default="cuda")
     cub_train_q.add_argument("--force", action="store_true")
 
-    mlp_decoder = subparsers.add_parser("run-cached-mlp-decoder")
-    mlp_decoder.add_argument("--config", type=Path, required=True)
-    mlp_decoder.add_argument("--alignment", type=Path, required=True)
-    mlp_decoder.add_argument("--embedding-root", type=Path, required=True)
-    mlp_decoder.add_argument("--prediction-root", type=Path, required=True)
-    mlp_decoder.add_argument("--output-root", type=Path, required=True)
-    mlp_decoder.add_argument("--device", default="cuda")
-    mlp_decoder.add_argument("--force", action="store_true")
-
-    retrieval = subparsers.add_parser("fine-grained-retrieval")
-    retrieval.add_argument("--config", type=Path, required=True)
-    retrieval.add_argument("--embedding-root", type=Path, required=True)
-    retrieval.add_argument("--output-root", type=Path, required=True)
-    retrieval.add_argument("--alignment-root", type=Path, required=True)
-    retrieval.add_argument("--k", type=int, nargs="+", default=[1, 5, 10])
-    retrieval.add_argument("--random-seed", type=int, default=2026)
-    retrieval.add_argument("--force", action="store_true")
-
     prompt_audit = subparsers.add_parser("audit-cub-attribute-prompts")
     prompt_audit.add_argument("--data-root", type=Path, required=True)
     prompt_audit.add_argument("--output-root", type=Path, required=True)
@@ -281,34 +261,6 @@ def main() -> None:
                     args.alignment_root,
                     args.model_cache_root,
                     device_name=args.device,
-                    force=args.force,
-                )
-            )
-        }
-    elif args.command == "run-cached-mlp-decoder":
-        result = {
-            "output": str(
-                run_cached_mlp_decoder(
-                    args.config,
-                    args.alignment,
-                    args.embedding_root,
-                    args.prediction_root,
-                    args.output_root,
-                    device_name=args.device,
-                    force=args.force,
-                )
-            )
-        }
-    elif args.command == "fine-grained-retrieval":
-        result = {
-            "output": str(
-                run_fine_grained_retrieval(
-                    args.config,
-                    args.embedding_root,
-                    args.output_root,
-                    args.alignment_root,
-                    k_values=args.k,
-                    random_seed=args.random_seed,
                     force=args.force,
                 )
             )

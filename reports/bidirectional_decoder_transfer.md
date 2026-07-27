@@ -32,10 +32,10 @@ decision boundaries do not behave symmetrically under $Q$ and $Q^\top$.
 
 | Pair and direction | Native | Unaligned | Oxford-Pets $Q$ | CUB-train $Q$ |
 | --- | ---: | ---: | ---: | ---: |
-| OpenAI B/32 → LAION, source → target | 70.82% | 42.19% | 67.59% | 69.68% |
-| OpenAI B/32 → LAION, target → source | 70.80% | 43.10% | 66.02% | 70.21% |
-| OpenAI L/14 → FLAVA, source → target | 71.08% | 43.24% | 61.41% | 67.88% |
-| OpenAI L/14 → FLAVA, target → source | 70.71% | 34.29% | 62.21% | 70.68% |
+| OpenAI B/32 → LAION, target → source | 70.82% | 42.19% | 67.59% | 69.68% |
+| OpenAI B/32 → LAION, source → target | 70.80% | 43.10% | 66.02% | 70.21% |
+| OpenAI L/14 → FLAVA, target → source | 71.08% | 43.24% | 61.41% | 67.88% |
+| OpenAI L/14 → FLAVA, source → target | 70.71% | 34.29% | 62.21% | 70.68% |
 
 The unaligned controls show that decoder reuse is not produced by merely
 feeding arbitrary source coordinates into the target decoder. Oxford-Pets $Q$

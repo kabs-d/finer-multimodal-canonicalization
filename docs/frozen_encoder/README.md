@@ -75,7 +75,5 @@ The full results for both model pairs are in the
    decoding fully native.
 
 For complete numerical tables and artifact provenance, see
-[the detailed Phase I report](../../reports/phase1_results.md) and
-[the CUB-train-Q control report](../../reports/cub_train_q_control.md). For
-retrieval numbers, see
-[the fine-grained retrieval report](../../reports/fine_grained_retrieval.md).
+[the detailed Phase I report](../../reports/phase1_results.md) and the
+[bidirectional decoder-transfer appendix](../../reports/bidirectional_decoder_transfer.md).
