@@ -1,7 +1,6 @@
 # Attribute-Text Image Retrieval under Canonical Alignment
 
-This experiment asks whether attribute-only text prompts retrieve CUB bird images that have the queried attribute, and whether that behavior survives
-orthogonal alignment across model spaces. Text prompts from one model's native space is orthogonally aligned with the second model's space, and then image retrieval is evaluated.
+This experiment asks whether attribute-only text prompts retrieve CUB bird images that have the queried attribute, and whether that behavior survives orthogonal alignment across model spaces. Text prompts from one model's native space are orthogonally aligned with the second model's space, and then image retrieval is evaluated.
 
 The prompt template is:
 
