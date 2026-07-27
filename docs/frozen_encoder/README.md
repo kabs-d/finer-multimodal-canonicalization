@@ -44,7 +44,7 @@ native target bar is the reference for the target model's own classifier. $Q_{\t
 ## 3. Fine-grained attribute transfer in both directions
 
 Each decoder predicts CUB's visible bird attributes from an image embedding.
-I train one decoder in each model's native space, then feed the aligned image embeddings from the source model into the decoder and evaluate the decoder's results. I use the same orthognal transform in both directions: source to target uses $Q$, while target to source uses
+I train one decoder in each model's native space, then feed the aligned image embeddings from the other model into the decoder and evaluate the decoder's results. I use the same orthogonal transform in both directions: source to target uses $Q$, while target to source uses
 $Q^\top$. The metric is the mean percentage of each bird's visible-positive
 ground-truth attributes that the decoder recovers.
 
@@ -60,9 +60,7 @@ Linear(d, 512) → GELU → Dropout(0.1) → Linear(512, 256)
   <img src="figures/decoder_transfer_flava.svg" alt="Bidirectional decoder transfer: OpenAI L/14 to FLAVA" width="49%" />
 </p>
 
-Each group contains the same MLP evaluated on native, unaligned, Oxford-aligned,
-and CUB-aligned embeddings. The two aligned bars isolate cross-dataset versus
-in-domain canonical alignment; the full results for both model pairs are in the
+The full results for both model pairs are in the
 [bidirectional decoder-transfer report](../../reports/bidirectional_decoder_transfer.md).
 
 > **Protocol note.** The two-layer MLP is a follow-up capacity probe using the
