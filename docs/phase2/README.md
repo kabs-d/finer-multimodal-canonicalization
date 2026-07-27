@@ -69,7 +69,7 @@ close to the 33.58% native target result.
 
 The full 312-attribute benchmark is noisier in raw P@10 because many CUB
 attributes are not natural text prompts. Even there, aligned retrieval remains
-well above random and far above the unaligned control.
+well above random and the unaligned control.
 
 ## Reproduce
 
