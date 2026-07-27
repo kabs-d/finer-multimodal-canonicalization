@@ -329,7 +329,6 @@ def class_panels() -> list[Panel]:
         )
         zeroshot_bars.extend(
             [
-                Bar(group, "Native source", ox["ImageText"]["A_to_A"], COLORS["Native source"]),
                 Bar(group, "Native target", ox["ImageText"]["B_to_B"], COLORS["Native target"]),
                 Bar(group, "Oxford Q", ox["ImageText"]["Aligned_imgA_to_textB"], COLORS["Oxford Q"]),
                 Bar(group, "CUB-train Q", cq["ImageText"]["Aligned_imgA_to_textB"], COLORS["CUB-train Q"]),

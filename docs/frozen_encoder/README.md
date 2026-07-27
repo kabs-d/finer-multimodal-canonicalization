@@ -36,7 +36,7 @@ Image-image retrieval asks whether each source-side image finds its exact
 paired target-side image among its five nearest neighbors. Cross-model
 zero-shot species classification maps source images into the target space and
 compares them directly with the target model's native class-name prompts. The
-native source and target bars are references for each model's own classifier.
+native target bar is the reference for the target model's own classifier.
 
 ![CUB retrieval and zero-shot species classification](figures/class_level_transfer.svg)
 
