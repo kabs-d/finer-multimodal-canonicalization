@@ -1,12 +1,14 @@
 # Bidirectional attribute-decoder transfer
 
-This follow-up evaluates decoders in both directions of the same Oxford-IIIT
-Pets-fitted canonical map. Source to target uses $Q$; target to source uses
-$Q^\top$. No second transform is fitted.
+This appendix asks whether frozen CUB attribute decoders transfer in both
+directions of the same canonical map. Source → target applies $Q$; target →
+source applies $Q^\top$. No reverse map is fitted.
 
-The metric is the mean, over CUB test birds, of the percentage of that bird's
-visible-positive ground-truth attributes recovered by the decoder. The table
-uses five seeds and 294 eligible CUB attributes.
+The metric is the mean percentage of a test bird's visible-positive attributes
+recovered by the decoder. Each result uses the 5,794 official CUB test images,
+294 eligible attributes, and five random seeds.
+
+## Decoder reuse in both directions
 
 | Pair and decoder | Source native | Target native | Source decoder on aligned target | Target decoder on aligned source |
 | --- | ---: | ---: | ---: | ---: |
@@ -15,25 +17,32 @@ uses five seeds and 294 eligible CUB attributes.
 | OpenAI L/14 → FLAVA, linear | 70.45% | 69.69% | 55.77% | 48.60% |
 | OpenAI L/14 → FLAVA, two-layer MLP | 71.08% | 70.71% | 61.41% | 62.21% |
 
-The native columns are close to 70% across models. The most visible change is
-after alignment: the two-layer MLP recovers more attributes in both directions.
-The asymmetry of the linear rows arises despite $Q^\top = Q^{-1}$, indicating
-that the reversible map interacts differently with the two decoders' learned
-decision boundaries.
+The two-layer MLP is fixed as:
 
-## Two-layer MLP alignment controls
+```text
+Linear(d, 512) → GELU → Dropout(0.1) → Linear(512, 256)
+→ GELU → Dropout(0.1) → Linear(256, 312)
+```
 
-The figures in the summary show the two-layer MLP alone. Its
-unaligned controls make the contribution of $Q$ explicit:
+It is a fixed capacity follow-up, not an architecture search. The table shows
+that the map remains useful in both directions, although the two decoder
+decision boundaries do not behave symmetrically under $Q$ and $Q^\top$.
 
-| Pair and direction | Native MLP | Unaligned MLP | Oxford-​Q MLP | CUB-train-​Q MLP |
+## Alignment controls for the two-layer MLP
+
+| Pair and direction | Native | Unaligned | Oxford-Pets $Q$ | CUB-train $Q$ |
 | --- | ---: | ---: | ---: | ---: |
 | OpenAI B/32 → LAION, source → target | 70.82% | 42.19% | 67.59% | 69.68% |
 | OpenAI B/32 → LAION, target → source | 70.80% | 43.10% | 66.02% | 70.21% |
 | OpenAI L/14 → FLAVA, source → target | 71.08% | 43.24% | 61.41% | 67.88% |
 | OpenAI L/14 → FLAVA, target → source | 70.71% | 34.29% | 62.21% | 70.68% |
 
-Machine-readable summaries:
+The unaligned controls show that decoder reuse is not produced by merely
+feeding arbitrary source coordinates into the target decoder. Oxford-Pets $Q$
+recovers most of the loss, and the in-domain CUB-train control nearly reaches
+native recovery in every displayed direction.
+
+## Artifacts
 
 - `artifacts/results/linear_bidirectional_probe/`
 - `artifacts/results/deep_mlp_probe/`

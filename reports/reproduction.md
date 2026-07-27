@@ -1,49 +1,41 @@
-# Oxford-IIIT Pet baseline reproduction
+# Oxford-IIIT Pets baseline reproduction
 
-**Status: complete.** The independent implementation matches the aggregate
-outputs of the authors' code for both selected frozen-encoder pairs.
+This is the implementation check that precedes both CUB studies. We reproduce
+the frozen-encoder Oxford-IIIT Pets experiment from Gupta et al.,
+*Canonicalizing Multimodal Contrastive Representation Learning*, for the two
+model pairs used throughout this repository.
 
-## Scope
+## Setup
 
-1. OpenAI CLIP ViT-B/32 → LAION-400M CLIP ViT-B/32.
-2. OpenAI CLIP ViT-L/14 → FLAVA.
+- OpenAI CLIP ViT-B/32 → LAION-400M CLIP ViT-B/32.
+- OpenAI CLIP ViT-L/14 → FLAVA.
+- Encoders remain frozen.
+- A centered orthogonal Procrustes map is fitted on all 3,680 paired Oxford
+  `trainval` images.
+- Evaluation uses 3,669 official Oxford test images and 37 class prompts.
+- The image-fitted rotation is shared across image and text embeddings; image
+  and text centering are computed separately.
 
-The author repository was evaluated at commit
-`3b446d853b6f8fb0f412b6d598d81f8014720e18`; the independent implementation
-then ran against the same Oxford split and model weights.
+The reference author repository was evaluated at commit
+`3b446d853b6f8fb0f412b6d598d81f8014720e18` with the same split and released
+model weights.
 
-## Protocol
-
-- Encoder weights remain frozen.
-- All image and text embeddings are L2-normalized.
-- The centered orthogonal Procrustes map is fitted on all 3,680 paired
-  Oxford `trainval` images.
-- Evaluation uses 3,669 official test images and 37 class prompts.
-- Image means center aligned images; instance-text means center aligned text.
-  The image-fitted rotation is shared across both modalities.
-- Centered and rotation-only variants are retained.
-
-The released seed loop does not resample anchors or otherwise change the
-computation, so seeds 42–44 are identical by construction.
-
-## Centered-map results
+## Matched centered-map results
 
 | Metric | OpenAI B/32 → LAION B/32 | OpenAI L/14 → FLAVA |
-|---|---:|---:|
-| Image cosine, before | 0.0223 | −0.0208 |
-| Image cosine, after | **0.8883** | **0.7942** |
-| Text cosine, before | 0.2258 | 0.0054 |
-| Text cosine, after | **0.7725** | **0.6112** |
-| Image→image retrieval, before | 3.24% | 1.83% |
-| Image→image retrieval, after | **99.43%** | **97.30%** |
-| Text→text retrieval, before | 0.00% | 2.70% |
-| Text→text retrieval, after | **100.00%** | **83.78%** |
+| --- | ---: | ---: |
+| Paired image cosine, before → after | 0.0223 → **0.8883** | −0.0208 → **0.7942** |
+| Paired text cosine, before → after | 0.2258 → **0.7725** | 0.0054 → **0.6112** |
+| Image→image class retrieval, before → after | 3.24% → **99.43%** | 1.83% → **97.30%** |
+| Text→text class retrieval, before → after | 0.00% → **100.00%** | 2.70% → **83.78%** |
 | Native source zero-shot | 87.46% | 93.43% |
 | Native target zero-shot | 85.53% | 68.85% |
-| Aligned source image + target text | 69.04% | 74.49% |
-| Target image + aligned source text | 81.79% | 70.26% |
-| Aligned source image + aligned source text | 80.78% | 90.19% |
+| Aligned source image → native target text | 69.04% | 74.49% |
 
-These values match the corresponding author-code logs at the printed
-precision. The exact JSON outputs are stored under
+The aggregate values match the author-code logs at printed precision. This
+establishes the frozen alignment pipeline before transferring the map to CUB.
+
+## Artifacts
+
+Exact outputs are stored under
 [`artifacts/results/standalone/`](../artifacts/results/standalone/).
