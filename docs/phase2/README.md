@@ -1,4 +1,4 @@
-# Phase II: Attribute-Guided Retrieval
+# Attribute-Text Image Retrieval under Canonical Alignment
 
 This experiment asks whether attribute-only text prompts retrieve CUB bird images that have the queried attribute, and whether that behavior survives
 orthogonal alignment across model spaces.
