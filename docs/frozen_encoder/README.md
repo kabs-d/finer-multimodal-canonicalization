@@ -14,7 +14,7 @@ We evaluate two frozen model pairs:
 
 The main zero-shot alignment uses $Q_{\text{Oxford}}$, reproduced from the paper's setup, fitted on
 Oxford-IIIT Pet trainval images and transferred unchanged to CUB-200-2011.
-Following the canonicalization paper's cross-dataset protocol, CUB train means
+Following the paper's cross-dataset protocol, CUB train means
 are recomputed before evaluating CUB test examples. 
 The in-domain alignment fits $Q_{\text{CUB-train}}$ only on official CUB train images and
 evaluates on official CUB test.
@@ -28,9 +28,7 @@ alignment, the same object has a much more similar coordinate description.
 
 ![Paired CUB cosine before and after alignment](figures/geometry_alignment.svg)
 
-The CUB-train-fitted map is an in-domain ceiling/control, so it improves image
-cosine sharply. The more interesting Oxford result is that a map fitted on pet
-images still gives strong CUB image and text alignment.
+Both, the $Q_{\text{CUB-train}}$ and $Q_{\text{Oxford}}$ transforms show strong image-image and text-text imlignment.
 
 ## 2. Classification and retrieval: does the geometry support semantic reuse?
 
