@@ -61,8 +61,7 @@ The unaligned source-to-target condition is essentially random: P@10 falls back
 to the base rate and ranking accuracy sits near 50%. Applying an orthogonal map
 recovers most of the native text-image retrieval signal.
 
-The $Q_{\text{CUB-train}}$ is consistently stronger than the $Q_{\text{Oxford}}$,
-especially for P@10. On the CLIP-readable subset, $Q_{\text{CUB-train}}$ reaches
+On the CLIP-readable subset, $Q_{\text{CUB-train}}$ reaches
 38.63% P@10 for OpenAI B/32 → LAION B/32, versus 34.95% for $Q_{\text{Oxford}}$
 and 38.32% for the native target. For OpenAI L/14 → FLAVA, it reaches 33.47%,
 versus 30.21% for $Q_{\text{Oxford}}$ and 33.58% for the native target.
