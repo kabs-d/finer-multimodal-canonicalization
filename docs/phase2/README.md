@@ -30,23 +30,6 @@ Two metrics are emphasized:
 - **Ranking accuracy:** how often does the prompt score a visible-positive image
   above a visible-negative image? Chance is 50%.
 
-For attribute $a$, let $P_a$ be its visible-positive images, $N_a$ its
-visible-negative images, and $s(i)$ the prompt score for image $i$. We use
-pairwise ranking accuracy:
-
-$$
-\operatorname{RankAcc}_a =
-\frac{1}{|P_a||N_a|}
-\sum_{p\in P_a}\sum_{n\in N_a}
-\left[\mathbf{1}\{s(p)>s(n)\} +
-\tfrac{1}{2}\mathbf{1}\{s(p)=s(n)\}\right].
-$$
-
-The reported value is the macro-average of $\operatorname{RankAcc}_a$ over
-the evaluated attributes. Thus 75% means that, on average, three of every
-four positive-versus-negative image comparisons are ordered correctly; ties
-count as half a correct comparison.
-
 The random baseline for P@k is the attribute base rate: if 19% of visible
 candidate images have the attribute, random P@1/P@5/P@10 is 19% in expectation.
 
