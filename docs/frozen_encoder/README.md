@@ -33,18 +33,17 @@ Both, the $Q_{\text{CUB-train}}$ and $Q_{\text{Oxford}}$ transforms show strong 
 ## 2. Classification and retrieval: does the geometry support semantic reuse?
 
 Image-image retrieval asks whether each source-side image finds its exact
-paired target-side image among its five nearest neighbors. Joint zero-shot
-species classification maps both source
-images and source text prompts before doing the paper-style class-name
-classification, and is shown against native source and native target zero-shot
-accuracy.
+paired target-side image among its five nearest neighbors. Cross-model
+zero-shot species classification maps source images into the target space and
+compares them directly with the target model's native class-name prompts. The
+native source and target bars are references for each model's own classifier.
 
 ![CUB retrieval and zero-shot species classification](figures/class_level_transfer.svg)
 
-The in-domain CUB map nearly closes image-image retrieval, especially for
-FLAVA. Species classification changes only slightly, which is useful: the
-control is not simply making every semantic metric go up. It mostly improves
-paired image geometry.
+The in-domain CUB map nearly closes paired image retrieval, especially for
+FLAVA. The stricter zero-shot panel is deliberately harder: it does not rotate
+the source text prompts. For OpenAI→FLAVA, Oxford-Q reaches 8.6% and CUB-train-Q
+41.1%, compared with FLAVA's 40.5% native accuracy.
 
 ## 3. Fine-grained attribute transfer in both directions
 

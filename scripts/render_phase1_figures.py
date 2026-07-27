@@ -331,13 +331,13 @@ def class_panels() -> list[Panel]:
             [
                 Bar(group, "Native source", ox["ImageText"]["A_to_A"], COLORS["Native source"]),
                 Bar(group, "Native target", ox["ImageText"]["B_to_B"], COLORS["Native target"]),
-                Bar(group, "Oxford Q", ox["ImageText"]["Aligned_imgA_to_aligned_textA"], COLORS["Oxford Q"]),
-                Bar(group, "CUB-train Q", cq["ImageText"]["Aligned_imgA_to_aligned_textA"], COLORS["CUB-train Q"]),
+                Bar(group, "Oxford Q", ox["ImageText"]["Aligned_imgA_to_textB"], COLORS["Oxford Q"]),
+                Bar(group, "CUB-train Q", cq["ImageText"]["Aligned_imgA_to_textB"], COLORS["CUB-train Q"]),
             ]
         )
     return [
         Panel("(a) Image-image retrieval", "top-5 accuracy", retrieval_bars, 1.0, percent=True),
-        Panel("(b) Joint zero-shot species", "accuracy", zeroshot_bars, 0.75, percent=True),
+        Panel("(b) Cross-model zero-shot species", "accuracy", zeroshot_bars, 0.75, percent=True),
     ]
 
 

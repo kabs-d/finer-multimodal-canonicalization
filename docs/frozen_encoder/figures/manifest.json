@@ -12,7 +12,7 @@
       "file": "class_level_transfer.svg",
       "panels": [
         "(a) Image-image retrieval",
-        "(b) Joint zero-shot species"
+        "(b) Cross-model zero-shot species"
       ],
       "source_root": "artifacts/results/frozen_decoder"
     },
