@@ -1,7 +1,6 @@
 # Phase II: Attribute-Guided Retrieval
 
-This experiment asks whether attribute-only text prompts retrieve CUB birds that
-visibly have the queried attribute, and whether that behavior survives
+This experiment asks whether attribute-only text prompts retrieve CUB bird images that have the queried attribute, and whether that behavior survives
 orthogonal alignment across model spaces.
 
 The prompt template is:
