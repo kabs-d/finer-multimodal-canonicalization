@@ -41,7 +41,7 @@ Cross-model zero-shot species classification maps source images into the target 
 classifies them according to target model's native class-name prompts. The
 native target bar is the reference for the target model's own classifier. $Q_{\text{CUB-train}}$ aligned classification clearly outperforms $Q_{\text{Oxford}}$, and is comparable to native model classifiers. 
 
-## 3. Fine-grained attribute transfer in both directions
+## 3. Decoder performance transfer in both directions
 
 Each decoder predicts CUB's visible bird attributes from an image embedding.
 I train one decoder in each model's native space, then feed the aligned image embeddings from the other model into the decoder and evaluate the decoder's results. I use the same orthogonal transform in both directions: source to target uses $Q$, while target to source uses
