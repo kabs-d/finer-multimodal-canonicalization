@@ -14,7 +14,7 @@ The repository contains two main experiments:
   
   [Attribute-Text Image Retrieval under Canonical Alignment](docs/phase2/README.md)
 
-A central result of my analyses is that the orthogonal map derived from the Oxford-IIIT Pets image embeddings, on replicating the paper's methodology, remains effective on CUB’s dense, attribute-level bird annotations, even though it was never fitted to CUB images, which points towards a general understanding of the animal space.  A CUB-specific alignment improves performance further, though, by slight margins on most tasks.
+A central result of my analyses is that the orthogonal map derived from the Oxford-IIIT Pets image embeddings, on replicating the paper's methodology, remains effective on CUB’s dense, attribute-level bird annotations, even though it was never fitted to CUB images, which points towards a general understanding of the animal space.  A CUB-specific alignment improves performance further, on most tasks.
 
 ## What the results show
 
