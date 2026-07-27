@@ -9,6 +9,7 @@ We study this on **CUB-200-2011**, a fine-grained bird dataset containing
 The repository contains two main experiments:
 
 - **Attribute decoder transfer:** train a decoder head to predict bird attributes in one model’s native embedding space, then evaluate the frozen decoder's performance on a second model aligned in the first model's space.
+  [Decoder-transfer study, along with classification, similarity and retireval analysis](docs/frozen_encoder/README.md)
 - **Attribute-guided retrieval:** use an attribute-only text prompt, such as “a bird with a yellow wing,” to retrieve matching CUB images.
 
 A central result of my analyses is that the orthogonal map derived from the Oxford-IIIT Pets image embeddings, on replicating the paper's methodology, remains effective on CUB’s dense, attribute-level bird annotations, even though it was never fitted to CUB images.  A CUB-specific alignment improves performance further, though, by slight margins on most tasks.
