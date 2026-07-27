@@ -337,7 +337,7 @@ def class_panels() -> list[Panel]:
         )
     return [
         Panel("(a) Image-image retrieval", "top-5 accuracy", retrieval_bars, 1.0, percent=True),
-        Panel("(b) Joint zero-shot species", "top-1 accuracy", zeroshot_bars, 0.75, percent=True),
+        Panel("(b) Joint zero-shot species", "accuracy", zeroshot_bars, 0.75, percent=True),
     ]
 
 

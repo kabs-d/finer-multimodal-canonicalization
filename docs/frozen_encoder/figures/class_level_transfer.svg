@@ -73,6 +73,6 @@
 <rect x="601.5" y="128.4" width="18.0" height="117.6" fill="#9bc75f"/>
 <text x="610.5" y="125.4" text-anchor="middle" font-size="8" font-family="Times New Roman, serif">53.8</text>
 <text x="579.0" y="264" text-anchor="middle" font-size="10" font-family="Times New Roman, serif">OpenAI->FLAVA</text>
-<text x="342" y="164.0" transform="rotate(-90 342 164.0)" text-anchor="middle" font-size="10" font-family="Times New Roman, serif">top-1 accuracy</text>
+<text x="342" y="164.0" transform="rotate(-90 342 164.0)" text-anchor="middle" font-size="10" font-family="Times New Roman, serif">accuracy</text>
 <text x="330.0" y="320" text-anchor="middle" font-size="11" font-family="Times New Roman, serif">In-domain Q mainly improves image retrieval; zero-shot transfer is compared with native baselines.</text>
 </svg>
