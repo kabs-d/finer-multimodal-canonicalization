@@ -63,11 +63,6 @@ Linear(d, 512) → GELU → Dropout(0.1) → Linear(512, 256)
 The full results for both model pairs are in the
 [bidirectional decoder-transfer report](../../reports/bidirectional_decoder_transfer.md).
 
-> **Protocol note.** The two-layer MLP is a follow-up capacity probe using the
-> same frozen caches, data split, seeds, and loss, but its early stopping and
-> threshold implementation have not yet been folded into the locked Phase I
-> protocol. Treat the magnitude of its improvement as preliminary.
-
 ## 4. Fine-grained retrieval: do neighborhoods transfer?
 
 The decoder experiment tests reusable readouts. The retrieval extension removes
