@@ -8,9 +8,13 @@ from dataclasses import dataclass
 from pathlib import Path
 from typing import Iterable
 
+import torch
+
 
 PROJECT_ROOT = Path(__file__).resolve().parents[1]
 RESULT_ROOT = PROJECT_ROOT / "artifacts" / "results" / "frozen_decoder"
+EMBEDDING_ROOT = PROJECT_ROOT / "artifacts" / "embeddings" / "cub"
+ALIGNMENT_ROOT = PROJECT_ROOT / "artifacts" / "alignments"
 FIGURE_ROOT = PROJECT_ROOT / "docs" / "frozen_encoder" / "figures"
 
 PAIRS = {
@@ -251,17 +255,76 @@ def geometry_panels() -> list[Panel]:
     ]
 
 
+def _l2_normalize(values: torch.Tensor) -> torch.Tensor:
+    return values / values.norm(dim=-1, keepdim=True).clamp_min(1e-8)
+
+
+def _paired_image_retrieval_top5(
+    queries: torch.Tensor,
+    candidates: torch.Tensor,
+) -> float:
+    """Whether each query retrieves its exact paired target image in the top five."""
+    if queries.shape[0] != candidates.shape[0]:
+        raise ValueError("paired retrieval requires equally sized query and candidate sets")
+    queries = _l2_normalize(queries.float())
+    candidates = _l2_normalize(candidates.float())
+    hits = []
+    # Avoid materializing the entire test-by-test similarity matrix at once.
+    for start in range(0, queries.shape[0], 512):
+        stop = min(start + 512, queries.shape[0])
+        nearest = (queries[start:stop] @ candidates.T).topk(5, dim=-1).indices
+        paired_indices = torch.arange(start, stop)[:, None]
+        hits.append((nearest == paired_indices).any(dim=-1))
+    return torch.cat(hits).float().mean().item()
+
+
+def image_retrieval_top5(pair: dict[str, str]) -> dict[str, float]:
+    """Recompute CUB test paired image-to-image top-5 accuracy from frozen caches."""
+    train = torch.load(
+        EMBEDDING_ROOT / pair["linear"] / "cub_train.pt",
+        map_location="cpu",
+        weights_only=False,
+    )
+    test = torch.load(
+        EMBEDDING_ROOT / pair["linear"] / "cub_test.pt",
+        map_location="cpu",
+        weights_only=False,
+    )
+    source_mean = train["source"].mean(dim=0, keepdim=True)
+    target_mean = train["target"].mean(dim=0, keepdim=True)
+    oxford_name = pair["linear"].removeprefix("cub_").removesuffix("_linear")
+    rotations = {
+        "Oxford Q": torch.load(
+            ALIGNMENT_ROOT / f"oxford_{oxford_name}.pt",
+            map_location="cpu",
+            weights_only=False,
+        )["rotation"],
+        "CUB-train Q": torch.load(
+            ALIGNMENT_ROOT / f"{pair['cubq']}.pt",
+            map_location="cpu",
+            weights_only=False,
+        )["rotation"],
+    }
+    source, target = test["source"], test["target"]
+    results = {"Baseline": _paired_image_retrieval_top5(source, target)}
+    for name, rotation in rotations.items():
+        aligned = (source - source_mean) @ rotation + target_mean
+        results[name] = _paired_image_retrieval_top5(aligned, target)
+    return results
+
+
 def class_panels() -> list[Panel]:
     retrieval_bars, zeroshot_bars = [], []
     for pair in PAIRS.values():
         ox = load_json(pair["linear"], "alignment_metrics.json")
         cq = load_json(pair["cubq"], "alignment_metrics.json")
         group = pair["short"]
+        top5 = image_retrieval_top5(pair)
         retrieval_bars.extend(
             [
-                Bar(group, "Before Q", ox["ImageImage"]["Baseline"], COLORS["Before Q"]),
-                Bar(group, "Oxford Q", ox["ImageImage"]["Procrustes"], COLORS["Oxford Q"]),
-                Bar(group, "CUB-train Q", cq["ImageImage"]["Procrustes"], COLORS["CUB-train Q"]),
+                Bar(group, "Before Q", top5["Baseline"], COLORS["Before Q"]),
+                Bar(group, "Oxford Q", top5["Oxford Q"], COLORS["Oxford Q"]),
+                Bar(group, "CUB-train Q", top5["CUB-train Q"], COLORS["CUB-train Q"]),
             ]
         )
         zeroshot_bars.extend(
@@ -273,7 +336,7 @@ def class_panels() -> list[Panel]:
             ]
         )
     return [
-        Panel("(a) Image-image retrieval", "top-1 accuracy", retrieval_bars, 1.0, percent=True),
+        Panel("(a) Image-image retrieval", "top-5 accuracy", retrieval_bars, 1.0, percent=True),
         Panel("(b) Joint zero-shot species", "top-1 accuracy", zeroshot_bars, 0.75, percent=True),
     ]
 
