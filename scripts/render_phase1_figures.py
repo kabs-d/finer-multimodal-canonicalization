@@ -446,7 +446,7 @@ def main() -> None:
     FIGURE_ROOT.mkdir(parents=True, exist_ok=True)
     figures = [
         ("geometry_alignment.svg", geometry_panels(), "Q moves cross-model image/text pairs from near-zero cosine to strong agreement.", 2, 330),
-        ("class_level_transfer.svg", class_panels(), "In-domain Q mainly improves image retrieval; zero-shot transfer is compared with native baselines.", 2, 330),
+        ("class_level_transfer_cross_model.svg", class_panels(), "In-domain Q mainly improves image retrieval; zero-shot transfer is compared with native baselines.", 2, 330),
         ("readout_counts.svg", readout_count_panels(), "CUB-train Q recovers more true attributes, with a hallucination tradeoff.", 3, 330),
         ("within_species_ranking.svg", within_species_panel(), "Above-chance same-species ranking shows fine-grained signal beyond species identity.", 1, 330),
         ("mlp_capacity.svg", mlp_panels(), "The MLP recovers more attributes but does not improve species-controlled transfer.", 2, 330),

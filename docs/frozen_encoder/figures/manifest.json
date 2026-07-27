@@ -9,7 +9,7 @@
       "source_root": "artifacts/results/frozen_decoder"
     },
     {
-      "file": "class_level_transfer.svg",
+      "file": "class_level_transfer_cross_model.svg",
       "panels": [
         "(a) Image-image retrieval",
         "(b) Cross-model zero-shot species"

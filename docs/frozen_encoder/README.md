@@ -38,7 +38,7 @@ zero-shot species classification maps source images into the target space and
 compares them directly with the target model's native class-name prompts. The
 native target bar is the reference for the target model's own classifier.
 
-![CUB retrieval and zero-shot species classification](figures/class_level_transfer.svg)
+![CUB retrieval and zero-shot species classification](figures/class_level_transfer_cross_model.svg)
 
 The in-domain CUB map nearly closes paired image retrieval, especially for
 FLAVA. The stricter zero-shot panel is deliberately harder: it does not rotate
