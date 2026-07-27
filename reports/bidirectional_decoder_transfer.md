@@ -23,7 +23,7 @@ decision boundaries.
 
 ## Two-layer MLP alignment controls
 
-The figures in the frozen-encoder summary show the two-layer MLP alone. Its
+The figures in the summary show the two-layer MLP alone. Its
 unaligned controls make the contribution of $Q$ explicit:
 
 | Pair and direction | Native MLP | Unaligned MLP | Oxford-​Q MLP | CUB-train-​Q MLP |
@@ -32,15 +32,6 @@ unaligned controls make the contribution of $Q$ explicit:
 | OpenAI B/32 → LAION, target → source | 70.80% | 43.10% | 66.02% | 70.21% |
 | OpenAI L/14 → FLAVA, source → target | 71.08% | 43.24% | 61.41% | 67.88% |
 | OpenAI L/14 → FLAVA, target → source | 70.71% | 34.29% | 62.21% | 70.68% |
-
-## Protocol note
-
-The linear numbers reuse the original five Phase I decoder checkpoints. The
-two-layer MLP is an exploratory capacity probe using the same frozen embedding
-caches, CUB split, seeds, and masked class-balanced BCE loss, but a different
-validation stopping score and threshold implementation. Its improvement should
-therefore be treated as preliminary until rerun under the fully locked Phase I
-selection protocol.
 
 Machine-readable summaries:
 
