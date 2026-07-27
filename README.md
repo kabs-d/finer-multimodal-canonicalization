@@ -2,8 +2,7 @@
 
 This project is inspired by Gupta et al., *Canonicalizing Multimodal Contrastive
 Representation Learning*. I try to verify whether canonical alignment remains
-useful when the evaluation concerns fine visual details.
-We study this on **CUB-200-2011**, a fine-grained bird dataset containing
+useful when the evaluation concerns fine visual details. This study is on **CUB-200-2011**, a fine-grained bird dataset containing
 11,788 images from 200 species. Each bird image has 312 visual-attribute labels, such as bill shape, wing color, head color, and tail pattern.
 
 The repository contains two main experiments:
@@ -15,7 +14,7 @@ The repository contains two main experiments:
   
   [Attribute-Text Image Retrieval under Canonical Alignment](docs/phase2/README.md)
 
-A central result of my analyses is that the orthogonal map derived from the Oxford-IIIT Pets image embeddings, on replicating the paper's methodology, remains effective on CUB’s dense, attribute-level bird annotations, even though it was never fitted to CUB images.  A CUB-specific alignment improves performance further, though, by slight margins on most tasks.
+A central result of my analyses is that the orthogonal map derived from the Oxford-IIIT Pets image embeddings, on replicating the paper's methodology, remains effective on CUB’s dense, attribute-level bird annotations, even though it was never fitted to CUB images, which points towards a general understanding of the animal space.  A CUB-specific alignment improves performance further, though, by slight margins on most tasks.
 
 ## What the results show
 
