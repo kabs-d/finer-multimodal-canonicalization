@@ -1,7 +1,7 @@
 # Finer Multimodal Canonicalization
 
-This project is inspired by Gupta et al., *Canonicalizing Multimodal Contrastive
-Representation Learning*. I try to verify whether canonical alignment remains
+This project is inspired by [Gupta et al. (2026)](https://arxiv.org/abs/2602.17584),
+*Canonicalizing Multimodal Contrastive Representation Learning*. I try to verify whether canonical alignment remains
 useful when the evaluation concerns fine visual details. This study is on **CUB-200-2011**, a fine-grained bird dataset containing
 11,788 images from 200 species. Each bird image has 312 visual-attribute labels, such as bill shape, wing color, head color, and tail pattern.
 
@@ -62,3 +62,8 @@ prediction dumps are intentionally kept out of the exportable repository.
 python3 scripts/render_phase1_figures.py
 python3 scripts/render_attribute_text_retrieval_figures.py
 ```
+
+## Reference
+
+- Sharut Gupta, Sanyam Kansal, Stefanie Jegelka, Phillip Isola, and Vikas Garg.
+  [*Canonicalizing Multimodal Contrastive Representation Learning*](https://arxiv.org/abs/2602.17584), 2026.

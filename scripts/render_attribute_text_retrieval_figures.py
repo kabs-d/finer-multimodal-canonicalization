@@ -153,7 +153,7 @@ def render(path: Path, panels: list[Panel], caption: str) -> None:
     width = panel_w * len(panels)
     legend_svg, legend_rows = legend(width)
     panel_y = 48 + 17 * (legend_rows - 1)
-    height = panel_y + panel_h + 35
+    height = panel_y + panel_h + (35 if caption else 12)
     body = [
         f'<svg xmlns="http://www.w3.org/2000/svg" width="{width}" height="{height}" viewBox="0 0 {width} {height}">',
         '<rect width="100%" height="100%" fill="white"/>',
@@ -161,10 +161,11 @@ def render(path: Path, panels: list[Panel], caption: str) -> None:
     ]
     for index, panel in enumerate(panels):
         body.append(render_panel(panel, panel_w * index, panel_y, panel_w, panel_h))
-    body.append(
-        f'<text x="{width / 2:.1f}" y="{height - 12}" text-anchor="middle" '
-        f'font-size="11" font-family="Times New Roman, serif">{caption}</text>'
-    )
+    if caption:
+        body.append(
+            f'<text x="{width / 2:.1f}" y="{height - 12}" text-anchor="middle" '
+            f'font-size="11" font-family="Times New Roman, serif">{caption}</text>'
+        )
     body.append("</svg>")
     path.write_text("\n".join(body) + "\n", encoding="utf-8")
 
@@ -201,7 +202,7 @@ def main() -> None:
     render(
         FIGURE_ROOT / "global_attribute_p10_all312.svg",
         [panel_for("all_312", "precision_at_10_macro", "", "P@10 (%)", 40)],
-        "Attribute-only text retrieval over all CUB test images with visible labels; random is the attribute base rate.",
+        "",
     )
     render(
         FIGURE_ROOT / "global_attribute_ranking.svg",
