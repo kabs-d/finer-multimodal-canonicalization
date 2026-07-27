@@ -36,12 +36,7 @@ Attribute-level text-to-image behavior transfers as well: Oxford-\(Q\) turns
 near-random unaligned cross-model retrieval into a clearly above-baseline
 result, while CUB-train-\(Q\) improves it further.
 
-
-## Explore the experiments
-
-- [Frozen encoder and decoder-transfer study](docs/frozen_encoder/README.md)
-- [Attribute-guided retrieval study](docs/phase2/README.md)
-- [Detailed results and protocols](reports/)
+[Detailed results and protocols](reports/)
 
 ## Repository map
 
