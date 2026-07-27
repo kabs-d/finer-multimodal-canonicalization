@@ -33,7 +33,8 @@ Both, the $Q_{\text{CUB-train}}$ and $Q_{\text{Oxford}}$ transforms show strong 
 ## 2. Classification and retrieval: does the geometry support semantic reuse?
 
 Image-image retrieval asks whether each source-side image retrieves its paired
-target-side image. Joint zero-shot species classification maps both source
+target-side image. 
+Joint zero-shot species classification maps both source
 images and source text prompts before doing the paper-style class-name
 classification, and is shown against native source and native target zero-shot
 accuracy.
