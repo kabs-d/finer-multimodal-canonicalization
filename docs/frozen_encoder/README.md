@@ -28,7 +28,7 @@ alignment, the same object has a much more similar coordinate description.
 
 ![Paired CUB cosine before and after alignment](figures/geometry_alignment.svg)
 
-Both, the $Q_{\text{CUB-train}}$ and $Q_{\text{Oxford}}$ transforms show strong image-image and text-text imlignment.
+Both, $Q_{\text{CUB-train}}$ and $Q_{\text{Oxford}}$ transforms show strong image-image and text-text alignment.
 
 ## 2. Classification and retrieval: does the geometry support semantic reuse?
 
