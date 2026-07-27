@@ -1,11 +1,8 @@
 # Finer Multimodal Canonicalization
 
 This project is inspired by Gupta et al., *Canonicalizing Multimodal Contrastive
-Representation Learning*, and follows up on the limitations and future
-directions identified in that work. We ask whether canonical alignment remains
-useful when the evaluation concerns fine visual details rather than only broad
-semantic similarity.
-
+Representation Learning*. I try to verify whether canonical alignment remains
+useful when the evaluation concerns fine visual details.
 We study this on **CUB-200-2011**, a fine-grained bird dataset containing
 11,788 images from 200 species. Each bird image has 312 visual-attribute labels, such as bill shape, wing color, head color, and tail pattern.
 
@@ -14,14 +11,14 @@ The repository contains two main experiments:
 - **Attribute decoder transfer:** train a decoder head to predict bird attributes in one model’s native embedding space, then evaluate the frozen decoder's performance on a second model aligned in the first model's space.
 - **Attribute-guided retrieval:** use an attribute-only text prompt, such as “a bird with a yellow wing,” to retrieve matching CUB images.
 
-A central result of my analyses is that the orthogonal map derived from the Oxford-IIIT Pets image embeddings, after replicating the paper's methodology, remains effective on CUB’s much denser, attribute-level bird annotations, even though it was never fitted to CUB images.  A CUB-specific alignment improves performance further, though, by slight margins on most tasks.
+A central result of my analyses is that the orthogonal map derived from the Oxford-IIIT Pets image embeddings, on replicating the paper's methodology, remains effective on CUB’s dense, attribute-level bird annotations, even though it was never fitted to CUB images.  A CUB-specific alignment improves performance further, though, by slight margins on most tasks.
 
 ## What the results show
 
 ![Unidirectional fine-grained attribute transfer](docs/frozen_encoder/figures/unidirectional_mlp_transfer.svg)
 
 A two-layer MLP is trained in the target
-model’s native space to predict each bird’s visible CUB attributes. We then
+model’s native space to predict each bird’s visible CUB attributes. I then
 apply that frozen decoder to source embeddings before and after canonical
 alignment. Without alignment, attribute recovery falls sharply; Oxford-\(Q\)
 restores most of the lost performance, while CUB-train-\(Q\) nearly reaches the
@@ -35,8 +32,6 @@ Attribute-level text-to-image behavior transfers as well: Oxford-\(Q\) turns
 near-random unaligned cross-model retrieval into a clearly above-baseline
 result, while CUB-train-\(Q\) improves it further.
 
-These figures summarize the central result: canonical alignment transfers
-useful fine-grained behavior, but not perfectly.
 
 ## Explore the experiments
 
