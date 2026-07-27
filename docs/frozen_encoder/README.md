@@ -71,12 +71,8 @@ The full results for both model pairs are in the
    bird geometry.
 2. Independently trained source and target attribute decoders both remain
    useful after applying $Q$ or $Q^\top$.
-3. The two-layer MLP capacity probe retains more visible attributes after
-   alignment, although its comparison is preliminary.
 4. CUB-train-fitted alignment improves transfer, but it does not make aligned
    decoding fully native.
-5. Same-species retrieval shows that alignment also preserves fine-grained
-   neighborhood structure, not only decoder compatibility.
 
 For complete numerical tables and artifact provenance, see
 [the detailed Phase I report](../../reports/phase1_results.md) and
