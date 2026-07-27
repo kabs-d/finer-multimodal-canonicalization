@@ -63,22 +63,7 @@ Linear(d, 512) → GELU → Dropout(0.1) → Linear(512, 256)
 The full results for both model pairs are in the
 [bidirectional decoder-transfer report](../../reports/bidirectional_decoder_transfer.md).
 
-## 4. Fine-grained retrieval: do neighborhoods transfer?
 
-The decoder experiment tests reusable readouts. The retrieval extension removes
-the decoder and asks whether aligned source embeddings retrieve target-space
-birds with matching attributes. Candidate pools are restricted to the same
-species and exclude the query image, so coarse class identity is not enough.
-
-![Same-species attribute retrieval gain over random](figures/fine_retrieval_attribute_overlap.svg)
-
-![Rare-attribute retrieval gain over random](figures/fine_retrieval_rare_recall.svg)
-
-Random same-species retrieval is already strong because birds of the same
-species share many typical attributes. The aligned conditions therefore matter
-most as gain over random and unaligned source. Oxford-Q remains competitive,
-while CUB-train-Q is strongest for strict top-1 overlap, matching its role as
-an in-domain image-geometry control.
 
 ## Compact takeaways
 
